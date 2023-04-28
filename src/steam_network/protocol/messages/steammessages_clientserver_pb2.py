@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=b'H\001\220\001\000',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n steammessages_clientserver.proto\x1a\x18steammessages_base.proto\x1a\x1a\x65ncrypted_app_ticket.proto\"j\n\"CMsgClientRegisterAuthTicketWithCM\x12\x18\n\x10protocol_version\x18\x01 \x01(\r\x12\x0e\n\x06ticket\x18\x03 \x01(\x0c\x12\x1a\n\x12\x63lient_instance_id\x18\x04 \x01(\x04\"\xd1\x01\n\x1c\x43MsgClientTicketAuthComplete\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x0f\n\x07game_id\x18\x02 \x01(\x06\x12\x0e\n\x06\x65state\x18\x03 \x01(\r\x12\x1e\n\x16\x65\x61uth_session_response\x18\x04 \x01(\r\x12\x19\n\x11\x44\x45PRECATED_ticket\x18\x05 \x01(\x0c\x12\x12\n\nticket_crc\x18\x06 \x01(\r\x12\x17\n\x0fticket_sequence\x18\x07 \x01(\r\x12\x16\n\x0eowner_steam_id\x18\x08 \x01(\x06\"\x80\x01\n\x10\x43MsgClientCMList\x12\x14\n\x0c\x63m_addresses\x18\x01 \x03(\r\x12\x10\n\x08\x63m_ports\x18\x02 \x03(\r\x12\x1e\n\x16\x63m_websocket_addresses\x18\x03 \x03(\t\x12$\n\x1cpercent_default_to_websocket\x18\x04 \x01(\r\"\xa3\x01\n\x1b\x43MsgClientP2PConnectionInfo\x12\x15\n\rsteam_id_dest\x18\x01 \x01(\x06\x12\x14\n\x0csteam_id_src\x18\x02 \x01(\x06\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\r\x12\x11\n\tcandidate\x18\x04 \x01(\x0c\x12 \n\x18legacy_connection_id_src\x18\x05 \x01(\x06\x12\x12\n\nrendezvous\x18\x06 \x01(\x0c\"\xc3\x01\n\x1f\x43MsgClientP2PConnectionFailInfo\x12\x15\n\rsteam_id_dest\x18\x01 \x01(\x06\x12\x14\n\x0csteam_id_src\x18\x02 \x01(\x06\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\r\x12\x1a\n\x12\x65p2p_session_error\x18\x04 \x01(\r\x12\x1a\n\x12\x63onnection_id_dest\x18\x05 \x01(\x06\x12\x14\n\x0c\x63lose_reason\x18\x07 \x01(\r\x12\x15\n\rclose_message\x18\x08 \x01(\t\"C\n\x1f\x43MsgClientNetworkingCertRequest\x12\x10\n\x08key_data\x18\x02 \x01(\x0c\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\r\"V\n\x1d\x43MsgClientNetworkingCertReply\x12\x0c\n\x04\x63\x65rt\x18\x04 \x01(\x0c\x12\x11\n\tca_key_id\x18\x05 \x01(\x06\x12\x14\n\x0c\x63\x61_signature\x18\x06 \x01(\x0c\"7\n%CMsgClientNetworkingMobileCertRequest\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\";\n#CMsgClientNetworkingMobileCertReply\x12\x14\n\x0c\x65ncoded_cert\x18\x01 \x01(\t\"1\n\x1f\x43MsgClientGetAppOwnershipTicket\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\"]\n\'CMsgClientGetAppOwnershipTicketResponse\x12\x12\n\x07\x65result\x18\x01 \x01(\r:\x01\x32\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\r\x12\x0e\n\x06ticket\x18\x03 \x01(\x0c\"\'\n\x16\x43MsgClientSessionToken\x12\r\n\x05token\x18\x01 \x01(\x04\"M\n\x1b\x43MsgClientGameConnectTokens\x12\x1e\n\x12max_tokens_to_keep\x18\x01 \x01(\r:\x02\x31\x30\x12\x0e\n\x06tokens\x18\x02 \x03(\x0c\"\xb9\x06\n\x15\x43MsgClientGamesPlayed\x12\x37\n\x0cgames_played\x18\x01 \x03(\x0b\x32!.CMsgClientGamesPlayed.GamePlayed\x12\x16\n\x0e\x63lient_os_type\x18\x02 \x01(\r\x12\x1d\n\x15\x63loud_gaming_platform\x18\x03 \x01(\r\x1a\xaf\x05\n\nGamePlayed\x12\x13\n\x0bsteam_id_gs\x18\x01 \x01(\x04\x12\x0f\n\x07game_id\x18\x02 \x01(\x06\x12\"\n\x1a\x64\x65precated_game_ip_address\x18\x03 \x01(\r\x12\x11\n\tgame_port\x18\x04 \x01(\r\x12\x11\n\tis_secure\x18\x05 \x01(\x08\x12\r\n\x05token\x18\x06 \x01(\x0c\x12\x17\n\x0fgame_extra_info\x18\x07 \x01(\t\x12\x16\n\x0egame_data_blob\x18\x08 \x01(\x0c\x12\x12\n\nprocess_id\x18\t \x01(\r\x12\x1d\n\x15streaming_provider_id\x18\n \x01(\r\x12\x12\n\ngame_flags\x18\x0b \x01(\r\x12\x10\n\x08owner_id\x18\x0c \x01(\r\x12\x15\n\rvr_hmd_vendor\x18\r \x01(\t\x12\x14\n\x0cvr_hmd_model\x18\x0e \x01(\t\x12\x1d\n\x12launch_option_type\x18\x0f \x01(\r:\x01\x30\x12#\n\x17primary_controller_type\x18\x10 \x01(\x05:\x02-1\x12\'\n\x1fprimary_steam_controller_serial\x18\x11 \x01(\t\x12\'\n\x1ctotal_steam_controller_count\x18\x12 \x01(\r:\x01\x30\x12+\n total_non_steam_controller_count\x18\x13 \x01(\r:\x01\x30\x12&\n\x1b\x63ontroller_workshop_file_id\x18\x14 \x01(\x04:\x01\x30\x12\x18\n\rlaunch_source\x18\x15 \x01(\r:\x01\x30\x12\x16\n\x0evr_hmd_runtime\x18\x16 \x01(\r\x12\'\n\x0fgame_ip_address\x18\x17 \x01(\x0b\x32\x0e.CMsgIPAddress\x12%\n\x1a\x63ontroller_connection_type\x18\x18 \x01(\r:\x01\x30\"9\n\rCMsgGSApprove\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x16\n\x0eowner_steam_id\x18\x02 \x01(\x06\"I\n\nCMsgGSDeny\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x14\n\x0c\x65\x64\x65ny_reason\x18\x02 \x01(\x05\x12\x13\n\x0b\x64\x65ny_string\x18\x03 \x01(\t\"4\n\nCMsgGSKick\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x14\n\x0c\x65\x64\x65ny_reason\x18\x02 \x01(\x05\"\xb6\x01\n\x12\x43MsgClientAuthList\x12\x13\n\x0btokens_left\x18\x01 \x01(\r\x12\x18\n\x10last_request_seq\x18\x02 \x01(\r\x12$\n\x1clast_request_seq_from_server\x18\x03 \x01(\r\x12 \n\x07tickets\x18\x04 \x03(\x0b\x32\x0f.CMsgAuthTicket\x12\x0f\n\x07\x61pp_ids\x18\x05 \x03(\r\x12\x18\n\x10message_sequence\x18\x06 \x01(\r\"V\n\x15\x43MsgClientAuthListAck\x12\x12\n\nticket_crc\x18\x01 \x03(\r\x12\x0f\n\x07\x61pp_ids\x18\x02 \x03(\r\x12\x18\n\x10message_sequence\x18\x03 \x01(\r\"\x8e\x04\n\x15\x43MsgClientLicenseList\x12\x12\n\x07\x65result\x18\x01 \x01(\x05:\x01\x32\x12\x30\n\x08licenses\x18\x02 \x03(\x0b\x32\x1e.CMsgClientLicenseList.License\x1a\xae\x03\n\x07License\x12\x12\n\npackage_id\x18\x01 \x01(\r\x12\x14\n\x0ctime_created\x18\x02 \x01(\x07\x12\x19\n\x11time_next_process\x18\x03 \x01(\x07\x12\x14\n\x0cminute_limit\x18\x04 \x01(\x05\x12\x14\n\x0cminutes_used\x18\x05 \x01(\x05\x12\x16\n\x0epayment_method\x18\x06 \x01(\r\x12\r\n\x05\x66lags\x18\x07 \x01(\r\x12\x1d\n\x15purchase_country_code\x18\x08 \x01(\t\x12\x14\n\x0clicense_type\x18\t \x01(\r\x12\x16\n\x0eterritory_code\x18\n \x01(\x05\x12\x15\n\rchange_number\x18\x0b \x01(\x05\x12\x10\n\x08owner_id\x18\x0c \x01(\r\x12\x16\n\x0einitial_period\x18\r \x01(\r\x12\x19\n\x11initial_time_unit\x18\x0e \x01(\r\x12\x16\n\x0erenewal_period\x18\x0f \x01(\r\x12\x19\n\x11renewal_time_unit\x18\x10 \x01(\r\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x11 \x01(\x04\x12\x19\n\x11master_package_id\x18\x12 \x01(\r\"\xaa\x01\n\x1a\x43MsgClientIsLimitedAccount\x12\x1b\n\x13\x62is_limited_account\x18\x01 \x01(\x08\x12\x1c\n\x14\x62is_community_banned\x18\x02 \x01(\x08\x12\x1a\n\x12\x62is_locked_account\x18\x03 \x01(\x08\x12\x35\n-bis_limited_account_allowed_to_invite_friends\x18\x04 \x01(\x08\"\xa7\x01\n\x1e\x43MsgClientRequestedClientStats\x12\x42\n\rstats_to_send\x18\x01 \x03(\x0b\x32+.CMsgClientRequestedClientStats.StatsToSend\x1a\x41\n\x0bStatsToSend\x12\x13\n\x0b\x63lient_stat\x18\x01 \x01(\r\x12\x1d\n\x15stat_aggregate_method\x18\x02 \x01(\r\"\xc0\x01\n\x0f\x43MsgClientStat2\x12\x30\n\x0bstat_detail\x18\x01 \x03(\x0b\x32\x1b.CMsgClientStat2.StatDetail\x1a{\n\nStatDetail\x12\x13\n\x0b\x63lient_stat\x18\x01 \x01(\r\x12\x10\n\x08ll_value\x18\x02 \x01(\x03\x12\x13\n\x0btime_of_day\x18\x03 \x01(\r\x12\x0f\n\x07\x63\x65ll_id\x18\x04 \x01(\r\x12\x10\n\x08\x64\x65pot_id\x18\x05 \x01(\r\x12\x0e\n\x06\x61pp_id\x18\x06 \x01(\r\"r\n\x16\x43MsgClientInviteToGame\x12\x15\n\rsteam_id_dest\x18\x01 \x01(\x06\x12\x14\n\x0csteam_id_src\x18\x02 \x01(\x06\x12\x16\n\x0e\x63onnect_string\x18\x03 \x01(\t\x12\x13\n\x0bremote_play\x18\x04 \x01(\t\"\xb9\x01\n\x14\x43MsgClientChatInvite\x12\x18\n\x10steam_id_invited\x18\x01 \x01(\x06\x12\x15\n\rsteam_id_chat\x18\x02 \x01(\x06\x12\x17\n\x0fsteam_id_patron\x18\x03 \x01(\x06\x12\x15\n\rchatroom_type\x18\x04 \x01(\x05\x12\x1c\n\x14steam_id_friend_chat\x18\x05 \x01(\x06\x12\x11\n\tchat_name\x18\x06 \x01(\t\x12\x0f\n\x07game_id\x18\x07 \x01(\x06\"\x8a\x08\n\x19\x43MsgClientConnectionStats\x12;\n\x0bstats_logon\x18\x01 \x01(\x0b\x32&.CMsgClientConnectionStats.Stats_Logon\x12;\n\x0bstats_vconn\x18\x02 \x01(\x0b\x32&.CMsgClientConnectionStats.Stats_VConn\x1a\xc7\x01\n\x0bStats_Logon\x12\x18\n\x10\x63onnect_attempts\x18\x01 \x01(\x05\x12\x19\n\x11\x63onnect_successes\x18\x02 \x01(\x05\x12\x18\n\x10\x63onnect_failures\x18\x03 \x01(\x05\x12\x1b\n\x13\x63onnections_dropped\x18\x04 \x01(\x05\x12\x17\n\x0fseconds_running\x18\x05 \x01(\r\x12\x1c\n\x14msec_tologonthistime\x18\x06 \x01(\r\x12\x15\n\rcount_bad_cms\x18\x07 \x01(\r\x1aq\n\tStats_UDP\x12\x11\n\tpkts_sent\x18\x01 \x01(\x04\x12\x12\n\nbytes_sent\x18\x02 \x01(\x04\x12\x11\n\tpkts_recv\x18\x03 \x01(\x04\x12\x16\n\x0epkts_processed\x18\x04 \x01(\x04\x12\x12\n\nbytes_recv\x18\x05 \x01(\x04\x1a\xb5\x04\n\x0bStats_VConn\x12\x17\n\x0f\x63onnections_udp\x18\x01 \x01(\r\x12\x17\n\x0f\x63onnections_tcp\x18\x02 \x01(\r\x12\x37\n\tstats_udp\x18\x03 \x01(\x0b\x32$.CMsgClientConnectionStats.Stats_UDP\x12\x16\n\x0epkts_abandoned\x18\x04 \x01(\x04\x12\x19\n\x11\x63onn_req_received\x18\x05 \x01(\x04\x12\x13\n\x0bpkts_resent\x18\x06 \x01(\x04\x12\x11\n\tmsgs_sent\x18\x07 \x01(\x04\x12\x18\n\x10msgs_sent_failed\x18\x08 \x01(\x04\x12\x11\n\tmsgs_recv\x18\t \x01(\x04\x12\x16\n\x0e\x64\x61tagrams_sent\x18\n \x01(\x04\x12\x16\n\x0e\x64\x61tagrams_recv\x18\x0b \x01(\x04\x12\x15\n\rbad_pkts_recv\x18\x0c \x01(\x04\x12\x1e\n\x16unknown_conn_pkts_recv\x18\r \x01(\x04\x12\x18\n\x10missed_pkts_recv\x18\x0e \x01(\x04\x12\x15\n\rdup_pkts_recv\x18\x0f \x01(\x04\x12!\n\x19\x66\x61iled_connect_challenges\x18\x10 \x01(\x04\x12\x1d\n\x15micro_sec_avg_latency\x18\x11 \x01(\r\x12\x1d\n\x15micro_sec_min_latency\x18\x12 \x01(\r\x12\x1d\n\x15micro_sec_max_latency\x18\x13 \x01(\r\x12\x1b\n\x13mem_pool_msg_in_use\x18\x14 \x01(\r\"\xd2\x01\n\x1a\x43MsgClientServersAvailable\x12R\n\x16server_types_available\x18\x01 \x03(\x0b\x32\x32.CMsgClientServersAvailable.Server_Types_Available\x12%\n\x1dserver_type_for_auth_services\x18\x02 \x01(\r\x1a\x39\n\x16Server_Types_Available\x12\x0e\n\x06server\x18\x01 \x01(\r\x12\x0f\n\x07\x63hanged\x18\x02 \x01(\x08\"?\n$CMsgClientReportOverlayDetourFailure\x12\x17\n\x0f\x66\x61ilure_strings\x18\x01 \x03(\t\"G\n#CMsgClientRequestEncryptedAppTicket\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\x12\x10\n\x08userdata\x18\x02 \x01(\x0c\"\x84\x01\n+CMsgClientRequestEncryptedAppTicketResponse\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\x12\x12\n\x07\x65result\x18\x02 \x01(\x05:\x01\x32\x12\x31\n\x14\x65ncrypted_app_ticket\x18\x03 \x01(\x0b\x32\x13.EncryptedAppTicket\"\xb5\x01\n\x1a\x43MsgClientWalletInfoUpdate\x12\x12\n\nhas_wallet\x18\x01 \x01(\x08\x12\x0f\n\x07\x62\x61lance\x18\x02 \x01(\x05\x12\x10\n\x08\x63urrency\x18\x03 \x01(\x05\x12\x17\n\x0f\x62\x61lance_delayed\x18\x04 \x01(\x05\x12\x17\n\tbalance64\x18\x05 \x01(\x03\x42\x04\xa0\xb6\x18\x01\x12\x1f\n\x11\x62\x61lance64_delayed\x18\x06 \x01(\x03\x42\x04\xa0\xb6\x18\x01\x12\r\n\x05realm\x18\x07 \x01(\x05\"3\n\x1b\x43MsgClientAMGetClanOfficers\x12\x14\n\x0csteamid_clan\x18\x01 \x01(\x06\"f\n#CMsgClientAMGetClanOfficersResponse\x12\x12\n\x07\x65result\x18\x01 \x01(\x05:\x01\x32\x12\x14\n\x0csteamid_clan\x18\x02 \x01(\x06\x12\x15\n\rofficer_count\x18\x03 \x01(\x05\"\x90\x01\n!CMsgClientAMGetPersonaNameHistory\x12\x10\n\x08id_count\x18\x01 \x01(\x05\x12:\n\x03Ids\x18\x02 \x03(\x0b\x32-.CMsgClientAMGetPersonaNameHistory.IdInstance\x1a\x1d\n\nIdInstance\x12\x0f\n\x07steamid\x18\x01 \x01(\x06\"\xc3\x02\n)CMsgClientAMGetPersonaNameHistoryResponse\x12O\n\tresponses\x18\x02 \x03(\x0b\x32<.CMsgClientAMGetPersonaNameHistoryResponse.NameTableInstance\x1a\xc4\x01\n\x11NameTableInstance\x12\x12\n\x07\x65result\x18\x01 \x01(\x05:\x01\x32\x12\x0f\n\x07steamid\x18\x02 \x01(\x06\x12X\n\x05names\x18\x03 \x03(\x0b\x32I.CMsgClientAMGetPersonaNameHistoryResponse.NameTableInstance.NameInstance\x1a\x30\n\x0cNameInstance\x12\x12\n\nname_since\x18\x01 \x01(\x07\x12\x0c\n\x04name\x18\x02 \x01(\t\"E\n\x1e\x43MsgClientDeregisterWithServer\x12\x13\n\x0b\x65servertype\x18\x01 \x01(\r\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\r\"\xab\x04\n\x13\x43MsgClientClanState\x12\x14\n\x0csteamid_clan\x18\x01 \x01(\x06\x12\x1a\n\x12\x63lan_account_flags\x18\x03 \x01(\r\x12\x30\n\tname_info\x18\x04 \x01(\x0b\x32\x1d.CMsgClientClanState.NameInfo\x12\x34\n\x0buser_counts\x18\x05 \x01(\x0b\x32\x1f.CMsgClientClanState.UserCounts\x12*\n\x06\x65vents\x18\x06 \x03(\x0b\x32\x1a.CMsgClientClanState.Event\x12\x31\n\rannouncements\x18\x07 \x03(\x0b\x32\x1a.CMsgClientClanState.Event\x12\x19\n\x11\x63hat_room_private\x18\x08 \x01(\x08\x1a\x31\n\x08NameInfo\x12\x11\n\tclan_name\x18\x01 \x01(\t\x12\x12\n\nsha_avatar\x18\x02 \x01(\x0c\x1ak\n\nUserCounts\x12\x0f\n\x07members\x18\x01 \x01(\r\x12\x0e\n\x06online\x18\x02 \x01(\r\x12\x10\n\x08\x63hatting\x18\x03 \x01(\r\x12\x0f\n\x07in_game\x18\x04 \x01(\r\x12\x19\n\x11\x63hat_room_members\x18\x05 \x01(\r\x1a`\n\x05\x45vent\x12\x0b\n\x03gid\x18\x01 \x01(\x06\x12\x12\n\nevent_time\x18\x02 \x01(\r\x12\x10\n\x08headline\x18\x03 \x01(\t\x12\x0f\n\x07game_id\x18\x04 \x01(\x06\x12\x13\n\x0bjust_posted\x18\x05 \x01(\x08\x42\x05H\x01\x90\x01\x00'
+  serialized_pb=b'\n steammessages_clientserver.proto\x1a\x18steammessages_base.proto\x1a\x1a\x65ncrypted_app_ticket.proto\"j\n\"CMsgClientRegisterAuthTicketWithCM\x12\x18\n\x10protocol_version\x18\x01 \x01(\r\x12\x0e\n\x06ticket\x18\x03 \x01(\x0c\x12\x1a\n\x12\x63lient_instance_id\x18\x04 \x01(\x04\"\xd1\x01\n\x1c\x43MsgClientTicketAuthComplete\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x0f\n\x07game_id\x18\x02 \x01(\x06\x12\x0e\n\x06\x65state\x18\x03 \x01(\r\x12\x1e\n\x16\x65\x61uth_session_response\x18\x04 \x01(\r\x12\x19\n\x11\x44\x45PRECATED_ticket\x18\x05 \x01(\x0c\x12\x12\n\nticket_crc\x18\x06 \x01(\r\x12\x17\n\x0fticket_sequence\x18\x07 \x01(\r\x12\x16\n\x0eowner_steam_id\x18\x08 \x01(\x06\"\x80\x01\n\x10\x43MsgClientCMList\x12\x14\n\x0c\x63m_addresses\x18\x01 \x03(\r\x12\x10\n\x08\x63m_ports\x18\x02 \x03(\r\x12\x1e\n\x16\x63m_websocket_addresses\x18\x03 \x03(\t\x12$\n\x1cpercent_default_to_websocket\x18\x04 \x01(\r\"\xa3\x01\n\x1b\x43MsgClientP2PConnectionInfo\x12\x15\n\rsteam_id_dest\x18\x01 \x01(\x06\x12\x14\n\x0csteam_id_src\x18\x02 \x01(\x06\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\r\x12\x11\n\tcandidate\x18\x04 \x01(\x0c\x12 \n\x18legacy_connection_id_src\x18\x05 \x01(\x06\x12\x12\n\nrendezvous\x18\x06 \x01(\x0c\"\xc3\x01\n\x1f\x43MsgClientP2PConnectionFailInfo\x12\x15\n\rsteam_id_dest\x18\x01 \x01(\x06\x12\x14\n\x0csteam_id_src\x18\x02 \x01(\x06\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\r\x12\x1a\n\x12\x65p2p_session_error\x18\x04 \x01(\r\x12\x1a\n\x12\x63onnection_id_dest\x18\x05 \x01(\x06\x12\x14\n\x0c\x63lose_reason\x18\x07 \x01(\r\x12\x15\n\rclose_message\x18\x08 \x01(\t\"C\n\x1f\x43MsgClientNetworkingCertRequest\x12\x10\n\x08key_data\x18\x02 \x01(\x0c\x12\x0e\n\x06\x61pp_id\x18\x03 \x01(\r\"V\n\x1d\x43MsgClientNetworkingCertReply\x12\x0c\n\x04\x63\x65rt\x18\x04 \x01(\x0c\x12\x11\n\tca_key_id\x18\x05 \x01(\x06\x12\x14\n\x0c\x63\x61_signature\x18\x06 \x01(\x0c\"7\n%CMsgClientNetworkingMobileCertRequest\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\";\n#CMsgClientNetworkingMobileCertReply\x12\x14\n\x0c\x65ncoded_cert\x18\x01 \x01(\t\"1\n\x1f\x43MsgClientGetAppOwnershipTicket\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\"]\n\'CMsgClientGetAppOwnershipTicketResponse\x12\x12\n\x07\x65result\x18\x01 \x01(\r:\x01\x32\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\r\x12\x0e\n\x06ticket\x18\x03 \x01(\x0c\"\'\n\x16\x43MsgClientSessionToken\x12\r\n\x05token\x18\x01 \x01(\x04\"M\n\x1b\x43MsgClientGameConnectTokens\x12\x1e\n\x12max_tokens_to_keep\x18\x01 \x01(\r:\x02\x31\x30\x12\x0e\n\x06tokens\x18\x02 \x03(\x0c\"\x85\x08\n\x15\x43MsgClientGamesPlayed\x12\x37\n\x0cgames_played\x18\x01 \x03(\x0b\x32!.CMsgClientGamesPlayed.GamePlayed\x12\x16\n\x0e\x63lient_os_type\x18\x02 \x01(\r\x12\x1d\n\x15\x63loud_gaming_platform\x18\x03 \x01(\r\x12\x1f\n\x17recent_reauthentication\x18\x04 \x01(\x08\x1a\xda\x06\n\nGamePlayed\x12\x13\n\x0bsteam_id_gs\x18\x01 \x01(\x04\x12\x0f\n\x07game_id\x18\x02 \x01(\x06\x12\"\n\x1a\x64\x65precated_game_ip_address\x18\x03 \x01(\r\x12\x11\n\tgame_port\x18\x04 \x01(\r\x12\x11\n\tis_secure\x18\x05 \x01(\x08\x12\r\n\x05token\x18\x06 \x01(\x0c\x12\x17\n\x0fgame_extra_info\x18\x07 \x01(\t\x12\x16\n\x0egame_data_blob\x18\x08 \x01(\x0c\x12\x12\n\nprocess_id\x18\t \x01(\r\x12\x1d\n\x15streaming_provider_id\x18\n \x01(\r\x12\x12\n\ngame_flags\x18\x0b \x01(\r\x12\x10\n\x08owner_id\x18\x0c \x01(\r\x12\x15\n\rvr_hmd_vendor\x18\r \x01(\t\x12\x14\n\x0cvr_hmd_model\x18\x0e \x01(\t\x12\x1d\n\x12launch_option_type\x18\x0f \x01(\r:\x01\x30\x12#\n\x17primary_controller_type\x18\x10 \x01(\x05:\x02-1\x12\'\n\x1fprimary_steam_controller_serial\x18\x11 \x01(\t\x12\'\n\x1ctotal_steam_controller_count\x18\x12 \x01(\r:\x01\x30\x12+\n total_non_steam_controller_count\x18\x13 \x01(\r:\x01\x30\x12&\n\x1b\x63ontroller_workshop_file_id\x18\x14 \x01(\x04:\x01\x30\x12\x18\n\rlaunch_source\x18\x15 \x01(\r:\x01\x30\x12\x16\n\x0evr_hmd_runtime\x18\x16 \x01(\r\x12\'\n\x0fgame_ip_address\x18\x17 \x01(\x0b\x32\x0e.CMsgIPAddress\x12%\n\x1a\x63ontroller_connection_type\x18\x18 \x01(\r:\x01\x30\x12\x18\n\x10game_os_platform\x18\x19 \x01(\x05\x12\x15\n\rgame_build_id\x18\x1a \x01(\r\x12\x19\n\x0e\x63ompat_tool_id\x18\x1b \x01(\r:\x01\x30\x12\x17\n\x0f\x63ompat_tool_cmd\x18\x1c \x01(\t\x12\x1c\n\x14\x63ompat_tool_build_id\x18\x1d \x01(\r\x12\x11\n\tbeta_name\x18\x1e \x01(\t\x12\x13\n\x0b\x64lc_context\x18\x1f \x01(\r\"9\n\rCMsgGSApprove\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x16\n\x0eowner_steam_id\x18\x02 \x01(\x06\"I\n\nCMsgGSDeny\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x14\n\x0c\x65\x64\x65ny_reason\x18\x02 \x01(\x05\x12\x13\n\x0b\x64\x65ny_string\x18\x03 \x01(\t\"4\n\nCMsgGSKick\x12\x10\n\x08steam_id\x18\x01 \x01(\x06\x12\x14\n\x0c\x65\x64\x65ny_reason\x18\x02 \x01(\x05\"\xb6\x01\n\x12\x43MsgClientAuthList\x12\x13\n\x0btokens_left\x18\x01 \x01(\r\x12\x18\n\x10last_request_seq\x18\x02 \x01(\r\x12$\n\x1clast_request_seq_from_server\x18\x03 \x01(\r\x12 \n\x07tickets\x18\x04 \x03(\x0b\x32\x0f.CMsgAuthTicket\x12\x0f\n\x07\x61pp_ids\x18\x05 \x03(\r\x12\x18\n\x10message_sequence\x18\x06 \x01(\r\"V\n\x15\x43MsgClientAuthListAck\x12\x12\n\nticket_crc\x18\x01 \x03(\r\x12\x0f\n\x07\x61pp_ids\x18\x02 \x03(\r\x12\x18\n\x10message_sequence\x18\x03 \x01(\r\"\x8e\x04\n\x15\x43MsgClientLicenseList\x12\x12\n\x07\x65result\x18\x01 \x01(\x05:\x01\x32\x12\x30\n\x08licenses\x18\x02 \x03(\x0b\x32\x1e.CMsgClientLicenseList.License\x1a\xae\x03\n\x07License\x12\x12\n\npackage_id\x18\x01 \x01(\r\x12\x14\n\x0ctime_created\x18\x02 \x01(\x07\x12\x19\n\x11time_next_process\x18\x03 \x01(\x07\x12\x14\n\x0cminute_limit\x18\x04 \x01(\x05\x12\x14\n\x0cminutes_used\x18\x05 \x01(\x05\x12\x16\n\x0epayment_method\x18\x06 \x01(\r\x12\r\n\x05\x66lags\x18\x07 \x01(\r\x12\x1d\n\x15purchase_country_code\x18\x08 \x01(\t\x12\x14\n\x0clicense_type\x18\t \x01(\r\x12\x16\n\x0eterritory_code\x18\n \x01(\x05\x12\x15\n\rchange_number\x18\x0b \x01(\x05\x12\x10\n\x08owner_id\x18\x0c \x01(\r\x12\x16\n\x0einitial_period\x18\r \x01(\r\x12\x19\n\x11initial_time_unit\x18\x0e \x01(\r\x12\x16\n\x0erenewal_period\x18\x0f \x01(\r\x12\x19\n\x11renewal_time_unit\x18\x10 \x01(\r\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x11 \x01(\x04\x12\x19\n\x11master_package_id\x18\x12 \x01(\r\"\xaa\x01\n\x1a\x43MsgClientIsLimitedAccount\x12\x1b\n\x13\x62is_limited_account\x18\x01 \x01(\x08\x12\x1c\n\x14\x62is_community_banned\x18\x02 \x01(\x08\x12\x1a\n\x12\x62is_locked_account\x18\x03 \x01(\x08\x12\x35\n-bis_limited_account_allowed_to_invite_friends\x18\x04 \x01(\x08\"\xa7\x01\n\x1e\x43MsgClientRequestedClientStats\x12\x42\n\rstats_to_send\x18\x01 \x03(\x0b\x32+.CMsgClientRequestedClientStats.StatsToSend\x1a\x41\n\x0bStatsToSend\x12\x13\n\x0b\x63lient_stat\x18\x01 \x01(\r\x12\x1d\n\x15stat_aggregate_method\x18\x02 \x01(\r\"\xc0\x01\n\x0f\x43MsgClientStat2\x12\x30\n\x0bstat_detail\x18\x01 \x03(\x0b\x32\x1b.CMsgClientStat2.StatDetail\x1a{\n\nStatDetail\x12\x13\n\x0b\x63lient_stat\x18\x01 \x01(\r\x12\x10\n\x08ll_value\x18\x02 \x01(\x03\x12\x13\n\x0btime_of_day\x18\x03 \x01(\r\x12\x0f\n\x07\x63\x65ll_id\x18\x04 \x01(\r\x12\x10\n\x08\x64\x65pot_id\x18\x05 \x01(\r\x12\x0e\n\x06\x61pp_id\x18\x06 \x01(\r\"r\n\x16\x43MsgClientInviteToGame\x12\x15\n\rsteam_id_dest\x18\x01 \x01(\x06\x12\x14\n\x0csteam_id_src\x18\x02 \x01(\x06\x12\x16\n\x0e\x63onnect_string\x18\x03 \x01(\t\x12\x13\n\x0bremote_play\x18\x04 \x01(\t\"\xb9\x01\n\x14\x43MsgClientChatInvite\x12\x18\n\x10steam_id_invited\x18\x01 \x01(\x06\x12\x15\n\rsteam_id_chat\x18\x02 \x01(\x06\x12\x17\n\x0fsteam_id_patron\x18\x03 \x01(\x06\x12\x15\n\rchatroom_type\x18\x04 \x01(\x05\x12\x1c\n\x14steam_id_friend_chat\x18\x05 \x01(\x06\x12\x11\n\tchat_name\x18\x06 \x01(\t\x12\x0f\n\x07game_id\x18\x07 \x01(\x06\"\x96\t\n\x19\x43MsgClientConnectionStats\x12;\n\x0bstats_logon\x18\x01 \x01(\x0b\x32&.CMsgClientConnectionStats.Stats_Logon\x12;\n\x0bstats_vconn\x18\x02 \x01(\x0b\x32&.CMsgClientConnectionStats.Stats_VConn\x1a\xd3\x02\n\x0bStats_Logon\x12\x18\n\x10\x63onnect_attempts\x18\x01 \x01(\x05\x12\x19\n\x11\x63onnect_successes\x18\x02 \x01(\x05\x12\x18\n\x10\x63onnect_failures\x18\x03 \x01(\x05\x12\x1b\n\x13\x63onnections_dropped\x18\x04 \x01(\x05\x12\x17\n\x0fseconds_running\x18\x05 \x01(\r\x12\x1c\n\x14msec_tologonthistime\x18\x06 \x01(\r\x12\x15\n\rcount_bad_cms\x18\x07 \x01(\r\x12\x1b\n\x13no_udp_connectivity\x18\x08 \x01(\x08\x12\x1b\n\x13no_tcp_connectivity\x18\t \x01(\x08\x12%\n\x1dno_websocket_443_connectivity\x18\n \x01(\x08\x12)\n!no_websocket_non_443_connectivity\x18\x0b \x01(\x08\x1aq\n\tStats_UDP\x12\x11\n\tpkts_sent\x18\x01 \x01(\x04\x12\x12\n\nbytes_sent\x18\x02 \x01(\x04\x12\x11\n\tpkts_recv\x18\x03 \x01(\x04\x12\x16\n\x0epkts_processed\x18\x04 \x01(\x04\x12\x12\n\nbytes_recv\x18\x05 \x01(\x04\x1a\xb5\x04\n\x0bStats_VConn\x12\x17\n\x0f\x63onnections_udp\x18\x01 \x01(\r\x12\x17\n\x0f\x63onnections_tcp\x18\x02 \x01(\r\x12\x37\n\tstats_udp\x18\x03 \x01(\x0b\x32$.CMsgClientConnectionStats.Stats_UDP\x12\x16\n\x0epkts_abandoned\x18\x04 \x01(\x04\x12\x19\n\x11\x63onn_req_received\x18\x05 \x01(\x04\x12\x13\n\x0bpkts_resent\x18\x06 \x01(\x04\x12\x11\n\tmsgs_sent\x18\x07 \x01(\x04\x12\x18\n\x10msgs_sent_failed\x18\x08 \x01(\x04\x12\x11\n\tmsgs_recv\x18\t \x01(\x04\x12\x16\n\x0e\x64\x61tagrams_sent\x18\n \x01(\x04\x12\x16\n\x0e\x64\x61tagrams_recv\x18\x0b \x01(\x04\x12\x15\n\rbad_pkts_recv\x18\x0c \x01(\x04\x12\x1e\n\x16unknown_conn_pkts_recv\x18\r \x01(\x04\x12\x18\n\x10missed_pkts_recv\x18\x0e \x01(\x04\x12\x15\n\rdup_pkts_recv\x18\x0f \x01(\x04\x12!\n\x19\x66\x61iled_connect_challenges\x18\x10 \x01(\x04\x12\x1d\n\x15micro_sec_avg_latency\x18\x11 \x01(\r\x12\x1d\n\x15micro_sec_min_latency\x18\x12 \x01(\r\x12\x1d\n\x15micro_sec_max_latency\x18\x13 \x01(\r\x12\x1b\n\x13mem_pool_msg_in_use\x18\x14 \x01(\r\"\xd2\x01\n\x1a\x43MsgClientServersAvailable\x12R\n\x16server_types_available\x18\x01 \x03(\x0b\x32\x32.CMsgClientServersAvailable.Server_Types_Available\x12%\n\x1dserver_type_for_auth_services\x18\x02 \x01(\r\x1a\x39\n\x16Server_Types_Available\x12\x0e\n\x06server\x18\x01 \x01(\r\x12\x0f\n\x07\x63hanged\x18\x02 \x01(\x08\"?\n$CMsgClientReportOverlayDetourFailure\x12\x17\n\x0f\x66\x61ilure_strings\x18\x01 \x03(\t\"G\n#CMsgClientRequestEncryptedAppTicket\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\x12\x10\n\x08userdata\x18\x02 \x01(\x0c\"\x84\x01\n+CMsgClientRequestEncryptedAppTicketResponse\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\r\x12\x12\n\x07\x65result\x18\x02 \x01(\x05:\x01\x32\x12\x31\n\x14\x65ncrypted_app_ticket\x18\x03 \x01(\x0b\x32\x13.EncryptedAppTicket\"\xb5\x01\n\x1a\x43MsgClientWalletInfoUpdate\x12\x12\n\nhas_wallet\x18\x01 \x01(\x08\x12\x0f\n\x07\x62\x61lance\x18\x02 \x01(\x05\x12\x10\n\x08\x63urrency\x18\x03 \x01(\x05\x12\x17\n\x0f\x62\x61lance_delayed\x18\x04 \x01(\x05\x12\x17\n\tbalance64\x18\x05 \x01(\x03\x42\x04\xa0\xb6\x18\x01\x12\x1f\n\x11\x62\x61lance64_delayed\x18\x06 \x01(\x03\x42\x04\xa0\xb6\x18\x01\x12\r\n\x05realm\x18\x07 \x01(\x05\"3\n\x1b\x43MsgClientAMGetClanOfficers\x12\x14\n\x0csteamid_clan\x18\x01 \x01(\x06\"f\n#CMsgClientAMGetClanOfficersResponse\x12\x12\n\x07\x65result\x18\x01 \x01(\x05:\x01\x32\x12\x14\n\x0csteamid_clan\x18\x02 \x01(\x06\x12\x15\n\rofficer_count\x18\x03 \x01(\x05\"\x90\x01\n!CMsgClientAMGetPersonaNameHistory\x12\x10\n\x08id_count\x18\x01 \x01(\x05\x12:\n\x03Ids\x18\x02 \x03(\x0b\x32-.CMsgClientAMGetPersonaNameHistory.IdInstance\x1a\x1d\n\nIdInstance\x12\x0f\n\x07steamid\x18\x01 \x01(\x06\"\xc3\x02\n)CMsgClientAMGetPersonaNameHistoryResponse\x12O\n\tresponses\x18\x02 \x03(\x0b\x32<.CMsgClientAMGetPersonaNameHistoryResponse.NameTableInstance\x1a\xc4\x01\n\x11NameTableInstance\x12\x12\n\x07\x65result\x18\x01 \x01(\x05:\x01\x32\x12\x0f\n\x07steamid\x18\x02 \x01(\x06\x12X\n\x05names\x18\x03 \x03(\x0b\x32I.CMsgClientAMGetPersonaNameHistoryResponse.NameTableInstance.NameInstance\x1a\x30\n\x0cNameInstance\x12\x12\n\nname_since\x18\x01 \x01(\x07\x12\x0c\n\x04name\x18\x02 \x01(\t\"E\n\x1e\x43MsgClientDeregisterWithServer\x12\x13\n\x0b\x65servertype\x18\x01 \x01(\r\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\r\"\xab\x04\n\x13\x43MsgClientClanState\x12\x14\n\x0csteamid_clan\x18\x01 \x01(\x06\x12\x1a\n\x12\x63lan_account_flags\x18\x03 \x01(\r\x12\x30\n\tname_info\x18\x04 \x01(\x0b\x32\x1d.CMsgClientClanState.NameInfo\x12\x34\n\x0buser_counts\x18\x05 \x01(\x0b\x32\x1f.CMsgClientClanState.UserCounts\x12*\n\x06\x65vents\x18\x06 \x03(\x0b\x32\x1a.CMsgClientClanState.Event\x12\x31\n\rannouncements\x18\x07 \x03(\x0b\x32\x1a.CMsgClientClanState.Event\x12\x19\n\x11\x63hat_room_private\x18\x08 \x01(\x08\x1a\x31\n\x08NameInfo\x12\x11\n\tclan_name\x18\x01 \x01(\t\x12\x12\n\nsha_avatar\x18\x02 \x01(\x0c\x1ak\n\nUserCounts\x12\x0f\n\x07members\x18\x01 \x01(\r\x12\x0e\n\x06online\x18\x02 \x01(\r\x12\x10\n\x08\x63hatting\x18\x03 \x01(\r\x12\x0f\n\x07in_game\x18\x04 \x01(\r\x12\x19\n\x11\x63hat_room_members\x18\x05 \x01(\r\x1a`\n\x05\x45vent\x12\x0b\n\x03gid\x18\x01 \x01(\x06\x12\x12\n\nevent_time\x18\x02 \x01(\r\x12\x10\n\x08headline\x18\x03 \x01(\t\x12\x0f\n\x07game_id\x18\x04 \x01(\x06\x12\x13\n\x0bjust_posted\x18\x05 \x01(\x08\x42\x05H\x01\x90\x01\x00'
   ,
   dependencies=[steammessages__base__pb2.DESCRIPTOR,encrypted__app__ticket__pb2.DESCRIPTOR,])
 
@@ -823,6 +823,55 @@ _CMSGCLIENTGAMESPLAYED_GAMEPLAYED = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='game_os_platform', full_name='CMsgClientGamesPlayed.GamePlayed.game_os_platform', index=24,
+      number=25, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='game_build_id', full_name='CMsgClientGamesPlayed.GamePlayed.game_build_id', index=25,
+      number=26, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='compat_tool_id', full_name='CMsgClientGamesPlayed.GamePlayed.compat_tool_id', index=26,
+      number=27, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='compat_tool_cmd', full_name='CMsgClientGamesPlayed.GamePlayed.compat_tool_cmd', index=27,
+      number=28, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='compat_tool_build_id', full_name='CMsgClientGamesPlayed.GamePlayed.compat_tool_build_id', index=28,
+      number=29, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='beta_name', full_name='CMsgClientGamesPlayed.GamePlayed.beta_name', index=29,
+      number=30, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='dlc_context', full_name='CMsgClientGamesPlayed.GamePlayed.dlc_context', index=30,
+      number=31, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -835,8 +884,8 @@ _CMSGCLIENTGAMESPLAYED_GAMEPLAYED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1585,
-  serialized_end=2272,
+  serialized_start=1618,
+  serialized_end=2476,
 )
 
 _CMSGCLIENTGAMESPLAYED = _descriptor.Descriptor(
@@ -868,6 +917,13 @@ _CMSGCLIENTGAMESPLAYED = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='recent_reauthentication', full_name='CMsgClientGamesPlayed.recent_reauthentication', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -881,7 +937,7 @@ _CMSGCLIENTGAMESPLAYED = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1447,
-  serialized_end=2272,
+  serialized_end=2476,
 )
 
 
@@ -919,8 +975,8 @@ _CMSGGSAPPROVE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2274,
-  serialized_end=2331,
+  serialized_start=2478,
+  serialized_end=2535,
 )
 
 
@@ -965,8 +1021,8 @@ _CMSGGSDENY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2333,
-  serialized_end=2406,
+  serialized_start=2537,
+  serialized_end=2610,
 )
 
 
@@ -1004,8 +1060,8 @@ _CMSGGSKICK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2408,
-  serialized_end=2460,
+  serialized_start=2612,
+  serialized_end=2664,
 )
 
 
@@ -1071,8 +1127,8 @@ _CMSGCLIENTAUTHLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2463,
-  serialized_end=2645,
+  serialized_start=2667,
+  serialized_end=2849,
 )
 
 
@@ -1117,8 +1173,8 @@ _CMSGCLIENTAUTHLISTACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2647,
-  serialized_end=2733,
+  serialized_start=2851,
+  serialized_end=2937,
 )
 
 
@@ -1268,8 +1324,8 @@ _CMSGCLIENTLICENSELIST_LICENSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2832,
-  serialized_end=3262,
+  serialized_start=3036,
+  serialized_end=3466,
 )
 
 _CMSGCLIENTLICENSELIST = _descriptor.Descriptor(
@@ -1306,8 +1362,8 @@ _CMSGCLIENTLICENSELIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2736,
-  serialized_end=3262,
+  serialized_start=2940,
+  serialized_end=3466,
 )
 
 
@@ -1359,8 +1415,8 @@ _CMSGCLIENTISLIMITEDACCOUNT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3265,
-  serialized_end=3435,
+  serialized_start=3469,
+  serialized_end=3639,
 )
 
 
@@ -1398,8 +1454,8 @@ _CMSGCLIENTREQUESTEDCLIENTSTATS_STATSTOSEND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3540,
-  serialized_end=3605,
+  serialized_start=3744,
+  serialized_end=3809,
 )
 
 _CMSGCLIENTREQUESTEDCLIENTSTATS = _descriptor.Descriptor(
@@ -1429,8 +1485,8 @@ _CMSGCLIENTREQUESTEDCLIENTSTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3438,
-  serialized_end=3605,
+  serialized_start=3642,
+  serialized_end=3809,
 )
 
 
@@ -1496,8 +1552,8 @@ _CMSGCLIENTSTAT2_STATDETAIL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3677,
-  serialized_end=3800,
+  serialized_start=3881,
+  serialized_end=4004,
 )
 
 _CMSGCLIENTSTAT2 = _descriptor.Descriptor(
@@ -1527,8 +1583,8 @@ _CMSGCLIENTSTAT2 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3608,
-  serialized_end=3800,
+  serialized_start=3812,
+  serialized_end=4004,
 )
 
 
@@ -1580,8 +1636,8 @@ _CMSGCLIENTINVITETOGAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3802,
-  serialized_end=3916,
+  serialized_start=4006,
+  serialized_end=4120,
 )
 
 
@@ -1654,8 +1710,8 @@ _CMSGCLIENTCHATINVITE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3919,
-  serialized_end=4104,
+  serialized_start=4123,
+  serialized_end=4308,
 )
 
 
@@ -1716,6 +1772,34 @@ _CMSGCLIENTCONNECTIONSTATS_STATS_LOGON = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='no_udp_connectivity', full_name='CMsgClientConnectionStats.Stats_Logon.no_udp_connectivity', index=7,
+      number=8, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='no_tcp_connectivity', full_name='CMsgClientConnectionStats.Stats_Logon.no_tcp_connectivity', index=8,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='no_websocket_443_connectivity', full_name='CMsgClientConnectionStats.Stats_Logon.no_websocket_443_connectivity', index=9,
+      number=10, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='no_websocket_non_443_connectivity', full_name='CMsgClientConnectionStats.Stats_Logon.no_websocket_non_443_connectivity', index=10,
+      number=11, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1728,8 +1812,8 @@ _CMSGCLIENTCONNECTIONSTATS_STATS_LOGON = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4259,
-  serialized_end=4458,
+  serialized_start=4463,
+  serialized_end=4802,
 )
 
 _CMSGCLIENTCONNECTIONSTATS_STATS_UDP = _descriptor.Descriptor(
@@ -1787,8 +1871,8 @@ _CMSGCLIENTCONNECTIONSTATS_STATS_UDP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4460,
-  serialized_end=4573,
+  serialized_start=4804,
+  serialized_end=4917,
 )
 
 _CMSGCLIENTCONNECTIONSTATS_STATS_VCONN = _descriptor.Descriptor(
@@ -1951,8 +2035,8 @@ _CMSGCLIENTCONNECTIONSTATS_STATS_VCONN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4576,
-  serialized_end=5141,
+  serialized_start=4920,
+  serialized_end=5485,
 )
 
 _CMSGCLIENTCONNECTIONSTATS = _descriptor.Descriptor(
@@ -1989,8 +2073,8 @@ _CMSGCLIENTCONNECTIONSTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4107,
-  serialized_end=5141,
+  serialized_start=4311,
+  serialized_end=5485,
 )
 
 
@@ -2028,8 +2112,8 @@ _CMSGCLIENTSERVERSAVAILABLE_SERVER_TYPES_AVAILABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5297,
-  serialized_end=5354,
+  serialized_start=5641,
+  serialized_end=5698,
 )
 
 _CMSGCLIENTSERVERSAVAILABLE = _descriptor.Descriptor(
@@ -2066,8 +2150,8 @@ _CMSGCLIENTSERVERSAVAILABLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5144,
-  serialized_end=5354,
+  serialized_start=5488,
+  serialized_end=5698,
 )
 
 
@@ -2098,8 +2182,8 @@ _CMSGCLIENTREPORTOVERLAYDETOURFAILURE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5356,
-  serialized_end=5419,
+  serialized_start=5700,
+  serialized_end=5763,
 )
 
 
@@ -2137,8 +2221,8 @@ _CMSGCLIENTREQUESTENCRYPTEDAPPTICKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5421,
-  serialized_end=5492,
+  serialized_start=5765,
+  serialized_end=5836,
 )
 
 
@@ -2183,8 +2267,8 @@ _CMSGCLIENTREQUESTENCRYPTEDAPPTICKETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5495,
-  serialized_end=5627,
+  serialized_start=5839,
+  serialized_end=5971,
 )
 
 
@@ -2257,8 +2341,8 @@ _CMSGCLIENTWALLETINFOUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5630,
-  serialized_end=5811,
+  serialized_start=5974,
+  serialized_end=6155,
 )
 
 
@@ -2289,8 +2373,8 @@ _CMSGCLIENTAMGETCLANOFFICERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5813,
-  serialized_end=5864,
+  serialized_start=6157,
+  serialized_end=6208,
 )
 
 
@@ -2335,8 +2419,8 @@ _CMSGCLIENTAMGETCLANOFFICERSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5866,
-  serialized_end=5968,
+  serialized_start=6210,
+  serialized_end=6312,
 )
 
 
@@ -2367,8 +2451,8 @@ _CMSGCLIENTAMGETPERSONANAMEHISTORY_IDINSTANCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6086,
-  serialized_end=6115,
+  serialized_start=6430,
+  serialized_end=6459,
 )
 
 _CMSGCLIENTAMGETPERSONANAMEHISTORY = _descriptor.Descriptor(
@@ -2405,8 +2489,8 @@ _CMSGCLIENTAMGETPERSONANAMEHISTORY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5971,
-  serialized_end=6115,
+  serialized_start=6315,
+  serialized_end=6459,
 )
 
 
@@ -2444,8 +2528,8 @@ _CMSGCLIENTAMGETPERSONANAMEHISTORYRESPONSE_NAMETABLEINSTANCE_NAMEINSTANCE = _des
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6393,
-  serialized_end=6441,
+  serialized_start=6737,
+  serialized_end=6785,
 )
 
 _CMSGCLIENTAMGETPERSONANAMEHISTORYRESPONSE_NAMETABLEINSTANCE = _descriptor.Descriptor(
@@ -2489,8 +2573,8 @@ _CMSGCLIENTAMGETPERSONANAMEHISTORYRESPONSE_NAMETABLEINSTANCE = _descriptor.Descr
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6245,
-  serialized_end=6441,
+  serialized_start=6589,
+  serialized_end=6785,
 )
 
 _CMSGCLIENTAMGETPERSONANAMEHISTORYRESPONSE = _descriptor.Descriptor(
@@ -2520,8 +2604,8 @@ _CMSGCLIENTAMGETPERSONANAMEHISTORYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6118,
-  serialized_end=6441,
+  serialized_start=6462,
+  serialized_end=6785,
 )
 
 
@@ -2559,8 +2643,8 @@ _CMSGCLIENTDEREGISTERWITHSERVER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6443,
-  serialized_end=6512,
+  serialized_start=6787,
+  serialized_end=6856,
 )
 
 
@@ -2598,8 +2682,8 @@ _CMSGCLIENTCLANSTATE_NAMEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6814,
-  serialized_end=6863,
+  serialized_start=7158,
+  serialized_end=7207,
 )
 
 _CMSGCLIENTCLANSTATE_USERCOUNTS = _descriptor.Descriptor(
@@ -2657,8 +2741,8 @@ _CMSGCLIENTCLANSTATE_USERCOUNTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6865,
-  serialized_end=6972,
+  serialized_start=7209,
+  serialized_end=7316,
 )
 
 _CMSGCLIENTCLANSTATE_EVENT = _descriptor.Descriptor(
@@ -2716,8 +2800,8 @@ _CMSGCLIENTCLANSTATE_EVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6974,
-  serialized_end=7070,
+  serialized_start=7318,
+  serialized_end=7414,
 )
 
 _CMSGCLIENTCLANSTATE = _descriptor.Descriptor(
@@ -2789,8 +2873,8 @@ _CMSGCLIENTCLANSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6515,
-  serialized_end=7070,
+  serialized_start=6859,
+  serialized_end=7414,
 )
 
 _CMSGCLIENTGAMESPLAYED_GAMEPLAYED.fields_by_name['game_ip_address'].message_type = steammessages__base__pb2._CMSGIPADDRESS
