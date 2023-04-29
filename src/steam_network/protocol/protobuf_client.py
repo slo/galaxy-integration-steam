@@ -394,7 +394,7 @@ class ProtobufClient:
             await self.user_authentication_handler('two_step', 'mobile')
 
         if result == EResult.OK:
-            interval = message.out_of_game_heartbeat_seconds
+            interval = message.legacy_out_of_game_heartbeat_seconds
             self.steam_id = message.client_supplied_steamid
             await self.user_authentication_handler('steam_id', self.steam_id)
             await self.user_authentication_handler('account_id', message.client_supplied_steamid - self._ACCOUNT_ID_MASK)
