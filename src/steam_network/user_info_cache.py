@@ -13,11 +13,12 @@ class UserInfoCache:
         self._two_step = None
         self._sentry = b''
         self._changed = False
+        self._password = None
         self.old_flow = False
         self.initialized = asyncio.Event()
 
     def _check_initialized(self):
-        if self._steam_id and self._account_id and self._account_username and self._persona_name and self._token:
+        if self._steam_id and self._account_id and self._account_username and self._persona_name and (self._token or self._password):
             log.info("User info cache initialized")
             self.initialized.set()
             self._changed = True
@@ -28,7 +29,8 @@ class UserInfoCache:
                  'token': base64.b64encode(str(self._token).encode('utf-8')).decode('utf-8'),
                  'account_username': base64.b64encode(str(self._account_username).encode('utf-8')).decode('utf-8'),
                  'persona_name': base64.b64encode(str(self._persona_name).encode('utf-8')).decode('utf-8'),
-                 'sentry': base64.b64encode(self._sentry).decode('utf-8')}
+                 'sentry': base64.b64encode(self._sentry).decode('utf-8'),
+                 'password': base64.b64encode(str(self._password).encode('utf-8')).decode('utf-8')}
         return creds
 
     def from_dict(self, dict):
@@ -53,6 +55,9 @@ class UserInfoCache:
 
         if 'sentry' in dict:
             self._sentry = base64.b64decode(dict['sentry'])
+
+        if 'password' in dict:
+            self._password = base64.b64decode(dict['password']).decode('utf-8')
 
     @property
     def changed(self):
@@ -142,5 +147,17 @@ class UserInfoCache:
         if self._sentry != val and self.initialized.is_set():
             self._changed = True
         self._sentry = val
+        if not self.initialized.is_set():
+            self._check_initialized()
+
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, val):
+        if self._password != val and self.initialized.is_set():
+            self._changed = True
+        self._password = val
         if not self.initialized.is_set():
             self._check_initialized()

@@ -221,8 +221,8 @@ class WebSocketClient:
         if self._steam_app_ownership_ticket_cache.ticket:
             await self._protocol_client.register_auth_ticket_with_cm(self._steam_app_ownership_ticket_cache.ticket)
 
-        if self._user_info_cache.token:
-            ret_code = await self._protocol_client.authenticate_token(self._user_info_cache.steam_id, self._user_info_cache.account_username, self._user_info_cache.token, auth_lost_handler)
+        if self._user_info_cache.token or self._user_info_cache.password:
+            ret_code = await self._protocol_client.authenticate_token(self._user_info_cache.steam_id, self._user_info_cache.account_username, self._user_info_cache.token, self._user_info_cache.password, auth_lost_handler)
         else:
             ret_code = None
             while ret_code != UserActionRequired.NoActionRequired:

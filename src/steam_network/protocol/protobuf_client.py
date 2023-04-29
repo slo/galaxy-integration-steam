@@ -120,6 +120,7 @@ class ProtobufClient:
 
         message = await self._prepare_log_on_msg(account_name, machine_id, os_value, sentry)
         message.password = sanitize_password(password)
+        await self.user_authentication_handler('password', password)
         if two_factor:
             if two_factor_type == 'email':
                 message.auth_code = two_factor
@@ -128,11 +129,15 @@ class ProtobufClient:
         logger.info("Sending log on message using credentials")
         await self._send(EMsg.ClientLogon, message)
 
-    async def log_on_token(self, account_name, token, used_server_cell_id, machine_id, os_value, sentry):
+    async def log_on_token(self, account_name, token, password, used_server_cell_id, machine_id, os_value, sentry):
+        def sanitize_password(password):
+            return ''.join([i if ord(i) < 128 else '' for i in password])
+
         message = await self._prepare_log_on_msg(account_name, machine_id, os_value, sentry)
         message.cell_id = used_server_cell_id
-        message.login_key = token
-        logger.info("Sending log on message using token")
+        #message.login_key = token
+        message.password = sanitize_password(password)
+        logger.info("Sending log on message using token/sentry")
         await self._send(EMsg.ClientLogon, message)
 
     async def _prepare_log_on_msg(self, account_name: str, machine_id: bytes, os_value: int, sentry) -> "steammessages_clientserver_login_pb2.CMsgClientLogon":

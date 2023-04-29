@@ -232,14 +232,14 @@ class ProtocolClient:
         #await self._protobuf_client.login_key_retrieved.wait()
         return UserActionRequired.NoActionRequired
 
-    async def authenticate_token(self, steam_id, account_name, token, auth_lost_handler):
+    async def authenticate_token(self, steam_id, account_name, token, password, auth_lost_handler):
         loop = asyncio.get_running_loop()
         self._login_future = loop.create_future()
         self._protobuf_client.steam_id = steam_id
         os_value = get_os()
         sentry = await self._get_sentry()
         await self._protobuf_client.log_on_token(
-            account_name, token, self._used_server_cell_id, self._machine_id, os_value, sentry
+            account_name, token, password, self._used_server_cell_id, self._machine_id, os_value, sentry
         )
         result = await self._login_future
         if result == EResult.OK:
@@ -426,6 +426,8 @@ class ProtocolClient:
             self._user_info_cache.two_step = value
         if key == 'sentry':
             self._user_info_cache.sentry = value
+        if key == 'password':
+            self._user_info_cache.password = value
 
     async def _get_sentry(self):
         return self._user_info_cache.sentry
