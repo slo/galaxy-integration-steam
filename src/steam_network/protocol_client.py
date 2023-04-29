@@ -229,7 +229,7 @@ class ProtocolClient:
             raise translate_error(result)
 
         await self._protobuf_client.account_info_retrieved.wait()
-        await self._protobuf_client.login_key_retrieved.wait()
+        #await self._protobuf_client.login_key_retrieved.wait()
         return UserActionRequired.NoActionRequired
 
     async def authenticate_token(self, steam_id, account_name, token, auth_lost_handler):
