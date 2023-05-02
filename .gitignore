@@ -14,6 +14,6 @@ output/
 *.log.[1-9]
 /.vs
 /env
-*.pyproj
-*.sln
+#*.pyproj
+#*.sln
 *.user
