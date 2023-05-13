@@ -4,6 +4,7 @@
 """Generated protocol buffer code."""
 from google.protobuf.internal import enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
@@ -19,276 +20,19 @@ import steammessages_unified_base_pb2 as steammessages__unified__base__pb2
 import enums_pb2 as enums__pb2
 
 
-DESCRIPTOR = _descriptor.FileDescriptor(
-  name='steammessages_auth.proto',
-  package='',
-  syntax='proto2',
-  serialized_options=b'\220\001\001',
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x18steammessages_auth.proto\x1a\x18steammessages_base.proto\x1a steammessages_unified_base.proto\x1a\x0b\x65nums.proto\"}\n/CAuthentication_GetPasswordRSAPublicKey_Request\x12J\n\x0c\x61\x63\x63ount_name\x18\x01 \x01(\tB4\x82\xb5\x18\x30user-provided account name to get an RSA key for\"\xd5\x01\n0CAuthentication_GetPasswordRSAPublicKey_Response\x12\x31\n\rpublickey_mod\x18\x01 \x01(\tB\x1a\x82\xb5\x18\x16the public key modulus\x12\x32\n\rpublickey_exp\x18\x02 \x01(\tB\x1b\x82\xb5\x18\x17the public key exponent\x12:\n\ttimestamp\x18\x03 \x01(\x04\x42\'\x82\xb5\x18#the timestamp the key was generated\"\xad\x03\n\x1d\x43\x41uthentication_DeviceDetails\x12\\\n\x14\x64\x65vice_friendly_name\x18\x01 \x01(\tB>\x82\xb5\x18:User-supplied, or client-supplied, friendly name of device\x12\x80\x01\n\rplatform_type\x18\x02 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_UnknownB.\x82\xb5\x18*EAuthTokenPlatformType, claimed, of device\x12;\n\x07os_type\x18\x03 \x01(\x05\x42*\x82\xb5\x18&EOSType, claimed, of authorized device\x12n\n\x12gaming_device_type\x18\x04 \x01(\rBR\x82\xb5\x18NEGamingDeviceType, claimed, of authorized device for steam client-type devices\"\xf8\x02\n-CAuthentication_BeginAuthSessionViaQR_Request\x12\x1c\n\x14\x64\x65vice_friendly_name\x18\x01 \x01(\t\x12P\n\rplatform_type\x18\x02 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_Unknown\x12x\n\x0e\x64\x65vice_details\x18\x03 \x01(\x0b\x32\x1e.CAuthentication_DeviceDetailsB@\x82\xb5\x18<User-supplied details about the device attempting to sign in\x12]\n\nwebsite_id\x18\x04 \x01(\t:\x07UnknownB@\x82\xb5\x18<(EMachineAuthWebDomain) identifier of client requesting auth\"\xf2\x02\n#CAuthentication_AllowedConfirmation\x12\x8e\x01\n\x11\x63onfirmation_type\x18\x01 \x01(\x0e\x32\x16.EAuthSessionGuardType:\x1fk_EAuthSessionGuardType_UnknownB:\x82\xb5\x18\x36\x61uthentication can proceed with this confirmation type\x12\xb9\x01\n\x12\x61ssociated_message\x18\x02 \x01(\tB\x9c\x01\x82\xb5\x18\x97\x01message to be interpreted depending on the confirmation type. for email confirmation, this might be the redacted email address to which email was sent.\"\xf1\x04\n.CAuthentication_BeginAuthSessionViaQR_Response\x12`\n\tclient_id\x18\x01 \x01(\x04\x42M\x82\xb5\x18Iunique identifier of requestor, also used for routing, portion of QR code\x12T\n\rchallenge_url\x18\x02 \x01(\tB=\x82\xb5\x18\x39URL based on client ID, which will be rendered as QR code\x12p\n\nrequest_id\x18\x03 \x01(\x0c\x42\\\x82\xb5\x18Xunique request ID to be presented by requestor at poll time - must not be rendered in QR\x12]\n\x08interval\x18\x04 \x01(\x02\x42K\x82\xb5\x18Grefresh interval with which requestor should call PollAuthSessionStatus\x12\x88\x01\n\x15\x61llowed_confirmations\x18\x05 \x03(\x0b\x32$.CAuthentication_AllowedConfirmationBC\x82\xb5\x18?the confirmation types that will be able to confirm the request\x12+\n\x07version\x18\x06 \x01(\x05\x42\x1a\x82\xb5\x18\x16version of the QR data\"\x82\x07\n6CAuthentication_BeginAuthSessionViaCredentials_Request\x12\x1c\n\x14\x64\x65vice_friendly_name\x18\x01 \x01(\t\x12\x14\n\x0c\x61\x63\x63ount_name\x18\x02 \x01(\t\x12\x43\n\x12\x65ncrypted_password\x18\x03 \x01(\tB\'\x82\xb5\x18#password, RSA encrypted client side\x12\x43\n\x14\x65ncryption_timestamp\x18\x04 \x01(\x04\x42%\x82\xb5\x18!timestamp to map to a key - STime\x12&\n\x0eremember_login\x18\x05 \x01(\x08\x42\x0e\x82\xb5\x18\ndeprecated\x12P\n\rplatform_type\x18\x06 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_Unknown\x12\x8f\x01\n\x0bpersistence\x18\x07 \x01(\x0e\x32\x14.ESessionPersistence: k_ESessionPersistence_PersistentBB\x82\xb5\x18>whether we are requesting a persistent or an ephemeral session\x12]\n\nwebsite_id\x18\x08 \x01(\t:\x07UnknownB@\x82\xb5\x18<(EMachineAuthWebDomain) identifier of client requesting auth\x12x\n\x0e\x64\x65vice_details\x18\t \x01(\x0b\x32\x1e.CAuthentication_DeviceDetailsB@\x82\xb5\x18<User-supplied details about the device attempting to sign in\x12\x39\n\nguard_data\x18\n \x01(\tB%\x82\xb5\x18!steam guard data for client login\x12\x10\n\x08language\x18\x0b \x01(\r\x12X\n\tqos_level\x18\x0c \x01(\x05:\x01\x32\x42\x42\x82\xb5\x18>[ENetQOSLevel] client-specified priority for this auth attempt\"\xfa\x06\n7CAuthentication_BeginAuthSessionViaCredentials_Response\x12L\n\tclient_id\x18\x01 \x01(\x04\x42\x39\x82\xb5\x18\x35unique identifier of requestor, also used for routing\x12z\n\nrequest_id\x18\x02 \x01(\x0c\x42\x66\x82\xb5\x18\x62unique request ID to be presented by requestor at poll time - must not be transferred or displayed\x12]\n\x08interval\x18\x03 \x01(\x02\x42K\x82\xb5\x18Grefresh interval with which requestor should call PollAuthSessionStatus\x12\x88\x01\n\x15\x61llowed_confirmations\x18\x04 \x03(\x0b\x32$.CAuthentication_AllowedConfirmationBC\x82\xb5\x18?the confirmation types that will be able to confirm the request\x12n\n\x07steamid\x18\x05 \x01(\x04\x42]\x82\xb5\x18Ysteamid of the account logging in - will only be included if the credentials were correct\x12z\n\nweak_token\x18\x06 \x01(\tBf\x82\xb5\x18\x62partial-authentication token - limited lifetime and scope, included only if credentials were valid\x12G\n\x15\x61greement_session_url\x18\x07 \x01(\tB(\x82\xb5\x18$agreement the user needs to agree to\x12V\n\x16\x65xtended_error_message\x18\x08 \x01(\tB6\x82\xb5\x18\x32\x65rror string to display if supported by the client\"\xbd\x01\n-CAuthentication_PollAuthSessionStatus_Request\x12\x11\n\tclient_id\x18\x01 \x01(\x04\x12\x12\n\nrequest_id\x18\x02 \x01(\x0c\x12\x65\n\x0ftoken_to_revoke\x18\x03 \x01(\x06\x42L\x82\xb5\x18HIf this is set to a token owned by this user, that token will be retired\"\xd3\x06\n.CAuthentication_PollAuthSessionStatus_Response\x12I\n\rnew_client_id\x18\x01 \x01(\x04\x42\x32\x82\xb5\x18.if challenge is old, this is the new client id\x12u\n\x11new_challenge_url\x18\x02 \x01(\tBZ\x82\xb5\x18Vif challenge is old, this is the new challenge ID to re-render for mobile confirmation\x12\x61\n\rrefresh_token\x18\x03 \x01(\tBJ\x82\xb5\x18\x46if login has been confirmed, this is the requestor\'s new refresh token\x12g\n\x0c\x61\x63\x63\x65ss_token\x18\x04 \x01(\tBQ\x82\xb5\x18Mif login has been confirmed, this is a new token subordinate to refresh_token\x12\x85\x01\n\x16had_remote_interaction\x18\x05 \x01(\x08\x42\x65\x82\xb5\x18\x61whether or not the auth session appears to have had remote interaction from a potential confirmer\x12U\n\x0c\x61\x63\x63ount_name\x18\x06 \x01(\tB?\x82\xb5\x18;account name of authenticating account, for use by UI layer\x12k\n\x0enew_guard_data\x18\x07 \x01(\tBS\x82\xb5\x18Oif login has been confirmed, may contain remembered machine ID for future login\x12G\n\x15\x61greement_session_url\x18\x08 \x01(\tB(\x82\xb5\x18$agreement the user needs to agree to\"u\n*CAuthentication_GetAuthSessionInfo_Request\x12G\n\tclient_id\x18\x01 \x01(\x04\x42\x34\x82\xb5\x18\x30\x63lient ID from scanned QR Code, used for routing\"\xbb\x07\n+CAuthentication_GetAuthSessionInfo_Response\x12\'\n\x02ip\x18\x01 \x01(\tB\x1b\x82\xb5\x18\x17IP address of requestor\x12,\n\x06geoloc\x18\x02 \x01(\tB\x1c\x82\xb5\x18\x18geoloc info of requestor\x12#\n\x04\x63ity\x18\x03 \x01(\tB\x15\x82\xb5\x18\x11\x63ity of requestor\x12%\n\x05state\x18\x04 \x01(\tB\x16\x82\xb5\x18\x12state of requestor\x12)\n\x07\x63ountry\x18\x05 \x01(\tB\x18\x82\xb5\x18\x14\x63ountry of requestor\x12p\n\rplatform_type\x18\x06 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_UnknownB\x1e\x82\xb5\x18\x1aplatform type of requestor\x12:\n\x14\x64\x65vice_friendly_name\x18\x07 \x01(\tB\x1c\x82\xb5\x18\x18name of requestor device\x12\"\n\x07version\x18\x08 \x01(\x05\x42\x11\x82\xb5\x18\rversion field\x12\xa4\x01\n\rlogin_history\x18\t \x01(\x0e\x32\x1c.EAuthSessionSecurityHistory:%k_EAuthSessionSecurityHistory_InvalidBH\x82\xb5\x18\x44whether the ip has previuously been used on the account successfully\x12\x66\n\x1brequestor_location_mismatch\x18\n \x01(\x08\x42\x41\x82\xb5\x18=whether the requestor location matches this requests location\x12M\n\x10high_usage_login\x18\x0b \x01(\x08\x42\x33\x82\xb5\x18/whether this login has seen high usage recently\x12\x8d\x01\n\x15requested_persistence\x18\x0c \x01(\x0e\x32\x14.ESessionPersistence:\x1dk_ESessionPersistence_InvalidB9\x82\xb5\x18\x35session persistence requestor has indicated they want\"\x9c\x04\n?CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request\x12\"\n\x07version\x18\x01 \x01(\x05\x42\x11\x82\xb5\x18\rversion field\x12>\n\tclient_id\x18\x02 \x01(\x04\x42+\x82\xb5\x18\'pending client ID, from scanned QR Code\x12,\n\x07steamid\x18\x03 \x01(\x06\x42\x1b\x82\xb5\x18\x17user who wants to login\x12Z\n\tsignature\x18\x04 \x01(\x0c\x42G\x82\xb5\x18\x43HMAC digest over {version,client_id,steamid} via user\'s private key\x12Y\n\x07\x63onfirm\x18\x05 \x01(\x08:\x05\x66\x61lseBA\x82\xb5\x18=Whether to confirm the login (true) or deny the login (false)\x12\x8f\x01\n\x0bpersistence\x18\x06 \x01(\x0e\x32\x14.ESessionPersistence: k_ESessionPersistence_PersistentBB\x82\xb5\x18>whether we are requesting a persistent or an ephemeral session\"B\n@CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response\"\xbf\x02\n;CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request\x12\x42\n\tclient_id\x18\x01 \x01(\x04\x42/\x82\xb5\x18+pending client ID, from initialized session\x12,\n\x07steamid\x18\x02 \x01(\x06\x42\x1b\x82\xb5\x18\x17user who wants to login\x12#\n\x04\x63ode\x18\x03 \x01(\tB\x15\x82\xb5\x18\x11\x63onfirmation code\x12i\n\tcode_type\x18\x04 \x01(\x0e\x32\x16.EAuthSessionGuardType:\x1fk_EAuthSessionGuardType_UnknownB\x1d\x82\xb5\x18\x19type of confirmation code\"\x87\x01\n<CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response\x12G\n\x15\x61greement_session_url\x18\x07 \x01(\tB(\x82\xb5\x18$agreement the user needs to agree to\"\xa0\x01\n2CAuthentication_AccessToken_GenerateForApp_Request\x12\x15\n\rrefresh_token\x18\x01 \x01(\t\x12\x0f\n\x07steamid\x18\x02 \x01(\x06\x12\x42\n\x0crenewal_type\x18\x03 \x01(\x0e\x32\x12.ETokenRenewalType:\x18k_ETokenRenewalType_None\"b\n3CAuthentication_AccessToken_GenerateForApp_Response\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t\"0\n.CAuthentication_RefreshToken_Enumerate_Request\"\xab\r\n/CAuthentication_RefreshToken_Enumerate_Response\x12`\n\x0erefresh_tokens\x18\x01 \x03(\x0b\x32H.CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription\x12\x18\n\x10requesting_token\x18\x02 \x01(\x06\x1a\x93\x03\n\x0fTokenUsageEvent\x12[\n\x04time\x18\x01 \x01(\rBM\x82\xb5\x18IApproximate time of history event (may be deliberately fuzzed or omitted)\x12>\n\x02ip\x18\x02 \x01(\x0b\x32\x0e.CMsgIPAddressB\"\x82\xb5\x18\x1eIP at which event was observed\x12\x0e\n\x06locale\x18\x03 \x01(\t\x12J\n\x07\x63ountry\x18\x04 \x01(\tB9\x82\xb5\x18\x35Location (country code) of event, as inferred from IP\x12\x46\n\x05state\x18\x05 \x01(\tB7\x82\xb5\x18\x33Location (state code) of event, as inferred from IP\x12?\n\x04\x63ity\x18\x06 \x01(\tB1\x82\xb5\x18-Location (city) of event, as inferred from IP\x1a\xe5\x08\n\x17RefreshTokenDescription\x12\x38\n\x08token_id\x18\x01 \x01(\x06\x42&\x82\xb5\x18\"Persistent token/device identifier\x12K\n\x11token_description\x18\x02 \x01(\tB0\x82\xb5\x18,client-supplied friendly name for the device\x12\x14\n\x0ctime_updated\x18\x03 \x01(\r\x12\x81\x01\n\rplatform_type\x18\x04 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_UnknownB/\x82\xb5\x18+gross platform type (mobile/client/browser)\x12\x94\x01\n\tlogged_in\x18\x05 \x01(\x08\x42\x80\x01\x82\xb5\x18|If true, this token is currently valid. False indicates it is a machine token - ok for steamguard if you know the credential\x12T\n\x0bos_platform\x18\x06 \x01(\rB?\x82\xb5\x18;EPlatformType - rough classification of device OS, if known\x12U\n\tauth_type\x18\x07 \x01(\rBB\x82\xb5\x18>EAuthTokenGuardType - device authorization mechanism, if known\x12\x82\x01\n\x12gaming_device_type\x18\x08 \x01(\rBf\x82\xb5\x18\x62\x45GamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices\x12\x88\x01\n\nfirst_seen\x18\t \x01(\x0b\x32@.CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEventB2\x82\xb5\x18.Information about original authorization event\x12\x97\x01\n\tlast_seen\x18\n \x01(\x0b\x32@.CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEventBB\x82\xb5\x18>Information about most-recently seen, if known for this device\x12;\n\x07os_type\x18\x0b \x01(\x05\x42*\x82\xb5\x18&EOSType - specific device OS, if known\"3\n1CAuthentication_GetAuthSessionsForAccount_Request\"\x83\x01\n2CAuthentication_GetAuthSessionsForAccount_Response\x12M\n\nclient_ids\x18\x01 \x03(\x04\x42\x39\x82\xb5\x18\x35unique identifier of requestor, also used for routing\"\xdb\x01\n,CAuthentication_MigrateMobileSession_Request\x12\x34\n\x07steamid\x18\x01 \x01(\x06\x42#\x82\xb5\x18\x1fSteam ID of the user to migrate\x12&\n\x05token\x18\x02 \x01(\tB\x17\x82\xb5\x18\x13WG Token to migrate\x12M\n\tsignature\x18\x03 \x01(\tB:\x82\xb5\x18\x36Signature over the wg token using the user\'s 2FA token\"\\\n-CAuthentication_MigrateMobileSession_Response\x12\x15\n\rrefresh_token\x18\x01 \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x02 \x01(\t\"\xbc\x01\n$CAuthentication_Token_Revoke_Request\x12\r\n\x05token\x18\x01 \x01(\t\x12\x84\x01\n\rrevoke_action\x18\x02 \x01(\x0e\x32\x17.EAuthTokenRevokeAction:\x1bk_EAuthTokenRevokePermanentB7\x82\xb5\x18\x33Select between logout and logout-and-forget-machine\"\'\n%CAuthentication_Token_Revoke_Response\"\xcf\x02\n+CAuthentication_RefreshToken_Revoke_Request\x12\x10\n\x08token_id\x18\x01 \x01(\x06\x12N\n\x07steamid\x18\x02 \x01(\x06\x42=\x82\xb5\x18\x39Token holder if an admin action on behalf of another user\x12\x84\x01\n\rrevoke_action\x18\x03 \x01(\x0e\x32\x17.EAuthTokenRevokeAction:\x1bk_EAuthTokenRevokePermanentB7\x82\xb5\x18\x33Select between logout and logout-and-forget-machine\x12\x37\n\tsignature\x18\x04 \x01(\x0c\x42$\x82\xb5\x18 required signature over token_id\".\n,CAuthentication_RefreshToken_Revoke_Response\"\xdb\x01\n:CAuthenticationSupport_QueryRefreshTokensByAccount_Request\x12?\n\x07steamid\x18\x01 \x01(\x06\x42.\x82\xb5\x18*SteamID of the account to query (required)\x12\\\n\x16include_revoked_tokens\x18\x02 \x01(\x08\x42<\x82\xb5\x18\x38Includes tokens that are revoked or expired in the query\"\x88\n\n\x1f\x43SupportRefreshTokenDescription\x12\x10\n\x08token_id\x18\x01 \x01(\x06\x12\x19\n\x11token_description\x18\x02 \x01(\t\x12\x14\n\x0ctime_updated\x18\x03 \x01(\r\x12P\n\rplatform_type\x18\x04 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_Unknown\x12@\n\x0btoken_state\x18\x05 \x01(\x0e\x32\x10.EAuthTokenState:\x19k_EAuthTokenState_Invalid\x12\x15\n\rowner_steamid\x18\x06 \x01(\x06\x12T\n\x0bos_platform\x18\x07 \x01(\rB?\x82\xb5\x18;EPlatformType - rough classification of device OS, if known\x12;\n\x07os_type\x18\x08 \x01(\x05\x42*\x82\xb5\x18&EOSType - specific device OS, if known\x12U\n\tauth_type\x18\t \x01(\rBB\x82\xb5\x18>EAuthTokenGuardType - device authorization mechanism, if known\x12\x82\x01\n\x12gaming_device_type\x18\n \x01(\rBf\x82\xb5\x18\x62\x45GamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices\x12x\n\nfirst_seen\x18\x0b \x01(\x0b\x32\x30.CSupportRefreshTokenDescription.TokenUsageEventB2\x82\xb5\x18.Information about original authorization event\x12\x87\x01\n\tlast_seen\x18\x0c \x01(\x0b\x32\x30.CSupportRefreshTokenDescription.TokenUsageEventBB\x82\xb5\x18>Information about most-recently seen, if known for this device\x1a\x83\x03\n\x0fTokenUsageEvent\x12[\n\x04time\x18\x01 \x01(\rBM\x82\xb5\x18IApproximate time of history event (may be deliberately fuzzed or omitted)\x12>\n\x02ip\x18\x02 \x01(\x0b\x32\x0e.CMsgIPAddressB\"\x82\xb5\x18\x1eIP at which event was observed\x12J\n\x07\x63ountry\x18\x03 \x01(\tB9\x82\xb5\x18\x35Location (country code) of event, as inferred from IP\x12\x46\n\x05state\x18\x04 \x01(\tB7\x82\xb5\x18\x33Location (state code) of event, as inferred from IP\x12?\n\x04\x63ity\x18\x05 \x01(\tB1\x82\xb5\x18-Location (city) of event, as inferred from IP\"\x91\x01\n;CAuthenticationSupport_QueryRefreshTokensByAccount_Response\x12\x38\n\x0erefresh_tokens\x18\x01 \x03(\x0b\x32 .CSupportRefreshTokenDescription\x12\x18\n\x10last_token_reset\x18\x02 \x01(\x05\"y\n4CAuthenticationSupport_QueryRefreshTokenByID_Request\x12\x41\n\x08token_id\x18\x01 \x01(\x06\x42/\x82\xb5\x18+Token ID of the token to look up (required)\"q\n5CAuthenticationSupport_QueryRefreshTokenByID_Response\x12\x38\n\x0erefresh_tokens\x18\x01 \x03(\x0b\x32 .CSupportRefreshTokenDescription\"\xb3\x01\n*CAuthenticationSupport_RevokeToken_Request\x12@\n\x08token_id\x18\x01 \x01(\x06\x42.\x82\xb5\x18*Token ID of the token to revoke (required)\x12\x43\n\x07steamid\x18\x02 \x01(\x06\x42\x32\x82\xb5\x18.Steam ID of the owner of that token (required)\"-\n+CAuthenticationSupport_RevokeToken_Response\"{\n.CAuthenticationSupport_GetTokenHistory_Request\x12I\n\x08token_id\x18\x01 \x01(\x06\x42\x37\x82\xb5\x18\x33Token ID of the token to get history for (required)\"d\n\x19\x43SupportRefreshTokenAudit\x12\x0e\n\x06\x61\x63tion\x18\x01 \x01(\x05\x12\x0c\n\x04time\x18\x02 \x01(\r\x12\x1a\n\x02ip\x18\x03 \x01(\x0b\x32\x0e.CMsgIPAddress\x12\r\n\x05\x61\x63tor\x18\x04 \x01(\x06\"^\n/CAuthenticationSupport_GetTokenHistory_Response\x12+\n\x07history\x18\x01 \x03(\x0b\x32\x1a.CSupportRefreshTokenAudit\"C\n CCloudGaming_CreateNonce_Request\x12\x10\n\x08platform\x18\x01 \x01(\t\x12\r\n\x05\x61ppid\x18\x02 \x01(\r\"B\n!CCloudGaming_CreateNonce_Response\x12\r\n\x05nonce\x18\x01 \x01(\t\x12\x0e\n\x06\x65xpiry\x18\x02 \x01(\r\"M\n%CCloudGaming_GetTimeRemaining_Request\x12\x10\n\x08platform\x18\x01 \x01(\t\x12\x12\n\nappid_list\x18\x02 \x03(\r\"F\n\x1a\x43\x43loudGaming_TimeRemaining\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x19\n\x11minutes_remaining\x18\x02 \x01(\r\"V\n&CCloudGaming_GetTimeRemaining_Response\x12,\n\x07\x65ntries\x18\x02 \x03(\x0b\x32\x1b.CCloudGaming_TimeRemaining*\xb9\x01\n\x16\x45\x41uthTokenPlatformType\x12$\n k_EAuthTokenPlatformType_Unknown\x10\x00\x12(\n$k_EAuthTokenPlatformType_SteamClient\x10\x01\x12\'\n#k_EAuthTokenPlatformType_WebBrowser\x10\x02\x12&\n\"k_EAuthTokenPlatformType_MobileApp\x10\x03*\xe5\x02\n\x15\x45\x41uthSessionGuardType\x12#\n\x1fk_EAuthSessionGuardType_Unknown\x10\x00\x12 \n\x1ck_EAuthSessionGuardType_None\x10\x01\x12%\n!k_EAuthSessionGuardType_EmailCode\x10\x02\x12&\n\"k_EAuthSessionGuardType_DeviceCode\x10\x03\x12.\n*k_EAuthSessionGuardType_DeviceConfirmation\x10\x04\x12-\n)k_EAuthSessionGuardType_EmailConfirmation\x10\x05\x12(\n$k_EAuthSessionGuardType_MachineToken\x10\x06\x12-\n)k_EAuthSessionGuardType_LegacyMachineAuth\x10\x07*\xac\x01\n\x1b\x45\x41uthSessionSecurityHistory\x12)\n%k_EAuthSessionSecurityHistory_Invalid\x10\x00\x12\x30\n,k_EAuthSessionSecurityHistory_UsedPreviously\x10\x01\x12\x30\n,k_EAuthSessionSecurityHistory_NoPriorHistory\x10\x02*P\n\x11\x45TokenRenewalType\x12\x1c\n\x18k_ETokenRenewalType_None\x10\x00\x12\x1d\n\x19k_ETokenRenewalType_Allow\x10\x01*\xaf\x02\n\x16\x45\x41uthTokenRevokeAction\x12\x1c\n\x18k_EAuthTokenRevokeLogout\x10\x00\x12\x1f\n\x1bk_EAuthTokenRevokePermanent\x10\x01\x12\x1e\n\x1ak_EAuthTokenRevokeReplaced\x10\x02\x12\x1d\n\x19k_EAuthTokenRevokeSupport\x10\x03\x12\x1d\n\x19k_EAuthTokenRevokeConsume\x10\x04\x12)\n%k_EAuthTokenRevokeNonRememberedLogout\x10\x05\x12,\n(k_EAuthTokenRevokeNonRememberedPermanent\x10\x06\x12\x1f\n\x1bk_EAuthTokenRevokeAutomatic\x10\x07*\x88\x02\n\x0f\x45\x41uthTokenState\x12\x1d\n\x19k_EAuthTokenState_Invalid\x10\x00\x12\x19\n\x15k_EAuthTokenState_New\x10\x01\x12\x1f\n\x1bk_EAuthTokenState_Confirmed\x10\x02\x12\x1c\n\x18k_EAuthTokenState_Issued\x10\x03\x12\x1c\n\x18k_EAuthTokenState_Denied\x10\x04\x12\x1f\n\x1bk_EAuthTokenState_LoggedOut\x10\x05\x12\x1e\n\x1ak_EAuthTokenState_Consumed\x10\x06\x12\x1d\n\x19k_EAuthTokenState_Revoked\x10\x63\x32\xea\x14\n\x0e\x41uthentication\x12\xcf\x01\n\x17GetPasswordRSAPublicKey\x12\x30.CAuthentication_GetPasswordRSAPublicKey_Request\x1a\x31.CAuthentication_GetPasswordRSAPublicKey_Response\"O\x82\xb5\x18KFetches RSA public key to use to encrypt passwords for a given account name\x12\x9a\x01\n\x15\x42\x65ginAuthSessionViaQR\x12..CAuthentication_BeginAuthSessionViaQR_Request\x1a/.CAuthentication_BeginAuthSessionViaQR_Response\" \x82\xb5\x18\x1cstart authentication process\x12\xb5\x01\n\x1e\x42\x65ginAuthSessionViaCredentials\x12\x37.CAuthentication_BeginAuthSessionViaCredentials_Request\x1a\x38.CAuthentication_BeginAuthSessionViaCredentials_Response\" \x82\xb5\x18\x1cstart authentication process\x12\xa0\x01\n\x15PollAuthSessionStatus\x12..CAuthentication_PollAuthSessionStatus_Request\x1a/.CAuthentication_PollAuthSessionStatus_Response\"&\x82\xb5\x18\"poll during authentication process\x12\xce\x01\n\x12GetAuthSessionInfo\x12+.CAuthentication_GetAuthSessionInfo_Request\x1a,.CAuthentication_GetAuthSessionInfo_Response\"]\x82\xb5\x18Yget metadata of specific auth session, this will also implicitly bind the calling account\x12\xe4\x01\n\'UpdateAuthSessionWithMobileConfirmation\x12@.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request\x1a\x41.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response\"4\x82\xb5\x18\x30\x61pprove an authentication session via mobile 2fa\x12\xde\x01\n#UpdateAuthSessionWithSteamGuardCode\x12<.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request\x1a=.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response\":\x82\xb5\x18\x36\x61pprove an authentication session via steam guard code\x12\xfb\x01\n\x19GenerateAccessTokenForApp\x12\x33.CAuthentication_AccessToken_GenerateForApp_Request\x1a\x34.CAuthentication_AccessToken_GenerateForApp_Response\"s\x82\xb5\x18oGiven a refresh token for a client app audience (e.g. desktop client / mobile client), generate an access token\x12\xba\x01\n\x0f\x45numerateTokens\x12/.CAuthentication_RefreshToken_Enumerate_Request\x1a\x30.CAuthentication_RefreshToken_Enumerate_Response\"D\x82\xb5\x18@Enumerate durable (refresh) tokens for the given subject account\x12\xd6\x01\n\x19GetAuthSessionsForAccount\x12\x32.CAuthentication_GetAuthSessionsForAccount_Request\x1a\x33.CAuthentication_GetAuthSessionsForAccount_Response\"P\x82\xb5\x18LGets all active auth sessions for an account for reference by the mobile app\x12\xe4\x01\n\x14MigrateMobileSession\x12-.CAuthentication_MigrateMobileSession_Request\x1a..CAuthentication_MigrateMobileSession_Response\"m\x82\xb5\x18iMigrates a WG token to an access and refresh token using a signature generated with the user\'s 2FA secret\x12\xbc\x01\n\x0bRevokeToken\x12%.CAuthentication_Token_Revoke_Request\x1a&.CAuthentication_Token_Revoke_Response\"^\x82\xb5\x18ZRevoke a single token immediately, making it unable to renew or generate new access tokens\x12\x9e\x01\n\x12RevokeRefreshToken\x12,.CAuthentication_RefreshToken_Revoke_Request\x1a-.CAuthentication_RefreshToken_Revoke_Response\"+\x82\xb5\x18\'Mark the given refresh token as revoked\x1a\x1a\x82\xb5\x18\x16\x41uthentication Service2\xb0\x06\n\x15\x41uthenticationSupport\x12\xe5\x01\n\x1bQueryRefreshTokensByAccount\x12;.CAuthenticationSupport_QueryRefreshTokensByAccount_Request\x1a<.CAuthenticationSupport_QueryRefreshTokensByAccount_Response\"K\x82\xb5\x18GAsks the server for a list of refresh tokens associated with an account\x12\xd3\x01\n\x15QueryRefreshTokenByID\x12\x35.CAuthenticationSupport_QueryRefreshTokenByID_Request\x1a\x36.CAuthenticationSupport_QueryRefreshTokenByID_Response\"K\x82\xb5\x18GAsks the server for a list of refresh tokens associated with an account\x12\x89\x01\n\x0bRevokeToken\x12+.CAuthenticationSupport_RevokeToken_Request\x1a,.CAuthenticationSupport_RevokeToken_Response\"\x1f\x82\xb5\x18\x1bRevokes a user\'s auth token\x12\xa8\x01\n\x0fGetTokenHistory\x12/.CAuthenticationSupport_GetTokenHistory_Request\x1a\x30.CAuthenticationSupport_GetTokenHistory_Response\"2\x82\xb5\x18.Gets the audit history for a user\'s auth token\x1a\"\x82\xb5\x18\x1e\x41uthentication Support Service2\xf2\x02\n\x0b\x43loudGaming\x12\x8b\x01\n\x0b\x43reateNonce\x12!.CCloudGaming_CreateNonce_Request\x1a\".CCloudGaming_CreateNonce_Response\"5\x82\xb5\x18\x31\x43reate a nonce for a cloud gaming service session\x12\xa5\x01\n\x10GetTimeRemaining\x12&.CCloudGaming_GetTimeRemaining_Request\x1a\'.CCloudGaming_GetTimeRemaining_Response\"@\x82\xb5\x18<Get the amount of streaming time remaining for a set of apps\x1a-\x82\xb5\x18)Methods for Steam cloud gaming operationsB\x03\x90\x01\x01'
-  ,
-  dependencies=[steammessages__base__pb2.DESCRIPTOR,steammessages__unified__base__pb2.DESCRIPTOR,enums__pb2.DESCRIPTOR,])
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18steammessages_auth.proto\x1a\x18steammessages_base.proto\x1a steammessages_unified_base.proto\x1a\x0b\x65nums.proto\"}\n/CAuthentication_GetPasswordRSAPublicKey_Request\x12J\n\x0c\x61\x63\x63ount_name\x18\x01 \x01(\tB4\x82\xb5\x18\x30user-provided account name to get an RSA key for\"\xd5\x01\n0CAuthentication_GetPasswordRSAPublicKey_Response\x12\x31\n\rpublickey_mod\x18\x01 \x01(\tB\x1a\x82\xb5\x18\x16the public key modulus\x12\x32\n\rpublickey_exp\x18\x02 \x01(\tB\x1b\x82\xb5\x18\x17the public key exponent\x12:\n\ttimestamp\x18\x03 \x01(\x04\x42\'\x82\xb5\x18#the timestamp the key was generated\"\xb5\x04\n\x1d\x43\x41uthentication_DeviceDetails\x12\\\n\x14\x64\x65vice_friendly_name\x18\x01 \x01(\tB>\x82\xb5\x18:User-supplied, or client-supplied, friendly name of device\x12\x80\x01\n\rplatform_type\x18\x02 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_UnknownB.\x82\xb5\x18*EAuthTokenPlatformType, claimed, of device\x12;\n\x07os_type\x18\x03 \x01(\x05\x42*\x82\xb5\x18&EOSType, claimed, of authorized device\x12n\n\x12gaming_device_type\x18\x04 \x01(\rBR\x82\xb5\x18NEGamingDeviceType, claimed, of authorized device for steam client-type devices\x12S\n\x0c\x63lient_count\x18\x05 \x01(\rB=\x82\xb5\x18\x39\x46or desktop clients, quantized number of users in history\x12\x31\n\nmachine_id\x18\x06 \x01(\x0c\x42\x1d\x82\xb5\x18\x19\x41\x64\x64itional device context\"\xf8\x02\n-CAuthentication_BeginAuthSessionViaQR_Request\x12\x1c\n\x14\x64\x65vice_friendly_name\x18\x01 \x01(\t\x12P\n\rplatform_type\x18\x02 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_Unknown\x12x\n\x0e\x64\x65vice_details\x18\x03 \x01(\x0b\x32\x1e.CAuthentication_DeviceDetailsB@\x82\xb5\x18<User-supplied details about the device attempting to sign in\x12]\n\nwebsite_id\x18\x04 \x01(\t:\x07UnknownB@\x82\xb5\x18<(EMachineAuthWebDomain) identifier of client requesting auth\"\xf2\x02\n#CAuthentication_AllowedConfirmation\x12\x8e\x01\n\x11\x63onfirmation_type\x18\x01 \x01(\x0e\x32\x16.EAuthSessionGuardType:\x1fk_EAuthSessionGuardType_UnknownB:\x82\xb5\x18\x36\x61uthentication can proceed with this confirmation type\x12\xb9\x01\n\x12\x61ssociated_message\x18\x02 \x01(\tB\x9c\x01\x82\xb5\x18\x97\x01message to be interpreted depending on the confirmation type. for email confirmation, this might be the redacted email address to which email was sent.\"\xf1\x04\n.CAuthentication_BeginAuthSessionViaQR_Response\x12`\n\tclient_id\x18\x01 \x01(\x04\x42M\x82\xb5\x18Iunique identifier of requestor, also used for routing, portion of QR code\x12T\n\rchallenge_url\x18\x02 \x01(\tB=\x82\xb5\x18\x39URL based on client ID, which will be rendered as QR code\x12p\n\nrequest_id\x18\x03 \x01(\x0c\x42\\\x82\xb5\x18Xunique request ID to be presented by requestor at poll time - must not be rendered in QR\x12]\n\x08interval\x18\x04 \x01(\x02\x42K\x82\xb5\x18Grefresh interval with which requestor should call PollAuthSessionStatus\x12\x88\x01\n\x15\x61llowed_confirmations\x18\x05 \x03(\x0b\x32$.CAuthentication_AllowedConfirmationBC\x82\xb5\x18?the confirmation types that will be able to confirm the request\x12+\n\x07version\x18\x06 \x01(\x05\x42\x1a\x82\xb5\x18\x16version of the QR data\"\x82\x07\n6CAuthentication_BeginAuthSessionViaCredentials_Request\x12\x1c\n\x14\x64\x65vice_friendly_name\x18\x01 \x01(\t\x12\x14\n\x0c\x61\x63\x63ount_name\x18\x02 \x01(\t\x12\x43\n\x12\x65ncrypted_password\x18\x03 \x01(\tB\'\x82\xb5\x18#password, RSA encrypted client side\x12\x43\n\x14\x65ncryption_timestamp\x18\x04 \x01(\x04\x42%\x82\xb5\x18!timestamp to map to a key - STime\x12&\n\x0eremember_login\x18\x05 \x01(\x08\x42\x0e\x82\xb5\x18\ndeprecated\x12P\n\rplatform_type\x18\x06 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_Unknown\x12\x8f\x01\n\x0bpersistence\x18\x07 \x01(\x0e\x32\x14.ESessionPersistence: k_ESessionPersistence_PersistentBB\x82\xb5\x18>whether we are requesting a persistent or an ephemeral session\x12]\n\nwebsite_id\x18\x08 \x01(\t:\x07UnknownB@\x82\xb5\x18<(EMachineAuthWebDomain) identifier of client requesting auth\x12x\n\x0e\x64\x65vice_details\x18\t \x01(\x0b\x32\x1e.CAuthentication_DeviceDetailsB@\x82\xb5\x18<User-supplied details about the device attempting to sign in\x12\x39\n\nguard_data\x18\n \x01(\tB%\x82\xb5\x18!steam guard data for client login\x12\x10\n\x08language\x18\x0b \x01(\r\x12X\n\tqos_level\x18\x0c \x01(\x05:\x01\x32\x42\x42\x82\xb5\x18>[ENetQOSLevel] client-specified priority for this auth attempt\"\xfa\x06\n7CAuthentication_BeginAuthSessionViaCredentials_Response\x12L\n\tclient_id\x18\x01 \x01(\x04\x42\x39\x82\xb5\x18\x35unique identifier of requestor, also used for routing\x12z\n\nrequest_id\x18\x02 \x01(\x0c\x42\x66\x82\xb5\x18\x62unique request ID to be presented by requestor at poll time - must not be transferred or displayed\x12]\n\x08interval\x18\x03 \x01(\x02\x42K\x82\xb5\x18Grefresh interval with which requestor should call PollAuthSessionStatus\x12\x88\x01\n\x15\x61llowed_confirmations\x18\x04 \x03(\x0b\x32$.CAuthentication_AllowedConfirmationBC\x82\xb5\x18?the confirmation types that will be able to confirm the request\x12n\n\x07steamid\x18\x05 \x01(\x04\x42]\x82\xb5\x18Ysteamid of the account logging in - will only be included if the credentials were correct\x12z\n\nweak_token\x18\x06 \x01(\tBf\x82\xb5\x18\x62partial-authentication token - limited lifetime and scope, included only if credentials were valid\x12G\n\x15\x61greement_session_url\x18\x07 \x01(\tB(\x82\xb5\x18$agreement the user needs to agree to\x12V\n\x16\x65xtended_error_message\x18\x08 \x01(\tB6\x82\xb5\x18\x32\x65rror string to display if supported by the client\"\xbd\x01\n-CAuthentication_PollAuthSessionStatus_Request\x12\x11\n\tclient_id\x18\x01 \x01(\x04\x12\x12\n\nrequest_id\x18\x02 \x01(\x0c\x12\x65\n\x0ftoken_to_revoke\x18\x03 \x01(\x06\x42L\x82\xb5\x18HIf this is set to a token owned by this user, that token will be retired\"\xd3\x06\n.CAuthentication_PollAuthSessionStatus_Response\x12I\n\rnew_client_id\x18\x01 \x01(\x04\x42\x32\x82\xb5\x18.if challenge is old, this is the new client id\x12u\n\x11new_challenge_url\x18\x02 \x01(\tBZ\x82\xb5\x18Vif challenge is old, this is the new challenge ID to re-render for mobile confirmation\x12\x61\n\rrefresh_token\x18\x03 \x01(\tBJ\x82\xb5\x18\x46if login has been confirmed, this is the requestor\'s new refresh token\x12g\n\x0c\x61\x63\x63\x65ss_token\x18\x04 \x01(\tBQ\x82\xb5\x18Mif login has been confirmed, this is a new token subordinate to refresh_token\x12\x85\x01\n\x16had_remote_interaction\x18\x05 \x01(\x08\x42\x65\x82\xb5\x18\x61whether or not the auth session appears to have had remote interaction from a potential confirmer\x12U\n\x0c\x61\x63\x63ount_name\x18\x06 \x01(\tB?\x82\xb5\x18;account name of authenticating account, for use by UI layer\x12k\n\x0enew_guard_data\x18\x07 \x01(\tBS\x82\xb5\x18Oif login has been confirmed, may contain remembered machine ID for future login\x12G\n\x15\x61greement_session_url\x18\x08 \x01(\tB(\x82\xb5\x18$agreement the user needs to agree to\"u\n*CAuthentication_GetAuthSessionInfo_Request\x12G\n\tclient_id\x18\x01 \x01(\x04\x42\x34\x82\xb5\x18\x30\x63lient ID from scanned QR Code, used for routing\"\xbb\x07\n+CAuthentication_GetAuthSessionInfo_Response\x12\'\n\x02ip\x18\x01 \x01(\tB\x1b\x82\xb5\x18\x17IP address of requestor\x12,\n\x06geoloc\x18\x02 \x01(\tB\x1c\x82\xb5\x18\x18geoloc info of requestor\x12#\n\x04\x63ity\x18\x03 \x01(\tB\x15\x82\xb5\x18\x11\x63ity of requestor\x12%\n\x05state\x18\x04 \x01(\tB\x16\x82\xb5\x18\x12state of requestor\x12)\n\x07\x63ountry\x18\x05 \x01(\tB\x18\x82\xb5\x18\x14\x63ountry of requestor\x12p\n\rplatform_type\x18\x06 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_UnknownB\x1e\x82\xb5\x18\x1aplatform type of requestor\x12:\n\x14\x64\x65vice_friendly_name\x18\x07 \x01(\tB\x1c\x82\xb5\x18\x18name of requestor device\x12\"\n\x07version\x18\x08 \x01(\x05\x42\x11\x82\xb5\x18\rversion field\x12\xa4\x01\n\rlogin_history\x18\t \x01(\x0e\x32\x1c.EAuthSessionSecurityHistory:%k_EAuthSessionSecurityHistory_InvalidBH\x82\xb5\x18\x44whether the ip has previuously been used on the account successfully\x12\x66\n\x1brequestor_location_mismatch\x18\n \x01(\x08\x42\x41\x82\xb5\x18=whether the requestor location matches this requests location\x12M\n\x10high_usage_login\x18\x0b \x01(\x08\x42\x33\x82\xb5\x18/whether this login has seen high usage recently\x12\x8d\x01\n\x15requested_persistence\x18\x0c \x01(\x0e\x32\x14.ESessionPersistence:\x1dk_ESessionPersistence_InvalidB9\x82\xb5\x18\x35session persistence requestor has indicated they want\"\x9c\x04\n?CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request\x12\"\n\x07version\x18\x01 \x01(\x05\x42\x11\x82\xb5\x18\rversion field\x12>\n\tclient_id\x18\x02 \x01(\x04\x42+\x82\xb5\x18\'pending client ID, from scanned QR Code\x12,\n\x07steamid\x18\x03 \x01(\x06\x42\x1b\x82\xb5\x18\x17user who wants to login\x12Z\n\tsignature\x18\x04 \x01(\x0c\x42G\x82\xb5\x18\x43HMAC digest over {version,client_id,steamid} via user\'s private key\x12Y\n\x07\x63onfirm\x18\x05 \x01(\x08:\x05\x66\x61lseBA\x82\xb5\x18=Whether to confirm the login (true) or deny the login (false)\x12\x8f\x01\n\x0bpersistence\x18\x06 \x01(\x0e\x32\x14.ESessionPersistence: k_ESessionPersistence_PersistentBB\x82\xb5\x18>whether we are requesting a persistent or an ephemeral session\"B\n@CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response\"\xbf\x02\n;CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request\x12\x42\n\tclient_id\x18\x01 \x01(\x04\x42/\x82\xb5\x18+pending client ID, from initialized session\x12,\n\x07steamid\x18\x02 \x01(\x06\x42\x1b\x82\xb5\x18\x17user who wants to login\x12#\n\x04\x63ode\x18\x03 \x01(\tB\x15\x82\xb5\x18\x11\x63onfirmation code\x12i\n\tcode_type\x18\x04 \x01(\x0e\x32\x16.EAuthSessionGuardType:\x1fk_EAuthSessionGuardType_UnknownB\x1d\x82\xb5\x18\x19type of confirmation code\"\x87\x01\n<CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response\x12G\n\x15\x61greement_session_url\x18\x07 \x01(\tB(\x82\xb5\x18$agreement the user needs to agree to\"\xa0\x01\n2CAuthentication_AccessToken_GenerateForApp_Request\x12\x15\n\rrefresh_token\x18\x01 \x01(\t\x12\x0f\n\x07steamid\x18\x02 \x01(\x06\x12\x42\n\x0crenewal_type\x18\x03 \x01(\x0e\x32\x12.ETokenRenewalType:\x18k_ETokenRenewalType_None\"b\n3CAuthentication_AccessToken_GenerateForApp_Response\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x15\n\rrefresh_token\x18\x02 \x01(\t\"0\n.CAuthentication_RefreshToken_Enumerate_Request\"\xab\r\n/CAuthentication_RefreshToken_Enumerate_Response\x12`\n\x0erefresh_tokens\x18\x01 \x03(\x0b\x32H.CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription\x12\x18\n\x10requesting_token\x18\x02 \x01(\x06\x1a\x93\x03\n\x0fTokenUsageEvent\x12[\n\x04time\x18\x01 \x01(\rBM\x82\xb5\x18IApproximate time of history event (may be deliberately fuzzed or omitted)\x12>\n\x02ip\x18\x02 \x01(\x0b\x32\x0e.CMsgIPAddressB\"\x82\xb5\x18\x1eIP at which event was observed\x12\x0e\n\x06locale\x18\x03 \x01(\t\x12J\n\x07\x63ountry\x18\x04 \x01(\tB9\x82\xb5\x18\x35Location (country code) of event, as inferred from IP\x12\x46\n\x05state\x18\x05 \x01(\tB7\x82\xb5\x18\x33Location (state code) of event, as inferred from IP\x12?\n\x04\x63ity\x18\x06 \x01(\tB1\x82\xb5\x18-Location (city) of event, as inferred from IP\x1a\xe5\x08\n\x17RefreshTokenDescription\x12\x38\n\x08token_id\x18\x01 \x01(\x06\x42&\x82\xb5\x18\"Persistent token/device identifier\x12K\n\x11token_description\x18\x02 \x01(\tB0\x82\xb5\x18,client-supplied friendly name for the device\x12\x14\n\x0ctime_updated\x18\x03 \x01(\r\x12\x81\x01\n\rplatform_type\x18\x04 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_UnknownB/\x82\xb5\x18+gross platform type (mobile/client/browser)\x12\x94\x01\n\tlogged_in\x18\x05 \x01(\x08\x42\x80\x01\x82\xb5\x18|If true, this token is currently valid. False indicates it is a machine token - ok for steamguard if you know the credential\x12T\n\x0bos_platform\x18\x06 \x01(\rB?\x82\xb5\x18;EPlatformType - rough classification of device OS, if known\x12U\n\tauth_type\x18\x07 \x01(\rBB\x82\xb5\x18>EAuthTokenGuardType - device authorization mechanism, if known\x12\x82\x01\n\x12gaming_device_type\x18\x08 \x01(\rBf\x82\xb5\x18\x62\x45GamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices\x12\x88\x01\n\nfirst_seen\x18\t \x01(\x0b\x32@.CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEventB2\x82\xb5\x18.Information about original authorization event\x12\x97\x01\n\tlast_seen\x18\n \x01(\x0b\x32@.CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEventBB\x82\xb5\x18>Information about most-recently seen, if known for this device\x12;\n\x07os_type\x18\x0b \x01(\x05\x42*\x82\xb5\x18&EOSType - specific device OS, if known\"3\n1CAuthentication_GetAuthSessionsForAccount_Request\"\x83\x01\n2CAuthentication_GetAuthSessionsForAccount_Response\x12M\n\nclient_ids\x18\x01 \x03(\x04\x42\x39\x82\xb5\x18\x35unique identifier of requestor, also used for routing\"\xdb\x01\n,CAuthentication_MigrateMobileSession_Request\x12\x34\n\x07steamid\x18\x01 \x01(\x06\x42#\x82\xb5\x18\x1fSteam ID of the user to migrate\x12&\n\x05token\x18\x02 \x01(\tB\x17\x82\xb5\x18\x13WG Token to migrate\x12M\n\tsignature\x18\x03 \x01(\tB:\x82\xb5\x18\x36Signature over the wg token using the user\'s 2FA token\"\\\n-CAuthentication_MigrateMobileSession_Response\x12\x15\n\rrefresh_token\x18\x01 \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x02 \x01(\t\"\xbc\x01\n$CAuthentication_Token_Revoke_Request\x12\r\n\x05token\x18\x01 \x01(\t\x12\x84\x01\n\rrevoke_action\x18\x02 \x01(\x0e\x32\x17.EAuthTokenRevokeAction:\x1bk_EAuthTokenRevokePermanentB7\x82\xb5\x18\x33Select between logout and logout-and-forget-machine\"\'\n%CAuthentication_Token_Revoke_Response\"\xcf\x02\n+CAuthentication_RefreshToken_Revoke_Request\x12\x10\n\x08token_id\x18\x01 \x01(\x06\x12N\n\x07steamid\x18\x02 \x01(\x06\x42=\x82\xb5\x18\x39Token holder if an admin action on behalf of another user\x12\x84\x01\n\rrevoke_action\x18\x03 \x01(\x0e\x32\x17.EAuthTokenRevokeAction:\x1bk_EAuthTokenRevokePermanentB7\x82\xb5\x18\x33Select between logout and logout-and-forget-machine\x12\x37\n\tsignature\x18\x04 \x01(\x0c\x42$\x82\xb5\x18 required signature over token_id\".\n,CAuthentication_RefreshToken_Revoke_Response\"\xdb\x01\n:CAuthenticationSupport_QueryRefreshTokensByAccount_Request\x12?\n\x07steamid\x18\x01 \x01(\x06\x42.\x82\xb5\x18*SteamID of the account to query (required)\x12\\\n\x16include_revoked_tokens\x18\x02 \x01(\x08\x42<\x82\xb5\x18\x38Includes tokens that are revoked or expired in the query\"\x88\n\n\x1f\x43SupportRefreshTokenDescription\x12\x10\n\x08token_id\x18\x01 \x01(\x06\x12\x19\n\x11token_description\x18\x02 \x01(\t\x12\x14\n\x0ctime_updated\x18\x03 \x01(\r\x12P\n\rplatform_type\x18\x04 \x01(\x0e\x32\x17.EAuthTokenPlatformType: k_EAuthTokenPlatformType_Unknown\x12@\n\x0btoken_state\x18\x05 \x01(\x0e\x32\x10.EAuthTokenState:\x19k_EAuthTokenState_Invalid\x12\x15\n\rowner_steamid\x18\x06 \x01(\x06\x12T\n\x0bos_platform\x18\x07 \x01(\rB?\x82\xb5\x18;EPlatformType - rough classification of device OS, if known\x12;\n\x07os_type\x18\x08 \x01(\x05\x42*\x82\xb5\x18&EOSType - specific device OS, if known\x12U\n\tauth_type\x18\t \x01(\rBB\x82\xb5\x18>EAuthTokenGuardType - device authorization mechanism, if known\x12\x82\x01\n\x12gaming_device_type\x18\n \x01(\rBf\x82\xb5\x18\x62\x45GamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices\x12x\n\nfirst_seen\x18\x0b \x01(\x0b\x32\x30.CSupportRefreshTokenDescription.TokenUsageEventB2\x82\xb5\x18.Information about original authorization event\x12\x87\x01\n\tlast_seen\x18\x0c \x01(\x0b\x32\x30.CSupportRefreshTokenDescription.TokenUsageEventBB\x82\xb5\x18>Information about most-recently seen, if known for this device\x1a\x83\x03\n\x0fTokenUsageEvent\x12[\n\x04time\x18\x01 \x01(\rBM\x82\xb5\x18IApproximate time of history event (may be deliberately fuzzed or omitted)\x12>\n\x02ip\x18\x02 \x01(\x0b\x32\x0e.CMsgIPAddressB\"\x82\xb5\x18\x1eIP at which event was observed\x12J\n\x07\x63ountry\x18\x03 \x01(\tB9\x82\xb5\x18\x35Location (country code) of event, as inferred from IP\x12\x46\n\x05state\x18\x04 \x01(\tB7\x82\xb5\x18\x33Location (state code) of event, as inferred from IP\x12?\n\x04\x63ity\x18\x05 \x01(\tB1\x82\xb5\x18-Location (city) of event, as inferred from IP\"\x91\x01\n;CAuthenticationSupport_QueryRefreshTokensByAccount_Response\x12\x38\n\x0erefresh_tokens\x18\x01 \x03(\x0b\x32 .CSupportRefreshTokenDescription\x12\x18\n\x10last_token_reset\x18\x02 \x01(\x05\"y\n4CAuthenticationSupport_QueryRefreshTokenByID_Request\x12\x41\n\x08token_id\x18\x01 \x01(\x06\x42/\x82\xb5\x18+Token ID of the token to look up (required)\"q\n5CAuthenticationSupport_QueryRefreshTokenByID_Response\x12\x38\n\x0erefresh_tokens\x18\x01 \x03(\x0b\x32 .CSupportRefreshTokenDescription\"\xb3\x01\n*CAuthenticationSupport_RevokeToken_Request\x12@\n\x08token_id\x18\x01 \x01(\x06\x42.\x82\xb5\x18*Token ID of the token to revoke (required)\x12\x43\n\x07steamid\x18\x02 \x01(\x06\x42\x32\x82\xb5\x18.Steam ID of the owner of that token (required)\"-\n+CAuthenticationSupport_RevokeToken_Response\"{\n.CAuthenticationSupport_GetTokenHistory_Request\x12I\n\x08token_id\x18\x01 \x01(\x06\x42\x37\x82\xb5\x18\x33Token ID of the token to get history for (required)\"d\n\x19\x43SupportRefreshTokenAudit\x12\x0e\n\x06\x61\x63tion\x18\x01 \x01(\x05\x12\x0c\n\x04time\x18\x02 \x01(\r\x12\x1a\n\x02ip\x18\x03 \x01(\x0b\x32\x0e.CMsgIPAddress\x12\r\n\x05\x61\x63tor\x18\x04 \x01(\x06\"^\n/CAuthenticationSupport_GetTokenHistory_Response\x12+\n\x07history\x18\x01 \x03(\x0b\x32\x1a.CSupportRefreshTokenAudit\"C\n CCloudGaming_CreateNonce_Request\x12\x10\n\x08platform\x18\x01 \x01(\t\x12\r\n\x05\x61ppid\x18\x02 \x01(\r\"B\n!CCloudGaming_CreateNonce_Response\x12\r\n\x05nonce\x18\x01 \x01(\t\x12\x0e\n\x06\x65xpiry\x18\x02 \x01(\r\"M\n%CCloudGaming_GetTimeRemaining_Request\x12\x10\n\x08platform\x18\x01 \x01(\t\x12\x12\n\nappid_list\x18\x02 \x03(\r\"F\n\x1a\x43\x43loudGaming_TimeRemaining\x12\r\n\x05\x61ppid\x18\x01 \x01(\r\x12\x19\n\x11minutes_remaining\x18\x02 \x01(\r\"V\n&CCloudGaming_GetTimeRemaining_Response\x12,\n\x07\x65ntries\x18\x02 \x03(\x0b\x32\x1b.CCloudGaming_TimeRemaining*\xb9\x01\n\x16\x45\x41uthTokenPlatformType\x12$\n k_EAuthTokenPlatformType_Unknown\x10\x00\x12(\n$k_EAuthTokenPlatformType_SteamClient\x10\x01\x12\'\n#k_EAuthTokenPlatformType_WebBrowser\x10\x02\x12&\n\"k_EAuthTokenPlatformType_MobileApp\x10\x03*\xe5\x02\n\x15\x45\x41uthSessionGuardType\x12#\n\x1fk_EAuthSessionGuardType_Unknown\x10\x00\x12 \n\x1ck_EAuthSessionGuardType_None\x10\x01\x12%\n!k_EAuthSessionGuardType_EmailCode\x10\x02\x12&\n\"k_EAuthSessionGuardType_DeviceCode\x10\x03\x12.\n*k_EAuthSessionGuardType_DeviceConfirmation\x10\x04\x12-\n)k_EAuthSessionGuardType_EmailConfirmation\x10\x05\x12(\n$k_EAuthSessionGuardType_MachineToken\x10\x06\x12-\n)k_EAuthSessionGuardType_LegacyMachineAuth\x10\x07*\xac\x01\n\x1b\x45\x41uthSessionSecurityHistory\x12)\n%k_EAuthSessionSecurityHistory_Invalid\x10\x00\x12\x30\n,k_EAuthSessionSecurityHistory_UsedPreviously\x10\x01\x12\x30\n,k_EAuthSessionSecurityHistory_NoPriorHistory\x10\x02*P\n\x11\x45TokenRenewalType\x12\x1c\n\x18k_ETokenRenewalType_None\x10\x00\x12\x1d\n\x19k_ETokenRenewalType_Allow\x10\x01*\xaf\x02\n\x16\x45\x41uthTokenRevokeAction\x12\x1c\n\x18k_EAuthTokenRevokeLogout\x10\x00\x12\x1f\n\x1bk_EAuthTokenRevokePermanent\x10\x01\x12\x1e\n\x1ak_EAuthTokenRevokeReplaced\x10\x02\x12\x1d\n\x19k_EAuthTokenRevokeSupport\x10\x03\x12\x1d\n\x19k_EAuthTokenRevokeConsume\x10\x04\x12)\n%k_EAuthTokenRevokeNonRememberedLogout\x10\x05\x12,\n(k_EAuthTokenRevokeNonRememberedPermanent\x10\x06\x12\x1f\n\x1bk_EAuthTokenRevokeAutomatic\x10\x07*\x88\x02\n\x0f\x45\x41uthTokenState\x12\x1d\n\x19k_EAuthTokenState_Invalid\x10\x00\x12\x19\n\x15k_EAuthTokenState_New\x10\x01\x12\x1f\n\x1bk_EAuthTokenState_Confirmed\x10\x02\x12\x1c\n\x18k_EAuthTokenState_Issued\x10\x03\x12\x1c\n\x18k_EAuthTokenState_Denied\x10\x04\x12\x1f\n\x1bk_EAuthTokenState_LoggedOut\x10\x05\x12\x1e\n\x1ak_EAuthTokenState_Consumed\x10\x06\x12\x1d\n\x19k_EAuthTokenState_Revoked\x10\x63\x32\xea\x14\n\x0e\x41uthentication\x12\xcf\x01\n\x17GetPasswordRSAPublicKey\x12\x30.CAuthentication_GetPasswordRSAPublicKey_Request\x1a\x31.CAuthentication_GetPasswordRSAPublicKey_Response\"O\x82\xb5\x18KFetches RSA public key to use to encrypt passwords for a given account name\x12\x9a\x01\n\x15\x42\x65ginAuthSessionViaQR\x12..CAuthentication_BeginAuthSessionViaQR_Request\x1a/.CAuthentication_BeginAuthSessionViaQR_Response\" \x82\xb5\x18\x1cstart authentication process\x12\xb5\x01\n\x1e\x42\x65ginAuthSessionViaCredentials\x12\x37.CAuthentication_BeginAuthSessionViaCredentials_Request\x1a\x38.CAuthentication_BeginAuthSessionViaCredentials_Response\" \x82\xb5\x18\x1cstart authentication process\x12\xa0\x01\n\x15PollAuthSessionStatus\x12..CAuthentication_PollAuthSessionStatus_Request\x1a/.CAuthentication_PollAuthSessionStatus_Response\"&\x82\xb5\x18\"poll during authentication process\x12\xce\x01\n\x12GetAuthSessionInfo\x12+.CAuthentication_GetAuthSessionInfo_Request\x1a,.CAuthentication_GetAuthSessionInfo_Response\"]\x82\xb5\x18Yget metadata of specific auth session, this will also implicitly bind the calling account\x12\xe4\x01\n\'UpdateAuthSessionWithMobileConfirmation\x12@.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request\x1a\x41.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response\"4\x82\xb5\x18\x30\x61pprove an authentication session via mobile 2fa\x12\xde\x01\n#UpdateAuthSessionWithSteamGuardCode\x12<.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request\x1a=.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response\":\x82\xb5\x18\x36\x61pprove an authentication session via steam guard code\x12\xfb\x01\n\x19GenerateAccessTokenForApp\x12\x33.CAuthentication_AccessToken_GenerateForApp_Request\x1a\x34.CAuthentication_AccessToken_GenerateForApp_Response\"s\x82\xb5\x18oGiven a refresh token for a client app audience (e.g. desktop client / mobile client), generate an access token\x12\xba\x01\n\x0f\x45numerateTokens\x12/.CAuthentication_RefreshToken_Enumerate_Request\x1a\x30.CAuthentication_RefreshToken_Enumerate_Response\"D\x82\xb5\x18@Enumerate durable (refresh) tokens for the given subject account\x12\xd6\x01\n\x19GetAuthSessionsForAccount\x12\x32.CAuthentication_GetAuthSessionsForAccount_Request\x1a\x33.CAuthentication_GetAuthSessionsForAccount_Response\"P\x82\xb5\x18LGets all active auth sessions for an account for reference by the mobile app\x12\xe4\x01\n\x14MigrateMobileSession\x12-.CAuthentication_MigrateMobileSession_Request\x1a..CAuthentication_MigrateMobileSession_Response\"m\x82\xb5\x18iMigrates a WG token to an access and refresh token using a signature generated with the user\'s 2FA secret\x12\xbc\x01\n\x0bRevokeToken\x12%.CAuthentication_Token_Revoke_Request\x1a&.CAuthentication_Token_Revoke_Response\"^\x82\xb5\x18ZRevoke a single token immediately, making it unable to renew or generate new access tokens\x12\x9e\x01\n\x12RevokeRefreshToken\x12,.CAuthentication_RefreshToken_Revoke_Request\x1a-.CAuthentication_RefreshToken_Revoke_Response\"+\x82\xb5\x18\'Mark the given refresh token as revoked\x1a\x1a\x82\xb5\x18\x16\x41uthentication Service2\xb0\x06\n\x15\x41uthenticationSupport\x12\xe5\x01\n\x1bQueryRefreshTokensByAccount\x12;.CAuthenticationSupport_QueryRefreshTokensByAccount_Request\x1a<.CAuthenticationSupport_QueryRefreshTokensByAccount_Response\"K\x82\xb5\x18GAsks the server for a list of refresh tokens associated with an account\x12\xd3\x01\n\x15QueryRefreshTokenByID\x12\x35.CAuthenticationSupport_QueryRefreshTokenByID_Request\x1a\x36.CAuthenticationSupport_QueryRefreshTokenByID_Response\"K\x82\xb5\x18GAsks the server for a list of refresh tokens associated with an account\x12\x89\x01\n\x0bRevokeToken\x12+.CAuthenticationSupport_RevokeToken_Request\x1a,.CAuthenticationSupport_RevokeToken_Response\"\x1f\x82\xb5\x18\x1bRevokes a user\'s auth token\x12\xa8\x01\n\x0fGetTokenHistory\x12/.CAuthenticationSupport_GetTokenHistory_Request\x1a\x30.CAuthenticationSupport_GetTokenHistory_Response\"2\x82\xb5\x18.Gets the audit history for a user\'s auth token\x1a\"\x82\xb5\x18\x1e\x41uthentication Support Service2\xf2\x02\n\x0b\x43loudGaming\x12\x8b\x01\n\x0b\x43reateNonce\x12!.CCloudGaming_CreateNonce_Request\x1a\".CCloudGaming_CreateNonce_Response\"5\x82\xb5\x18\x31\x43reate a nonce for a cloud gaming service session\x12\xa5\x01\n\x10GetTimeRemaining\x12&.CCloudGaming_GetTimeRemaining_Request\x1a\'.CCloudGaming_GetTimeRemaining_Response\"@\x82\xb5\x18<Get the amount of streaming time remaining for a set of apps\x1a-\x82\xb5\x18)Methods for Steam cloud gaming operationsB\x03\x90\x01\x01')
 
-_EAUTHTOKENPLATFORMTYPE = _descriptor.EnumDescriptor(
-  name='EAuthTokenPlatformType',
-  full_name='EAuthTokenPlatformType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenPlatformType_Unknown', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenPlatformType_SteamClient', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenPlatformType_WebBrowser', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenPlatformType_MobileApp', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=13216,
-  serialized_end=13401,
-)
-_sym_db.RegisterEnumDescriptor(_EAUTHTOKENPLATFORMTYPE)
-
+_EAUTHTOKENPLATFORMTYPE = DESCRIPTOR.enum_types_by_name['EAuthTokenPlatformType']
 EAuthTokenPlatformType = enum_type_wrapper.EnumTypeWrapper(_EAUTHTOKENPLATFORMTYPE)
-_EAUTHSESSIONGUARDTYPE = _descriptor.EnumDescriptor(
-  name='EAuthSessionGuardType',
-  full_name='EAuthSessionGuardType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_Unknown', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_None', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_EmailCode', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_DeviceCode', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_DeviceConfirmation', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_EmailConfirmation', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_MachineToken', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionGuardType_LegacyMachineAuth', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=13404,
-  serialized_end=13761,
-)
-_sym_db.RegisterEnumDescriptor(_EAUTHSESSIONGUARDTYPE)
-
+_EAUTHSESSIONGUARDTYPE = DESCRIPTOR.enum_types_by_name['EAuthSessionGuardType']
 EAuthSessionGuardType = enum_type_wrapper.EnumTypeWrapper(_EAUTHSESSIONGUARDTYPE)
-_EAUTHSESSIONSECURITYHISTORY = _descriptor.EnumDescriptor(
-  name='EAuthSessionSecurityHistory',
-  full_name='EAuthSessionSecurityHistory',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionSecurityHistory_Invalid', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionSecurityHistory_UsedPreviously', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthSessionSecurityHistory_NoPriorHistory', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=13764,
-  serialized_end=13936,
-)
-_sym_db.RegisterEnumDescriptor(_EAUTHSESSIONSECURITYHISTORY)
-
+_EAUTHSESSIONSECURITYHISTORY = DESCRIPTOR.enum_types_by_name['EAuthSessionSecurityHistory']
 EAuthSessionSecurityHistory = enum_type_wrapper.EnumTypeWrapper(_EAUTHSESSIONSECURITYHISTORY)
-_ETOKENRENEWALTYPE = _descriptor.EnumDescriptor(
-  name='ETokenRenewalType',
-  full_name='ETokenRenewalType',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='k_ETokenRenewalType_None', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_ETokenRenewalType_Allow', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=13938,
-  serialized_end=14018,
-)
-_sym_db.RegisterEnumDescriptor(_ETOKENRENEWALTYPE)
-
+_ETOKENRENEWALTYPE = DESCRIPTOR.enum_types_by_name['ETokenRenewalType']
 ETokenRenewalType = enum_type_wrapper.EnumTypeWrapper(_ETOKENRENEWALTYPE)
-_EAUTHTOKENREVOKEACTION = _descriptor.EnumDescriptor(
-  name='EAuthTokenRevokeAction',
-  full_name='EAuthTokenRevokeAction',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeLogout', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokePermanent', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeReplaced', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeSupport', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeConsume', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeNonRememberedLogout', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeNonRememberedPermanent', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenRevokeAutomatic', index=7, number=7,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=14021,
-  serialized_end=14324,
-)
-_sym_db.RegisterEnumDescriptor(_EAUTHTOKENREVOKEACTION)
-
+_EAUTHTOKENREVOKEACTION = DESCRIPTOR.enum_types_by_name['EAuthTokenRevokeAction']
 EAuthTokenRevokeAction = enum_type_wrapper.EnumTypeWrapper(_EAUTHTOKENREVOKEACTION)
-_EAUTHTOKENSTATE = _descriptor.EnumDescriptor(
-  name='EAuthTokenState',
-  full_name='EAuthTokenState',
-  filename=None,
-  file=DESCRIPTOR,
-  create_key=_descriptor._internal_create_key,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_Invalid', index=0, number=0,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_New', index=1, number=1,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_Confirmed', index=2, number=2,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_Issued', index=3, number=3,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_Denied', index=4, number=4,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_LoggedOut', index=5, number=5,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_Consumed', index=6, number=6,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-    _descriptor.EnumValueDescriptor(
-      name='k_EAuthTokenState_Revoked', index=7, number=99,
-      serialized_options=None,
-      type=None,
-      create_key=_descriptor._internal_create_key),
-  ],
-  containing_type=None,
-  serialized_options=None,
-  serialized_start=14327,
-  serialized_end=14591,
-)
-_sym_db.RegisterEnumDescriptor(_EAUTHTOKENSTATE)
-
+_EAUTHTOKENSTATE = DESCRIPTOR.enum_types_by_name['EAuthTokenState']
 EAuthTokenState = enum_type_wrapper.EnumTypeWrapper(_EAUTHTOKENSTATE)
 k_EAuthTokenPlatformType_Unknown = 0
 k_EAuthTokenPlatformType_SteamClient = 1
@@ -325,2296 +69,52 @@ k_EAuthTokenState_Consumed = 6
 k_EAuthTokenState_Revoked = 99
 
 
-
-_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_GetPasswordRSAPublicKey_Request',
-  full_name='CAuthentication_GetPasswordRSAPublicKey_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='account_name', full_name='CAuthentication_GetPasswordRSAPublicKey_Request.account_name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0300user-provided account name to get an RSA key for', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=101,
-  serialized_end=226,
-)
-
-
-_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_GetPasswordRSAPublicKey_Response',
-  full_name='CAuthentication_GetPasswordRSAPublicKey_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='publickey_mod', full_name='CAuthentication_GetPasswordRSAPublicKey_Response.publickey_mod', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\026the public key modulus', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='publickey_exp', full_name='CAuthentication_GetPasswordRSAPublicKey_Response.publickey_exp', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\027the public key exponent', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='timestamp', full_name='CAuthentication_GetPasswordRSAPublicKey_Response.timestamp', index=2,
-      number=3, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030#the timestamp the key was generated', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=229,
-  serialized_end=442,
-)
-
-
-_CAUTHENTICATION_DEVICEDETAILS = _descriptor.Descriptor(
-  name='CAuthentication_DeviceDetails',
-  full_name='CAuthentication_DeviceDetails',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='device_friendly_name', full_name='CAuthentication_DeviceDetails.device_friendly_name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030:User-supplied, or client-supplied, friendly name of device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='platform_type', full_name='CAuthentication_DeviceDetails.platform_type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030*EAuthTokenPlatformType, claimed, of device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='os_type', full_name='CAuthentication_DeviceDetails.os_type', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030&EOSType, claimed, of authorized device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gaming_device_type', full_name='CAuthentication_DeviceDetails.gaming_device_type', index=3,
-      number=4, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030NEGamingDeviceType, claimed, of authorized device for steam client-type devices', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=445,
-  serialized_end=874,
-)
-
-
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_BeginAuthSessionViaQR_Request',
-  full_name='CAuthentication_BeginAuthSessionViaQR_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='device_friendly_name', full_name='CAuthentication_BeginAuthSessionViaQR_Request.device_friendly_name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='platform_type', full_name='CAuthentication_BeginAuthSessionViaQR_Request.platform_type', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='device_details', full_name='CAuthentication_BeginAuthSessionViaQR_Request.device_details', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030<User-supplied details about the device attempting to sign in', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='website_id', full_name='CAuthentication_BeginAuthSessionViaQR_Request.website_id', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=True, default_value=b"Unknown".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030<(EMachineAuthWebDomain) identifier of client requesting auth', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=877,
-  serialized_end=1253,
-)
-
-
-_CAUTHENTICATION_ALLOWEDCONFIRMATION = _descriptor.Descriptor(
-  name='CAuthentication_AllowedConfirmation',
-  full_name='CAuthentication_AllowedConfirmation',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='confirmation_type', full_name='CAuthentication_AllowedConfirmation.confirmation_type', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0306authentication can proceed with this confirmation type', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='associated_message', full_name='CAuthentication_AllowedConfirmation.associated_message', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\227\001message to be interpreted depending on the confirmation type. for email confirmation, this might be the redacted email address to which email was sent.', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1256,
-  serialized_end=1626,
-)
-
-
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_BeginAuthSessionViaQR_Response',
-  full_name='CAuthentication_BeginAuthSessionViaQR_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='client_id', full_name='CAuthentication_BeginAuthSessionViaQR_Response.client_id', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Iunique identifier of requestor, also used for routing, portion of QR code', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='challenge_url', full_name='CAuthentication_BeginAuthSessionViaQR_Response.challenge_url', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0309URL based on client ID, which will be rendered as QR code', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='request_id', full_name='CAuthentication_BeginAuthSessionViaQR_Response.request_id', index=2,
-      number=3, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Xunique request ID to be presented by requestor at poll time - must not be rendered in QR', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='interval', full_name='CAuthentication_BeginAuthSessionViaQR_Response.interval', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Grefresh interval with which requestor should call PollAuthSessionStatus', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='allowed_confirmations', full_name='CAuthentication_BeginAuthSessionViaQR_Response.allowed_confirmations', index=4,
-      number=5, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030?the confirmation types that will be able to confirm the request', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='version', full_name='CAuthentication_BeginAuthSessionViaQR_Response.version', index=5,
-      number=6, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\026version of the QR data', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1629,
-  serialized_end=2254,
-)
-
-
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_BeginAuthSessionViaCredentials_Request',
-  full_name='CAuthentication_BeginAuthSessionViaCredentials_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='device_friendly_name', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.device_friendly_name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='account_name', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.account_name', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='encrypted_password', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.encrypted_password', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030#password, RSA encrypted client side', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='encryption_timestamp', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.encryption_timestamp', index=3,
-      number=4, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030!timestamp to map to a key - STime', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='remember_login', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.remember_login', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\ndeprecated', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='platform_type', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.platform_type', index=5,
-      number=6, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='persistence', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.persistence', index=6,
-      number=7, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>whether we are requesting a persistent or an ephemeral session', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='website_id', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.website_id', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=True, default_value=b"Unknown".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030<(EMachineAuthWebDomain) identifier of client requesting auth', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='device_details', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.device_details', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030<User-supplied details about the device attempting to sign in', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='guard_data', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.guard_data', index=9,
-      number=10, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030!steam guard data for client login', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='language', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.language', index=10,
-      number=11, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='qos_level', full_name='CAuthentication_BeginAuthSessionViaCredentials_Request.qos_level', index=11,
-      number=12, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=2,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>[ENetQOSLevel] client-specified priority for this auth attempt', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2257,
-  serialized_end=3155,
-)
-
-
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_BeginAuthSessionViaCredentials_Response',
-  full_name='CAuthentication_BeginAuthSessionViaCredentials_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='client_id', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.client_id', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0305unique identifier of requestor, also used for routing', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='request_id', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.request_id', index=1,
-      number=2, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030bunique request ID to be presented by requestor at poll time - must not be transferred or displayed', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='interval', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.interval', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Grefresh interval with which requestor should call PollAuthSessionStatus', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='allowed_confirmations', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.allowed_confirmations', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030?the confirmation types that will be able to confirm the request', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.steamid', index=4,
-      number=5, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Ysteamid of the account logging in - will only be included if the credentials were correct', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='weak_token', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.weak_token', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030bpartial-authentication token - limited lifetime and scope, included only if credentials were valid', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='agreement_session_url', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.agreement_session_url', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030$agreement the user needs to agree to', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='extended_error_message', full_name='CAuthentication_BeginAuthSessionViaCredentials_Response.extended_error_message', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0302error string to display if supported by the client', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=3158,
-  serialized_end=4048,
-)
-
-
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_PollAuthSessionStatus_Request',
-  full_name='CAuthentication_PollAuthSessionStatus_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='client_id', full_name='CAuthentication_PollAuthSessionStatus_Request.client_id', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='request_id', full_name='CAuthentication_PollAuthSessionStatus_Request.request_id', index=1,
-      number=2, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token_to_revoke', full_name='CAuthentication_PollAuthSessionStatus_Request.token_to_revoke', index=2,
-      number=3, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030HIf this is set to a token owned by this user, that token will be retired', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4051,
-  serialized_end=4240,
-)
-
-
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_PollAuthSessionStatus_Response',
-  full_name='CAuthentication_PollAuthSessionStatus_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='new_client_id', full_name='CAuthentication_PollAuthSessionStatus_Response.new_client_id', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030.if challenge is old, this is the new client id', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='new_challenge_url', full_name='CAuthentication_PollAuthSessionStatus_Response.new_challenge_url', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Vif challenge is old, this is the new challenge ID to re-render for mobile confirmation', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='refresh_token', full_name='CAuthentication_PollAuthSessionStatus_Response.refresh_token', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Fif login has been confirmed, this is the requestor\'s new refresh token', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='access_token', full_name='CAuthentication_PollAuthSessionStatus_Response.access_token', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Mif login has been confirmed, this is a new token subordinate to refresh_token', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='had_remote_interaction', full_name='CAuthentication_PollAuthSessionStatus_Response.had_remote_interaction', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030awhether or not the auth session appears to have had remote interaction from a potential confirmer', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='account_name', full_name='CAuthentication_PollAuthSessionStatus_Response.account_name', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030;account name of authenticating account, for use by UI layer', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='new_guard_data', full_name='CAuthentication_PollAuthSessionStatus_Response.new_guard_data', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Oif login has been confirmed, may contain remembered machine ID for future login', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='agreement_session_url', full_name='CAuthentication_PollAuthSessionStatus_Response.agreement_session_url', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030$agreement the user needs to agree to', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4243,
-  serialized_end=5094,
-)
-
-
-_CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_GetAuthSessionInfo_Request',
-  full_name='CAuthentication_GetAuthSessionInfo_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='client_id', full_name='CAuthentication_GetAuthSessionInfo_Request.client_id', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0300client ID from scanned QR Code, used for routing', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5096,
-  serialized_end=5213,
-)
-
-
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_GetAuthSessionInfo_Response',
-  full_name='CAuthentication_GetAuthSessionInfo_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='ip', full_name='CAuthentication_GetAuthSessionInfo_Response.ip', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\027IP address of requestor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='geoloc', full_name='CAuthentication_GetAuthSessionInfo_Response.geoloc', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\030geoloc info of requestor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='city', full_name='CAuthentication_GetAuthSessionInfo_Response.city', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\021city of requestor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='state', full_name='CAuthentication_GetAuthSessionInfo_Response.state', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\022state of requestor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='country', full_name='CAuthentication_GetAuthSessionInfo_Response.country', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\024country of requestor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='platform_type', full_name='CAuthentication_GetAuthSessionInfo_Response.platform_type', index=5,
-      number=6, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\032platform type of requestor', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='device_friendly_name', full_name='CAuthentication_GetAuthSessionInfo_Response.device_friendly_name', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\030name of requestor device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='version', full_name='CAuthentication_GetAuthSessionInfo_Response.version', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\rversion field', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='login_history', full_name='CAuthentication_GetAuthSessionInfo_Response.login_history', index=8,
-      number=9, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030Dwhether the ip has previuously been used on the account successfully', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='requestor_location_mismatch', full_name='CAuthentication_GetAuthSessionInfo_Response.requestor_location_mismatch', index=9,
-      number=10, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030=whether the requestor location matches this requests location', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='high_usage_login', full_name='CAuthentication_GetAuthSessionInfo_Response.high_usage_login', index=10,
-      number=11, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030/whether this login has seen high usage recently', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='requested_persistence', full_name='CAuthentication_GetAuthSessionInfo_Response.requested_persistence', index=11,
-      number=12, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=-1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0305session persistence requestor has indicated they want', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5216,
-  serialized_end=6171,
-)
-
-
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request',
-  full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='version', full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.version', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\rversion field', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='client_id', full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.client_id', index=1,
-      number=2, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\'pending client ID, from scanned QR Code', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.steamid', index=2,
-      number=3, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\027user who wants to login', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='signature', full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.signature', index=3,
-      number=4, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030CHMAC digest over {version,client_id,steamid} via user\'s private key', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='confirm', full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.confirm', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030=Whether to confirm the login (true) or deny the login (false)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='persistence', full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.persistence', index=5,
-      number=6, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>whether we are requesting a persistent or an ephemeral session', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6174,
-  serialized_end=6714,
-)
-
-
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response',
-  full_name='CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6716,
-  serialized_end=6782,
-)
-
-
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request',
-  full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='client_id', full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.client_id', index=0,
-      number=1, type=4, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030+pending client ID, from initialized session', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.steamid', index=1,
-      number=2, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\027user who wants to login', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='code', full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.code', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\021confirmation code', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='code_type', full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.code_type', index=3,
-      number=4, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\031type of confirmation code', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=6785,
-  serialized_end=7104,
-)
-
-
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response',
-  full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='agreement_session_url', full_name='CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response.agreement_session_url', index=0,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030$agreement the user needs to agree to', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7107,
-  serialized_end=7242,
-)
-
-
-_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_AccessToken_GenerateForApp_Request',
-  full_name='CAuthentication_AccessToken_GenerateForApp_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='refresh_token', full_name='CAuthentication_AccessToken_GenerateForApp_Request.refresh_token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthentication_AccessToken_GenerateForApp_Request.steamid', index=1,
-      number=2, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='renewal_type', full_name='CAuthentication_AccessToken_GenerateForApp_Request.renewal_type', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7245,
-  serialized_end=7405,
-)
-
-
-_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_AccessToken_GenerateForApp_Response',
-  full_name='CAuthentication_AccessToken_GenerateForApp_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='access_token', full_name='CAuthentication_AccessToken_GenerateForApp_Response.access_token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='refresh_token', full_name='CAuthentication_AccessToken_GenerateForApp_Response.refresh_token', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7407,
-  serialized_end=7505,
-)
-
-
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_RefreshToken_Enumerate_Request',
-  full_name='CAuthentication_RefreshToken_Enumerate_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7507,
-  serialized_end=7555,
-)
-
-
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT = _descriptor.Descriptor(
-  name='TokenUsageEvent',
-  full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent.time', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030IApproximate time of history event (may be deliberately fuzzed or omitted)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='ip', full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent.ip', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\036IP at which event was observed', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='locale', full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent.locale', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='country', full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent.country', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0305Location (country code) of event, as inferred from IP', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='state', full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent.state', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0303Location (state code) of event, as inferred from IP', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='city', full_name='CAuthentication_RefreshToken_Enumerate_Response.TokenUsageEvent.city', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030-Location (city) of event, as inferred from IP', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7734,
-  serialized_end=8137,
-)
-
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION = _descriptor.Descriptor(
-  name='RefreshTokenDescription',
-  full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token_id', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.token_id', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\"Persistent token/device identifier', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token_description', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.token_description', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030,client-supplied friendly name for the device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='time_updated', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.time_updated', index=2,
-      number=3, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='platform_type', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.platform_type', index=3,
-      number=4, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030+gross platform type (mobile/client/browser)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='logged_in', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.logged_in', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030|If true, this token is currently valid. False indicates it is a machine token - ok for steamguard if you know the credential', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='os_platform', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.os_platform', index=5,
-      number=6, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030;EPlatformType - rough classification of device OS, if known', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='auth_type', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.auth_type', index=6,
-      number=7, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>EAuthTokenGuardType - device authorization mechanism, if known', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gaming_device_type', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.gaming_device_type', index=7,
-      number=8, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030bEGamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='first_seen', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.first_seen', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030.Information about original authorization event', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='last_seen', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.last_seen', index=9,
-      number=10, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>Information about most-recently seen, if known for this device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='os_type', full_name='CAuthentication_RefreshToken_Enumerate_Response.RefreshTokenDescription.os_type', index=10,
-      number=11, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030&EOSType - specific device OS, if known', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=8140,
-  serialized_end=9265,
-)
-
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_RefreshToken_Enumerate_Response',
-  full_name='CAuthentication_RefreshToken_Enumerate_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='refresh_tokens', full_name='CAuthentication_RefreshToken_Enumerate_Response.refresh_tokens', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='requesting_token', full_name='CAuthentication_RefreshToken_Enumerate_Response.requesting_token', index=1,
-      number=2, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT, _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=7558,
-  serialized_end=9265,
-)
-
-
-_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_GetAuthSessionsForAccount_Request',
-  full_name='CAuthentication_GetAuthSessionsForAccount_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=9267,
-  serialized_end=9318,
-)
-
-
-_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_GetAuthSessionsForAccount_Response',
-  full_name='CAuthentication_GetAuthSessionsForAccount_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='client_ids', full_name='CAuthentication_GetAuthSessionsForAccount_Response.client_ids', index=0,
-      number=1, type=4, cpp_type=4, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0305unique identifier of requestor, also used for routing', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=9321,
-  serialized_end=9452,
-)
-
-
-_CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_MigrateMobileSession_Request',
-  full_name='CAuthentication_MigrateMobileSession_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthentication_MigrateMobileSession_Request.steamid', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\037Steam ID of the user to migrate', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token', full_name='CAuthentication_MigrateMobileSession_Request.token', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\023WG Token to migrate', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='signature', full_name='CAuthentication_MigrateMobileSession_Request.signature', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0306Signature over the wg token using the user\'s 2FA token', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=9455,
-  serialized_end=9674,
-)
-
-
-_CAUTHENTICATION_MIGRATEMOBILESESSION_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_MigrateMobileSession_Response',
-  full_name='CAuthentication_MigrateMobileSession_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='refresh_token', full_name='CAuthentication_MigrateMobileSession_Response.refresh_token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='access_token', full_name='CAuthentication_MigrateMobileSession_Response.access_token', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=9676,
-  serialized_end=9768,
-)
-
-
-_CAUTHENTICATION_TOKEN_REVOKE_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_Token_Revoke_Request',
-  full_name='CAuthentication_Token_Revoke_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token', full_name='CAuthentication_Token_Revoke_Request.token', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='revoke_action', full_name='CAuthentication_Token_Revoke_Request.revoke_action', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0303Select between logout and logout-and-forget-machine', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=9771,
-  serialized_end=9959,
-)
-
-
-_CAUTHENTICATION_TOKEN_REVOKE_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_Token_Revoke_Response',
-  full_name='CAuthentication_Token_Revoke_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=9961,
-  serialized_end=10000,
-)
-
-
-_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST = _descriptor.Descriptor(
-  name='CAuthentication_RefreshToken_Revoke_Request',
-  full_name='CAuthentication_RefreshToken_Revoke_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token_id', full_name='CAuthentication_RefreshToken_Revoke_Request.token_id', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthentication_RefreshToken_Revoke_Request.steamid', index=1,
-      number=2, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0309Token holder if an admin action on behalf of another user', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='revoke_action', full_name='CAuthentication_RefreshToken_Revoke_Request.revoke_action', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0303Select between logout and logout-and-forget-machine', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='signature', full_name='CAuthentication_RefreshToken_Revoke_Request.signature', index=3,
-      number=4, type=12, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"",
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030 required signature over token_id', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=10003,
-  serialized_end=10338,
-)
-
-
-_CAUTHENTICATION_REFRESHTOKEN_REVOKE_RESPONSE = _descriptor.Descriptor(
-  name='CAuthentication_RefreshToken_Revoke_Response',
-  full_name='CAuthentication_RefreshToken_Revoke_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=10340,
-  serialized_end=10386,
-)
-
-
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST = _descriptor.Descriptor(
-  name='CAuthenticationSupport_QueryRefreshTokensByAccount_Request',
-  full_name='CAuthenticationSupport_QueryRefreshTokensByAccount_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthenticationSupport_QueryRefreshTokensByAccount_Request.steamid', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030*SteamID of the account to query (required)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='include_revoked_tokens', full_name='CAuthenticationSupport_QueryRefreshTokensByAccount_Request.include_revoked_tokens', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0308Includes tokens that are revoked or expired in the query', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=10389,
-  serialized_end=10608,
-)
-
-
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT = _descriptor.Descriptor(
-  name='TokenUsageEvent',
-  full_name='CSupportRefreshTokenDescription.TokenUsageEvent',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='time', full_name='CSupportRefreshTokenDescription.TokenUsageEvent.time', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030IApproximate time of history event (may be deliberately fuzzed or omitted)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='ip', full_name='CSupportRefreshTokenDescription.TokenUsageEvent.ip', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030\036IP at which event was observed', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='country', full_name='CSupportRefreshTokenDescription.TokenUsageEvent.country', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0305Location (country code) of event, as inferred from IP', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='state', full_name='CSupportRefreshTokenDescription.TokenUsageEvent.state', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0303Location (state code) of event, as inferred from IP', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='city', full_name='CSupportRefreshTokenDescription.TokenUsageEvent.city', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030-Location (city) of event, as inferred from IP', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=11512,
-  serialized_end=11899,
-)
-
-_CSUPPORTREFRESHTOKENDESCRIPTION = _descriptor.Descriptor(
-  name='CSupportRefreshTokenDescription',
-  full_name='CSupportRefreshTokenDescription',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token_id', full_name='CSupportRefreshTokenDescription.token_id', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token_description', full_name='CSupportRefreshTokenDescription.token_description', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='time_updated', full_name='CSupportRefreshTokenDescription.time_updated', index=2,
-      number=3, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='platform_type', full_name='CSupportRefreshTokenDescription.platform_type', index=3,
-      number=4, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='token_state', full_name='CSupportRefreshTokenDescription.token_state', index=4,
-      number=5, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='owner_steamid', full_name='CSupportRefreshTokenDescription.owner_steamid', index=5,
-      number=6, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='os_platform', full_name='CSupportRefreshTokenDescription.os_platform', index=6,
-      number=7, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030;EPlatformType - rough classification of device OS, if known', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='os_type', full_name='CSupportRefreshTokenDescription.os_type', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030&EOSType - specific device OS, if known', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='auth_type', full_name='CSupportRefreshTokenDescription.auth_type', index=8,
-      number=9, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>EAuthTokenGuardType - device authorization mechanism, if known', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='gaming_device_type', full_name='CSupportRefreshTokenDescription.gaming_device_type', index=9,
-      number=10, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030bEGamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='first_seen', full_name='CSupportRefreshTokenDescription.first_seen', index=10,
-      number=11, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030.Information about original authorization event', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='last_seen', full_name='CSupportRefreshTokenDescription.last_seen', index=11,
-      number=12, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030>Information about most-recently seen, if known for this device', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=10611,
-  serialized_end=11899,
-)
-
-
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE = _descriptor.Descriptor(
-  name='CAuthenticationSupport_QueryRefreshTokensByAccount_Response',
-  full_name='CAuthenticationSupport_QueryRefreshTokensByAccount_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='refresh_tokens', full_name='CAuthenticationSupport_QueryRefreshTokensByAccount_Response.refresh_tokens', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='last_token_reset', full_name='CAuthenticationSupport_QueryRefreshTokensByAccount_Response.last_token_reset', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=11902,
-  serialized_end=12047,
-)
-
-
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST = _descriptor.Descriptor(
-  name='CAuthenticationSupport_QueryRefreshTokenByID_Request',
-  full_name='CAuthenticationSupport_QueryRefreshTokenByID_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token_id', full_name='CAuthenticationSupport_QueryRefreshTokenByID_Request.token_id', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030+Token ID of the token to look up (required)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12049,
-  serialized_end=12170,
-)
-
-
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE = _descriptor.Descriptor(
-  name='CAuthenticationSupport_QueryRefreshTokenByID_Response',
-  full_name='CAuthenticationSupport_QueryRefreshTokenByID_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='refresh_tokens', full_name='CAuthenticationSupport_QueryRefreshTokenByID_Response.refresh_tokens', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12172,
-  serialized_end=12285,
-)
-
-
-_CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST = _descriptor.Descriptor(
-  name='CAuthenticationSupport_RevokeToken_Request',
-  full_name='CAuthenticationSupport_RevokeToken_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token_id', full_name='CAuthenticationSupport_RevokeToken_Request.token_id', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030*Token ID of the token to revoke (required)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='steamid', full_name='CAuthenticationSupport_RevokeToken_Request.steamid', index=1,
-      number=2, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\030.Steam ID of the owner of that token (required)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12288,
-  serialized_end=12467,
-)
-
-
-_CAUTHENTICATIONSUPPORT_REVOKETOKEN_RESPONSE = _descriptor.Descriptor(
-  name='CAuthenticationSupport_RevokeToken_Response',
-  full_name='CAuthenticationSupport_RevokeToken_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12469,
-  serialized_end=12514,
-)
-
-
-_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST = _descriptor.Descriptor(
-  name='CAuthenticationSupport_GetTokenHistory_Request',
-  full_name='CAuthenticationSupport_GetTokenHistory_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='token_id', full_name='CAuthenticationSupport_GetTokenHistory_Request.token_id', index=0,
-      number=1, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=b'\202\265\0303Token ID of the token to get history for (required)', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12516,
-  serialized_end=12639,
-)
-
-
-_CSUPPORTREFRESHTOKENAUDIT = _descriptor.Descriptor(
-  name='CSupportRefreshTokenAudit',
-  full_name='CSupportRefreshTokenAudit',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='action', full_name='CSupportRefreshTokenAudit.action', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='time', full_name='CSupportRefreshTokenAudit.time', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='ip', full_name='CSupportRefreshTokenAudit.ip', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='actor', full_name='CSupportRefreshTokenAudit.actor', index=3,
-      number=4, type=6, cpp_type=4, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12641,
-  serialized_end=12741,
-)
-
-
-_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE = _descriptor.Descriptor(
-  name='CAuthenticationSupport_GetTokenHistory_Response',
-  full_name='CAuthenticationSupport_GetTokenHistory_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='history', full_name='CAuthenticationSupport_GetTokenHistory_Response.history', index=0,
-      number=1, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12743,
-  serialized_end=12837,
-)
-
-
-_CCLOUDGAMING_CREATENONCE_REQUEST = _descriptor.Descriptor(
-  name='CCloudGaming_CreateNonce_Request',
-  full_name='CCloudGaming_CreateNonce_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='platform', full_name='CCloudGaming_CreateNonce_Request.platform', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='appid', full_name='CCloudGaming_CreateNonce_Request.appid', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12839,
-  serialized_end=12906,
-)
-
-
-_CCLOUDGAMING_CREATENONCE_RESPONSE = _descriptor.Descriptor(
-  name='CCloudGaming_CreateNonce_Response',
-  full_name='CCloudGaming_CreateNonce_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='nonce', full_name='CCloudGaming_CreateNonce_Response.nonce', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='expiry', full_name='CCloudGaming_CreateNonce_Response.expiry', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12908,
-  serialized_end=12974,
-)
-
-
-_CCLOUDGAMING_GETTIMEREMAINING_REQUEST = _descriptor.Descriptor(
-  name='CCloudGaming_GetTimeRemaining_Request',
-  full_name='CCloudGaming_GetTimeRemaining_Request',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='platform', full_name='CCloudGaming_GetTimeRemaining_Request.platform', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='appid_list', full_name='CCloudGaming_GetTimeRemaining_Request.appid_list', index=1,
-      number=2, type=13, cpp_type=3, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=12976,
-  serialized_end=13053,
-)
-
-
-_CCLOUDGAMING_TIMEREMAINING = _descriptor.Descriptor(
-  name='CCloudGaming_TimeRemaining',
-  full_name='CCloudGaming_TimeRemaining',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='appid', full_name='CCloudGaming_TimeRemaining.appid', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='minutes_remaining', full_name='CCloudGaming_TimeRemaining.minutes_remaining', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=13055,
-  serialized_end=13125,
-)
-
-
-_CCLOUDGAMING_GETTIMEREMAINING_RESPONSE = _descriptor.Descriptor(
-  name='CCloudGaming_GetTimeRemaining_Response',
-  full_name='CCloudGaming_GetTimeRemaining_Response',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='entries', full_name='CCloudGaming_GetTimeRemaining_Response.entries', index=0,
-      number=2, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=13127,
-  serialized_end=13213,
-)
-
-_CAUTHENTICATION_DEVICEDETAILS.fields_by_name['platform_type'].enum_type = _EAUTHTOKENPLATFORMTYPE
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['platform_type'].enum_type = _EAUTHTOKENPLATFORMTYPE
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['device_details'].message_type = _CAUTHENTICATION_DEVICEDETAILS
-_CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['confirmation_type'].enum_type = _EAUTHSESSIONGUARDTYPE
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['allowed_confirmations'].message_type = _CAUTHENTICATION_ALLOWEDCONFIRMATION
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['platform_type'].enum_type = _EAUTHTOKENPLATFORMTYPE
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['persistence'].enum_type = enums__pb2._ESESSIONPERSISTENCE
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['device_details'].message_type = _CAUTHENTICATION_DEVICEDETAILS
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['allowed_confirmations'].message_type = _CAUTHENTICATION_ALLOWEDCONFIRMATION
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['platform_type'].enum_type = _EAUTHTOKENPLATFORMTYPE
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['login_history'].enum_type = _EAUTHSESSIONSECURITYHISTORY
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requested_persistence'].enum_type = enums__pb2._ESESSIONPERSISTENCE
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['persistence'].enum_type = enums__pb2._ESESSIONPERSISTENCE
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code_type'].enum_type = _EAUTHSESSIONGUARDTYPE
-_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST.fields_by_name['renewal_type'].enum_type = _ETOKENRENEWALTYPE
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['ip'].message_type = steammessages__base__pb2._CMSGIPADDRESS
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.containing_type = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['platform_type'].enum_type = _EAUTHTOKENPLATFORMTYPE
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['first_seen'].message_type = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['last_seen'].message_type = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.containing_type = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE.fields_by_name['refresh_tokens'].message_type = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION
-_CAUTHENTICATION_TOKEN_REVOKE_REQUEST.fields_by_name['revoke_action'].enum_type = _EAUTHTOKENREVOKEACTION
-_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['revoke_action'].enum_type = _EAUTHTOKENREVOKEACTION
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['ip'].message_type = steammessages__base__pb2._CMSGIPADDRESS
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.containing_type = _CSUPPORTREFRESHTOKENDESCRIPTION
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['platform_type'].enum_type = _EAUTHTOKENPLATFORMTYPE
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['token_state'].enum_type = _EAUTHTOKENSTATE
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['first_seen'].message_type = _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['last_seen'].message_type = _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE.fields_by_name['refresh_tokens'].message_type = _CSUPPORTREFRESHTOKENDESCRIPTION
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE.fields_by_name['refresh_tokens'].message_type = _CSUPPORTREFRESHTOKENDESCRIPTION
-_CSUPPORTREFRESHTOKENAUDIT.fields_by_name['ip'].message_type = steammessages__base__pb2._CMSGIPADDRESS
-_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE.fields_by_name['history'].message_type = _CSUPPORTREFRESHTOKENAUDIT
-_CCLOUDGAMING_GETTIMEREMAINING_RESPONSE.fields_by_name['entries'].message_type = _CCLOUDGAMING_TIMEREMAINING
-DESCRIPTOR.message_types_by_name['CAuthentication_GetPasswordRSAPublicKey_Request'] = _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_GetPasswordRSAPublicKey_Response'] = _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_DeviceDetails'] = _CAUTHENTICATION_DEVICEDETAILS
-DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaQR_Request'] = _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_AllowedConfirmation'] = _CAUTHENTICATION_ALLOWEDCONFIRMATION
-DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaQR_Response'] = _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaCredentials_Request'] = _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaCredentials_Response'] = _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_PollAuthSessionStatus_Request'] = _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_PollAuthSessionStatus_Response'] = _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionInfo_Request'] = _CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionInfo_Response'] = _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request'] = _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response'] = _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request'] = _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response'] = _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_AccessToken_GenerateForApp_Request'] = _CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_AccessToken_GenerateForApp_Response'] = _CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Enumerate_Request'] = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Enumerate_Response'] = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionsForAccount_Request'] = _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionsForAccount_Response'] = _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_MigrateMobileSession_Request'] = _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_MigrateMobileSession_Response'] = _CAUTHENTICATION_MIGRATEMOBILESESSION_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_Token_Revoke_Request'] = _CAUTHENTICATION_TOKEN_REVOKE_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_Token_Revoke_Response'] = _CAUTHENTICATION_TOKEN_REVOKE_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Revoke_Request'] = _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Revoke_Response'] = _CAUTHENTICATION_REFRESHTOKEN_REVOKE_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokensByAccount_Request'] = _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST
-DESCRIPTOR.message_types_by_name['CSupportRefreshTokenDescription'] = _CSUPPORTREFRESHTOKENDESCRIPTION
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokensByAccount_Response'] = _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokenByID_Request'] = _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokenByID_Response'] = _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_RevokeToken_Request'] = _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_RevokeToken_Response'] = _CAUTHENTICATIONSUPPORT_REVOKETOKEN_RESPONSE
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_GetTokenHistory_Request'] = _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST
-DESCRIPTOR.message_types_by_name['CSupportRefreshTokenAudit'] = _CSUPPORTREFRESHTOKENAUDIT
-DESCRIPTOR.message_types_by_name['CAuthenticationSupport_GetTokenHistory_Response'] = _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE
-DESCRIPTOR.message_types_by_name['CCloudGaming_CreateNonce_Request'] = _CCLOUDGAMING_CREATENONCE_REQUEST
-DESCRIPTOR.message_types_by_name['CCloudGaming_CreateNonce_Response'] = _CCLOUDGAMING_CREATENONCE_RESPONSE
-DESCRIPTOR.message_types_by_name['CCloudGaming_GetTimeRemaining_Request'] = _CCLOUDGAMING_GETTIMEREMAINING_REQUEST
-DESCRIPTOR.message_types_by_name['CCloudGaming_TimeRemaining'] = _CCLOUDGAMING_TIMEREMAINING
-DESCRIPTOR.message_types_by_name['CCloudGaming_GetTimeRemaining_Response'] = _CCLOUDGAMING_GETTIMEREMAINING_RESPONSE
-DESCRIPTOR.enum_types_by_name['EAuthTokenPlatformType'] = _EAUTHTOKENPLATFORMTYPE
-DESCRIPTOR.enum_types_by_name['EAuthSessionGuardType'] = _EAUTHSESSIONGUARDTYPE
-DESCRIPTOR.enum_types_by_name['EAuthSessionSecurityHistory'] = _EAUTHSESSIONSECURITYHISTORY
-DESCRIPTOR.enum_types_by_name['ETokenRenewalType'] = _ETOKENRENEWALTYPE
-DESCRIPTOR.enum_types_by_name['EAuthTokenRevokeAction'] = _EAUTHTOKENREVOKEACTION
-DESCRIPTOR.enum_types_by_name['EAuthTokenState'] = _EAUTHTOKENSTATE
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
-
+_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_GetPasswordRSAPublicKey_Request']
+_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_GetPasswordRSAPublicKey_Response']
+_CAUTHENTICATION_DEVICEDETAILS = DESCRIPTOR.message_types_by_name['CAuthentication_DeviceDetails']
+_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaQR_Request']
+_CAUTHENTICATION_ALLOWEDCONFIRMATION = DESCRIPTOR.message_types_by_name['CAuthentication_AllowedConfirmation']
+_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaQR_Response']
+_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaCredentials_Request']
+_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_BeginAuthSessionViaCredentials_Response']
+_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_PollAuthSessionStatus_Request']
+_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_PollAuthSessionStatus_Response']
+_CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionInfo_Request']
+_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionInfo_Response']
+_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request']
+_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response']
+_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request']
+_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response']
+_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_AccessToken_GenerateForApp_Request']
+_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_AccessToken_GenerateForApp_Response']
+_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Enumerate_Request']
+_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Enumerate_Response']
+_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE.nested_types_by_name['TokenUsageEvent']
+_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION = _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE.nested_types_by_name['RefreshTokenDescription']
+_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionsForAccount_Request']
+_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_GetAuthSessionsForAccount_Response']
+_CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_MigrateMobileSession_Request']
+_CAUTHENTICATION_MIGRATEMOBILESESSION_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_MigrateMobileSession_Response']
+_CAUTHENTICATION_TOKEN_REVOKE_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_Token_Revoke_Request']
+_CAUTHENTICATION_TOKEN_REVOKE_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_Token_Revoke_Response']
+_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST = DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Revoke_Request']
+_CAUTHENTICATION_REFRESHTOKEN_REVOKE_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthentication_RefreshToken_Revoke_Response']
+_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokensByAccount_Request']
+_CSUPPORTREFRESHTOKENDESCRIPTION = DESCRIPTOR.message_types_by_name['CSupportRefreshTokenDescription']
+_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT = _CSUPPORTREFRESHTOKENDESCRIPTION.nested_types_by_name['TokenUsageEvent']
+_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokensByAccount_Response']
+_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokenByID_Request']
+_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_QueryRefreshTokenByID_Response']
+_CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_RevokeToken_Request']
+_CAUTHENTICATIONSUPPORT_REVOKETOKEN_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_RevokeToken_Response']
+_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_GetTokenHistory_Request']
+_CSUPPORTREFRESHTOKENAUDIT = DESCRIPTOR.message_types_by_name['CSupportRefreshTokenAudit']
+_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE = DESCRIPTOR.message_types_by_name['CAuthenticationSupport_GetTokenHistory_Response']
+_CCLOUDGAMING_CREATENONCE_REQUEST = DESCRIPTOR.message_types_by_name['CCloudGaming_CreateNonce_Request']
+_CCLOUDGAMING_CREATENONCE_RESPONSE = DESCRIPTOR.message_types_by_name['CCloudGaming_CreateNonce_Response']
+_CCLOUDGAMING_GETTIMEREMAINING_REQUEST = DESCRIPTOR.message_types_by_name['CCloudGaming_GetTimeRemaining_Request']
+_CCLOUDGAMING_TIMEREMAINING = DESCRIPTOR.message_types_by_name['CCloudGaming_TimeRemaining']
+_CCLOUDGAMING_GETTIMEREMAINING_RESPONSE = DESCRIPTOR.message_types_by_name['CCloudGaming_GetTimeRemaining_Response']
 CAuthentication_GetPasswordRSAPublicKey_Request = _reflection.GeneratedProtocolMessageType('CAuthentication_GetPasswordRSAPublicKey_Request', (_message.Message,), {
   'DESCRIPTOR' : _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST,
   '__module__' : 'steammessages_auth_pb2'
@@ -2940,353 +440,385 @@ CCloudGaming_GetTimeRemaining_Response = _reflection.GeneratedProtocolMessageTyp
   })
 _sym_db.RegisterMessage(CCloudGaming_GetTimeRemaining_Response)
 
+_AUTHENTICATION = DESCRIPTOR.services_by_name['Authentication']
+_AUTHENTICATIONSUPPORT = DESCRIPTOR.services_by_name['AuthenticationSupport']
+_CLOUDGAMING = DESCRIPTOR.services_by_name['CloudGaming']
+if _descriptor._USE_C_DESCRIPTORS == False:
 
-DESCRIPTOR._options = None
-_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST.fields_by_name['account_name']._options = None
-_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['publickey_mod']._options = None
-_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['publickey_exp']._options = None
-_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['timestamp']._options = None
-_CAUTHENTICATION_DEVICEDETAILS.fields_by_name['device_friendly_name']._options = None
-_CAUTHENTICATION_DEVICEDETAILS.fields_by_name['platform_type']._options = None
-_CAUTHENTICATION_DEVICEDETAILS.fields_by_name['os_type']._options = None
-_CAUTHENTICATION_DEVICEDETAILS.fields_by_name['gaming_device_type']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['device_details']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['website_id']._options = None
-_CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['confirmation_type']._options = None
-_CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['associated_message']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['client_id']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['challenge_url']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['request_id']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['interval']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['allowed_confirmations']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['version']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['encrypted_password']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['encryption_timestamp']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['remember_login']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['persistence']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['website_id']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['device_details']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['guard_data']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['qos_level']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['client_id']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['request_id']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['interval']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['allowed_confirmations']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['steamid']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['weak_token']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['agreement_session_url']._options = None
-_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['extended_error_message']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST.fields_by_name['token_to_revoke']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_client_id']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_challenge_url']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['refresh_token']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['access_token']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['had_remote_interaction']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['account_name']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_guard_data']._options = None
-_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['agreement_session_url']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST.fields_by_name['client_id']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['ip']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['geoloc']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['city']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['state']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['country']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['platform_type']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['device_friendly_name']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['version']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['login_history']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requestor_location_mismatch']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['high_usage_login']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requested_persistence']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['version']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['client_id']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['steamid']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['signature']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['confirm']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['persistence']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['client_id']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['steamid']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code_type']._options = None
-_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE.fields_by_name['agreement_session_url']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['time']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['ip']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['country']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['state']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['city']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['token_id']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['token_description']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['platform_type']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['logged_in']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['os_platform']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['auth_type']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['gaming_device_type']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['first_seen']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['last_seen']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['os_type']._options = None
-_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE.fields_by_name['client_ids']._options = None
-_CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['steamid']._options = None
-_CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['token']._options = None
-_CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['signature']._options = None
-_CAUTHENTICATION_TOKEN_REVOKE_REQUEST.fields_by_name['revoke_action']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['steamid']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['revoke_action']._options = None
-_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['signature']._options = None
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST.fields_by_name['steamid']._options = None
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST.fields_by_name['include_revoked_tokens']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['time']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['ip']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['country']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['state']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['city']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['os_platform']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['os_type']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['auth_type']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['gaming_device_type']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['first_seen']._options = None
-_CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['last_seen']._options = None
-_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST.fields_by_name['token_id']._options = None
-_CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST.fields_by_name['token_id']._options = None
-_CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST.fields_by_name['steamid']._options = None
-_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST.fields_by_name['token_id']._options = None
-
-_AUTHENTICATION = _descriptor.ServiceDescriptor(
-  name='Authentication',
-  full_name='Authentication',
-  file=DESCRIPTOR,
-  index=0,
-  serialized_options=b'\202\265\030\026Authentication Service',
-  create_key=_descriptor._internal_create_key,
-  serialized_start=14594,
-  serialized_end=17260,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='GetPasswordRSAPublicKey',
-    full_name='Authentication.GetPasswordRSAPublicKey',
-    index=0,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST,
-    output_type=_CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE,
-    serialized_options=b'\202\265\030KFetches RSA public key to use to encrypt passwords for a given account name',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='BeginAuthSessionViaQR',
-    full_name='Authentication.BeginAuthSessionViaQR',
-    index=1,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST,
-    output_type=_CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE,
-    serialized_options=b'\202\265\030\034start authentication process',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='BeginAuthSessionViaCredentials',
-    full_name='Authentication.BeginAuthSessionViaCredentials',
-    index=2,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST,
-    output_type=_CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE,
-    serialized_options=b'\202\265\030\034start authentication process',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='PollAuthSessionStatus',
-    full_name='Authentication.PollAuthSessionStatus',
-    index=3,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST,
-    output_type=_CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE,
-    serialized_options=b'\202\265\030\"poll during authentication process',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetAuthSessionInfo',
-    full_name='Authentication.GetAuthSessionInfo',
-    index=4,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST,
-    output_type=_CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE,
-    serialized_options=b'\202\265\030Yget metadata of specific auth session, this will also implicitly bind the calling account',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='UpdateAuthSessionWithMobileConfirmation',
-    full_name='Authentication.UpdateAuthSessionWithMobileConfirmation',
-    index=5,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST,
-    output_type=_CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_RESPONSE,
-    serialized_options=b'\202\265\0300approve an authentication session via mobile 2fa',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='UpdateAuthSessionWithSteamGuardCode',
-    full_name='Authentication.UpdateAuthSessionWithSteamGuardCode',
-    index=6,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST,
-    output_type=_CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE,
-    serialized_options=b'\202\265\0306approve an authentication session via steam guard code',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GenerateAccessTokenForApp',
-    full_name='Authentication.GenerateAccessTokenForApp',
-    index=7,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST,
-    output_type=_CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_RESPONSE,
-    serialized_options=b'\202\265\030oGiven a refresh token for a client app audience (e.g. desktop client / mobile client), generate an access token',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='EnumerateTokens',
-    full_name='Authentication.EnumerateTokens',
-    index=8,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_REQUEST,
-    output_type=_CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE,
-    serialized_options=b'\202\265\030@Enumerate durable (refresh) tokens for the given subject account',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetAuthSessionsForAccount',
-    full_name='Authentication.GetAuthSessionsForAccount',
-    index=9,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_REQUEST,
-    output_type=_CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE,
-    serialized_options=b'\202\265\030LGets all active auth sessions for an account for reference by the mobile app',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='MigrateMobileSession',
-    full_name='Authentication.MigrateMobileSession',
-    index=10,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST,
-    output_type=_CAUTHENTICATION_MIGRATEMOBILESESSION_RESPONSE,
-    serialized_options=b'\202\265\030iMigrates a WG token to an access and refresh token using a signature generated with the user\'s 2FA secret',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RevokeToken',
-    full_name='Authentication.RevokeToken',
-    index=11,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_TOKEN_REVOKE_REQUEST,
-    output_type=_CAUTHENTICATION_TOKEN_REVOKE_RESPONSE,
-    serialized_options=b'\202\265\030ZRevoke a single token immediately, making it unable to renew or generate new access tokens',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RevokeRefreshToken',
-    full_name='Authentication.RevokeRefreshToken',
-    index=12,
-    containing_service=None,
-    input_type=_CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST,
-    output_type=_CAUTHENTICATION_REFRESHTOKEN_REVOKE_RESPONSE,
-    serialized_options=b'\202\265\030\'Mark the given refresh token as revoked',
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_AUTHENTICATION)
-
-DESCRIPTOR.services_by_name['Authentication'] = _AUTHENTICATION
-
-
-_AUTHENTICATIONSUPPORT = _descriptor.ServiceDescriptor(
-  name='AuthenticationSupport',
-  full_name='AuthenticationSupport',
-  file=DESCRIPTOR,
-  index=1,
-  serialized_options=b'\202\265\030\036Authentication Support Service',
-  create_key=_descriptor._internal_create_key,
-  serialized_start=17263,
-  serialized_end=18079,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='QueryRefreshTokensByAccount',
-    full_name='AuthenticationSupport.QueryRefreshTokensByAccount',
-    index=0,
-    containing_service=None,
-    input_type=_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST,
-    output_type=_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE,
-    serialized_options=b'\202\265\030GAsks the server for a list of refresh tokens associated with an account',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='QueryRefreshTokenByID',
-    full_name='AuthenticationSupport.QueryRefreshTokenByID',
-    index=1,
-    containing_service=None,
-    input_type=_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST,
-    output_type=_CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE,
-    serialized_options=b'\202\265\030GAsks the server for a list of refresh tokens associated with an account',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='RevokeToken',
-    full_name='AuthenticationSupport.RevokeToken',
-    index=2,
-    containing_service=None,
-    input_type=_CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST,
-    output_type=_CAUTHENTICATIONSUPPORT_REVOKETOKEN_RESPONSE,
-    serialized_options=b'\202\265\030\033Revokes a user\'s auth token',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetTokenHistory',
-    full_name='AuthenticationSupport.GetTokenHistory',
-    index=3,
-    containing_service=None,
-    input_type=_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST,
-    output_type=_CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE,
-    serialized_options=b'\202\265\030.Gets the audit history for a user\'s auth token',
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_AUTHENTICATIONSUPPORT)
-
-DESCRIPTOR.services_by_name['AuthenticationSupport'] = _AUTHENTICATIONSUPPORT
-
-
-_CLOUDGAMING = _descriptor.ServiceDescriptor(
-  name='CloudGaming',
-  full_name='CloudGaming',
-  file=DESCRIPTOR,
-  index=2,
-  serialized_options=b'\202\265\030)Methods for Steam cloud gaming operations',
-  create_key=_descriptor._internal_create_key,
-  serialized_start=18082,
-  serialized_end=18452,
-  methods=[
-  _descriptor.MethodDescriptor(
-    name='CreateNonce',
-    full_name='CloudGaming.CreateNonce',
-    index=0,
-    containing_service=None,
-    input_type=_CCLOUDGAMING_CREATENONCE_REQUEST,
-    output_type=_CCLOUDGAMING_CREATENONCE_RESPONSE,
-    serialized_options=b'\202\265\0301Create a nonce for a cloud gaming service session',
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetTimeRemaining',
-    full_name='CloudGaming.GetTimeRemaining',
-    index=1,
-    containing_service=None,
-    input_type=_CCLOUDGAMING_GETTIMEREMAINING_REQUEST,
-    output_type=_CCLOUDGAMING_GETTIMEREMAINING_RESPONSE,
-    serialized_options=b'\202\265\030<Get the amount of streaming time remaining for a set of apps',
-    create_key=_descriptor._internal_create_key,
-  ),
-])
-_sym_db.RegisterServiceDescriptor(_CLOUDGAMING)
-
-DESCRIPTOR.services_by_name['CloudGaming'] = _CLOUDGAMING
-
+  DESCRIPTOR._options = None
+  DESCRIPTOR._serialized_options = b'\220\001\001'
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST.fields_by_name['account_name']._options = None
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST.fields_by_name['account_name']._serialized_options = b'\202\265\0300user-provided account name to get an RSA key for'
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['publickey_mod']._options = None
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['publickey_mod']._serialized_options = b'\202\265\030\026the public key modulus'
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['publickey_exp']._options = None
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['publickey_exp']._serialized_options = b'\202\265\030\027the public key exponent'
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['timestamp']._options = None
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE.fields_by_name['timestamp']._serialized_options = b'\202\265\030#the timestamp the key was generated'
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['device_friendly_name']._options = None
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['device_friendly_name']._serialized_options = b'\202\265\030:User-supplied, or client-supplied, friendly name of device'
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['platform_type']._options = None
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['platform_type']._serialized_options = b'\202\265\030*EAuthTokenPlatformType, claimed, of device'
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['os_type']._options = None
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['os_type']._serialized_options = b'\202\265\030&EOSType, claimed, of authorized device'
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['gaming_device_type']._options = None
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['gaming_device_type']._serialized_options = b'\202\265\030NEGamingDeviceType, claimed, of authorized device for steam client-type devices'
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['client_count']._options = None
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['client_count']._serialized_options = b'\202\265\0309For desktop clients, quantized number of users in history'
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['machine_id']._options = None
+  _CAUTHENTICATION_DEVICEDETAILS.fields_by_name['machine_id']._serialized_options = b'\202\265\030\031Additional device context'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['device_details']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['device_details']._serialized_options = b'\202\265\030<User-supplied details about the device attempting to sign in'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['website_id']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST.fields_by_name['website_id']._serialized_options = b'\202\265\030<(EMachineAuthWebDomain) identifier of client requesting auth'
+  _CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['confirmation_type']._options = None
+  _CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['confirmation_type']._serialized_options = b'\202\265\0306authentication can proceed with this confirmation type'
+  _CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['associated_message']._options = None
+  _CAUTHENTICATION_ALLOWEDCONFIRMATION.fields_by_name['associated_message']._serialized_options = b'\202\265\030\227\001message to be interpreted depending on the confirmation type. for email confirmation, this might be the redacted email address to which email was sent.'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['client_id']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['client_id']._serialized_options = b'\202\265\030Iunique identifier of requestor, also used for routing, portion of QR code'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['challenge_url']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['challenge_url']._serialized_options = b'\202\265\0309URL based on client ID, which will be rendered as QR code'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['request_id']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['request_id']._serialized_options = b'\202\265\030Xunique request ID to be presented by requestor at poll time - must not be rendered in QR'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['interval']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['interval']._serialized_options = b'\202\265\030Grefresh interval with which requestor should call PollAuthSessionStatus'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['allowed_confirmations']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['allowed_confirmations']._serialized_options = b'\202\265\030?the confirmation types that will be able to confirm the request'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['version']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE.fields_by_name['version']._serialized_options = b'\202\265\030\026version of the QR data'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['encrypted_password']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['encrypted_password']._serialized_options = b'\202\265\030#password, RSA encrypted client side'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['encryption_timestamp']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['encryption_timestamp']._serialized_options = b'\202\265\030!timestamp to map to a key - STime'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['remember_login']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['remember_login']._serialized_options = b'\202\265\030\ndeprecated'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['persistence']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['persistence']._serialized_options = b'\202\265\030>whether we are requesting a persistent or an ephemeral session'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['website_id']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['website_id']._serialized_options = b'\202\265\030<(EMachineAuthWebDomain) identifier of client requesting auth'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['device_details']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['device_details']._serialized_options = b'\202\265\030<User-supplied details about the device attempting to sign in'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['guard_data']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['guard_data']._serialized_options = b'\202\265\030!steam guard data for client login'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['qos_level']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST.fields_by_name['qos_level']._serialized_options = b'\202\265\030>[ENetQOSLevel] client-specified priority for this auth attempt'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['client_id']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['client_id']._serialized_options = b'\202\265\0305unique identifier of requestor, also used for routing'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['request_id']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['request_id']._serialized_options = b'\202\265\030bunique request ID to be presented by requestor at poll time - must not be transferred or displayed'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['interval']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['interval']._serialized_options = b'\202\265\030Grefresh interval with which requestor should call PollAuthSessionStatus'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['allowed_confirmations']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['allowed_confirmations']._serialized_options = b'\202\265\030?the confirmation types that will be able to confirm the request'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['steamid']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['steamid']._serialized_options = b'\202\265\030Ysteamid of the account logging in - will only be included if the credentials were correct'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['weak_token']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['weak_token']._serialized_options = b'\202\265\030bpartial-authentication token - limited lifetime and scope, included only if credentials were valid'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['agreement_session_url']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['agreement_session_url']._serialized_options = b'\202\265\030$agreement the user needs to agree to'
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['extended_error_message']._options = None
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE.fields_by_name['extended_error_message']._serialized_options = b'\202\265\0302error string to display if supported by the client'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST.fields_by_name['token_to_revoke']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST.fields_by_name['token_to_revoke']._serialized_options = b'\202\265\030HIf this is set to a token owned by this user, that token will be retired'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_client_id']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_client_id']._serialized_options = b'\202\265\030.if challenge is old, this is the new client id'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_challenge_url']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_challenge_url']._serialized_options = b'\202\265\030Vif challenge is old, this is the new challenge ID to re-render for mobile confirmation'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['refresh_token']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['refresh_token']._serialized_options = b'\202\265\030Fif login has been confirmed, this is the requestor\'s new refresh token'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['access_token']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['access_token']._serialized_options = b'\202\265\030Mif login has been confirmed, this is a new token subordinate to refresh_token'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['had_remote_interaction']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['had_remote_interaction']._serialized_options = b'\202\265\030awhether or not the auth session appears to have had remote interaction from a potential confirmer'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['account_name']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['account_name']._serialized_options = b'\202\265\030;account name of authenticating account, for use by UI layer'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_guard_data']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['new_guard_data']._serialized_options = b'\202\265\030Oif login has been confirmed, may contain remembered machine ID for future login'
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['agreement_session_url']._options = None
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE.fields_by_name['agreement_session_url']._serialized_options = b'\202\265\030$agreement the user needs to agree to'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST.fields_by_name['client_id']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST.fields_by_name['client_id']._serialized_options = b'\202\265\0300client ID from scanned QR Code, used for routing'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['ip']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['ip']._serialized_options = b'\202\265\030\027IP address of requestor'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['geoloc']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['geoloc']._serialized_options = b'\202\265\030\030geoloc info of requestor'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['city']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['city']._serialized_options = b'\202\265\030\021city of requestor'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['state']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['state']._serialized_options = b'\202\265\030\022state of requestor'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['country']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['country']._serialized_options = b'\202\265\030\024country of requestor'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['platform_type']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['platform_type']._serialized_options = b'\202\265\030\032platform type of requestor'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['device_friendly_name']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['device_friendly_name']._serialized_options = b'\202\265\030\030name of requestor device'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['version']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['version']._serialized_options = b'\202\265\030\rversion field'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['login_history']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['login_history']._serialized_options = b'\202\265\030Dwhether the ip has previuously been used on the account successfully'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requestor_location_mismatch']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requestor_location_mismatch']._serialized_options = b'\202\265\030=whether the requestor location matches this requests location'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['high_usage_login']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['high_usage_login']._serialized_options = b'\202\265\030/whether this login has seen high usage recently'
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requested_persistence']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE.fields_by_name['requested_persistence']._serialized_options = b'\202\265\0305session persistence requestor has indicated they want'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['version']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['version']._serialized_options = b'\202\265\030\rversion field'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['client_id']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['client_id']._serialized_options = b'\202\265\030\'pending client ID, from scanned QR Code'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['steamid']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['steamid']._serialized_options = b'\202\265\030\027user who wants to login'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['signature']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['signature']._serialized_options = b'\202\265\030CHMAC digest over {version,client_id,steamid} via user\'s private key'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['confirm']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['confirm']._serialized_options = b'\202\265\030=Whether to confirm the login (true) or deny the login (false)'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['persistence']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST.fields_by_name['persistence']._serialized_options = b'\202\265\030>whether we are requesting a persistent or an ephemeral session'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['client_id']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['client_id']._serialized_options = b'\202\265\030+pending client ID, from initialized session'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['steamid']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['steamid']._serialized_options = b'\202\265\030\027user who wants to login'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code']._serialized_options = b'\202\265\030\021confirmation code'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code_type']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST.fields_by_name['code_type']._serialized_options = b'\202\265\030\031type of confirmation code'
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE.fields_by_name['agreement_session_url']._options = None
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE.fields_by_name['agreement_session_url']._serialized_options = b'\202\265\030$agreement the user needs to agree to'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['time']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['time']._serialized_options = b'\202\265\030IApproximate time of history event (may be deliberately fuzzed or omitted)'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['ip']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['ip']._serialized_options = b'\202\265\030\036IP at which event was observed'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['country']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['country']._serialized_options = b'\202\265\0305Location (country code) of event, as inferred from IP'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['state']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['state']._serialized_options = b'\202\265\0303Location (state code) of event, as inferred from IP'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['city']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT.fields_by_name['city']._serialized_options = b'\202\265\030-Location (city) of event, as inferred from IP'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['token_id']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['token_id']._serialized_options = b'\202\265\030\"Persistent token/device identifier'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['token_description']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['token_description']._serialized_options = b'\202\265\030,client-supplied friendly name for the device'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['platform_type']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['platform_type']._serialized_options = b'\202\265\030+gross platform type (mobile/client/browser)'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['logged_in']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['logged_in']._serialized_options = b'\202\265\030|If true, this token is currently valid. False indicates it is a machine token - ok for steamguard if you know the credential'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['os_platform']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['os_platform']._serialized_options = b'\202\265\030;EPlatformType - rough classification of device OS, if known'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['auth_type']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['auth_type']._serialized_options = b'\202\265\030>EAuthTokenGuardType - device authorization mechanism, if known'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['gaming_device_type']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['gaming_device_type']._serialized_options = b'\202\265\030bEGamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['first_seen']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['first_seen']._serialized_options = b'\202\265\030.Information about original authorization event'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['last_seen']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['last_seen']._serialized_options = b'\202\265\030>Information about most-recently seen, if known for this device'
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['os_type']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION.fields_by_name['os_type']._serialized_options = b'\202\265\030&EOSType - specific device OS, if known'
+  _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE.fields_by_name['client_ids']._options = None
+  _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE.fields_by_name['client_ids']._serialized_options = b'\202\265\0305unique identifier of requestor, also used for routing'
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['steamid']._options = None
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['steamid']._serialized_options = b'\202\265\030\037Steam ID of the user to migrate'
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['token']._options = None
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['token']._serialized_options = b'\202\265\030\023WG Token to migrate'
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['signature']._options = None
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST.fields_by_name['signature']._serialized_options = b'\202\265\0306Signature over the wg token using the user\'s 2FA token'
+  _CAUTHENTICATION_TOKEN_REVOKE_REQUEST.fields_by_name['revoke_action']._options = None
+  _CAUTHENTICATION_TOKEN_REVOKE_REQUEST.fields_by_name['revoke_action']._serialized_options = b'\202\265\0303Select between logout and logout-and-forget-machine'
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['steamid']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['steamid']._serialized_options = b'\202\265\0309Token holder if an admin action on behalf of another user'
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['revoke_action']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['revoke_action']._serialized_options = b'\202\265\0303Select between logout and logout-and-forget-machine'
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['signature']._options = None
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST.fields_by_name['signature']._serialized_options = b'\202\265\030 required signature over token_id'
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST.fields_by_name['steamid']._options = None
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST.fields_by_name['steamid']._serialized_options = b'\202\265\030*SteamID of the account to query (required)'
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST.fields_by_name['include_revoked_tokens']._options = None
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST.fields_by_name['include_revoked_tokens']._serialized_options = b'\202\265\0308Includes tokens that are revoked or expired in the query'
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['time']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['time']._serialized_options = b'\202\265\030IApproximate time of history event (may be deliberately fuzzed or omitted)'
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['ip']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['ip']._serialized_options = b'\202\265\030\036IP at which event was observed'
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['country']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['country']._serialized_options = b'\202\265\0305Location (country code) of event, as inferred from IP'
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['state']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['state']._serialized_options = b'\202\265\0303Location (state code) of event, as inferred from IP'
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['city']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT.fields_by_name['city']._serialized_options = b'\202\265\030-Location (city) of event, as inferred from IP'
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['os_platform']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['os_platform']._serialized_options = b'\202\265\030;EPlatformType - rough classification of device OS, if known'
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['os_type']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['os_type']._serialized_options = b'\202\265\030&EOSType - specific device OS, if known'
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['auth_type']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['auth_type']._serialized_options = b'\202\265\030>EAuthTokenGuardType - device authorization mechanism, if known'
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['gaming_device_type']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['gaming_device_type']._serialized_options = b'\202\265\030bEGamingDeviceType - classify console/PC/SteamDeck, if known; applies only for Steam Client devices'
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['first_seen']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['first_seen']._serialized_options = b'\202\265\030.Information about original authorization event'
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['last_seen']._options = None
+  _CSUPPORTREFRESHTOKENDESCRIPTION.fields_by_name['last_seen']._serialized_options = b'\202\265\030>Information about most-recently seen, if known for this device'
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST.fields_by_name['token_id']._options = None
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST.fields_by_name['token_id']._serialized_options = b'\202\265\030+Token ID of the token to look up (required)'
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST.fields_by_name['token_id']._options = None
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST.fields_by_name['token_id']._serialized_options = b'\202\265\030*Token ID of the token to revoke (required)'
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST.fields_by_name['steamid']._options = None
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST.fields_by_name['steamid']._serialized_options = b'\202\265\030.Steam ID of the owner of that token (required)'
+  _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST.fields_by_name['token_id']._options = None
+  _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST.fields_by_name['token_id']._serialized_options = b'\202\265\0303Token ID of the token to get history for (required)'
+  _AUTHENTICATION._options = None
+  _AUTHENTICATION._serialized_options = b'\202\265\030\026Authentication Service'
+  _AUTHENTICATION.methods_by_name['GetPasswordRSAPublicKey']._options = None
+  _AUTHENTICATION.methods_by_name['GetPasswordRSAPublicKey']._serialized_options = b'\202\265\030KFetches RSA public key to use to encrypt passwords for a given account name'
+  _AUTHENTICATION.methods_by_name['BeginAuthSessionViaQR']._options = None
+  _AUTHENTICATION.methods_by_name['BeginAuthSessionViaQR']._serialized_options = b'\202\265\030\034start authentication process'
+  _AUTHENTICATION.methods_by_name['BeginAuthSessionViaCredentials']._options = None
+  _AUTHENTICATION.methods_by_name['BeginAuthSessionViaCredentials']._serialized_options = b'\202\265\030\034start authentication process'
+  _AUTHENTICATION.methods_by_name['PollAuthSessionStatus']._options = None
+  _AUTHENTICATION.methods_by_name['PollAuthSessionStatus']._serialized_options = b'\202\265\030\"poll during authentication process'
+  _AUTHENTICATION.methods_by_name['GetAuthSessionInfo']._options = None
+  _AUTHENTICATION.methods_by_name['GetAuthSessionInfo']._serialized_options = b'\202\265\030Yget metadata of specific auth session, this will also implicitly bind the calling account'
+  _AUTHENTICATION.methods_by_name['UpdateAuthSessionWithMobileConfirmation']._options = None
+  _AUTHENTICATION.methods_by_name['UpdateAuthSessionWithMobileConfirmation']._serialized_options = b'\202\265\0300approve an authentication session via mobile 2fa'
+  _AUTHENTICATION.methods_by_name['UpdateAuthSessionWithSteamGuardCode']._options = None
+  _AUTHENTICATION.methods_by_name['UpdateAuthSessionWithSteamGuardCode']._serialized_options = b'\202\265\0306approve an authentication session via steam guard code'
+  _AUTHENTICATION.methods_by_name['GenerateAccessTokenForApp']._options = None
+  _AUTHENTICATION.methods_by_name['GenerateAccessTokenForApp']._serialized_options = b'\202\265\030oGiven a refresh token for a client app audience (e.g. desktop client / mobile client), generate an access token'
+  _AUTHENTICATION.methods_by_name['EnumerateTokens']._options = None
+  _AUTHENTICATION.methods_by_name['EnumerateTokens']._serialized_options = b'\202\265\030@Enumerate durable (refresh) tokens for the given subject account'
+  _AUTHENTICATION.methods_by_name['GetAuthSessionsForAccount']._options = None
+  _AUTHENTICATION.methods_by_name['GetAuthSessionsForAccount']._serialized_options = b'\202\265\030LGets all active auth sessions for an account for reference by the mobile app'
+  _AUTHENTICATION.methods_by_name['MigrateMobileSession']._options = None
+  _AUTHENTICATION.methods_by_name['MigrateMobileSession']._serialized_options = b'\202\265\030iMigrates a WG token to an access and refresh token using a signature generated with the user\'s 2FA secret'
+  _AUTHENTICATION.methods_by_name['RevokeToken']._options = None
+  _AUTHENTICATION.methods_by_name['RevokeToken']._serialized_options = b'\202\265\030ZRevoke a single token immediately, making it unable to renew or generate new access tokens'
+  _AUTHENTICATION.methods_by_name['RevokeRefreshToken']._options = None
+  _AUTHENTICATION.methods_by_name['RevokeRefreshToken']._serialized_options = b'\202\265\030\'Mark the given refresh token as revoked'
+  _AUTHENTICATIONSUPPORT._options = None
+  _AUTHENTICATIONSUPPORT._serialized_options = b'\202\265\030\036Authentication Support Service'
+  _AUTHENTICATIONSUPPORT.methods_by_name['QueryRefreshTokensByAccount']._options = None
+  _AUTHENTICATIONSUPPORT.methods_by_name['QueryRefreshTokensByAccount']._serialized_options = b'\202\265\030GAsks the server for a list of refresh tokens associated with an account'
+  _AUTHENTICATIONSUPPORT.methods_by_name['QueryRefreshTokenByID']._options = None
+  _AUTHENTICATIONSUPPORT.methods_by_name['QueryRefreshTokenByID']._serialized_options = b'\202\265\030GAsks the server for a list of refresh tokens associated with an account'
+  _AUTHENTICATIONSUPPORT.methods_by_name['RevokeToken']._options = None
+  _AUTHENTICATIONSUPPORT.methods_by_name['RevokeToken']._serialized_options = b'\202\265\030\033Revokes a user\'s auth token'
+  _AUTHENTICATIONSUPPORT.methods_by_name['GetTokenHistory']._options = None
+  _AUTHENTICATIONSUPPORT.methods_by_name['GetTokenHistory']._serialized_options = b'\202\265\030.Gets the audit history for a user\'s auth token'
+  _CLOUDGAMING._options = None
+  _CLOUDGAMING._serialized_options = b'\202\265\030)Methods for Steam cloud gaming operations'
+  _CLOUDGAMING.methods_by_name['CreateNonce']._options = None
+  _CLOUDGAMING.methods_by_name['CreateNonce']._serialized_options = b'\202\265\0301Create a nonce for a cloud gaming service session'
+  _CLOUDGAMING.methods_by_name['GetTimeRemaining']._options = None
+  _CLOUDGAMING.methods_by_name['GetTimeRemaining']._serialized_options = b'\202\265\030<Get the amount of streaming time remaining for a set of apps'
+  _EAUTHTOKENPLATFORMTYPE._serialized_start=13352
+  _EAUTHTOKENPLATFORMTYPE._serialized_end=13537
+  _EAUTHSESSIONGUARDTYPE._serialized_start=13540
+  _EAUTHSESSIONGUARDTYPE._serialized_end=13897
+  _EAUTHSESSIONSECURITYHISTORY._serialized_start=13900
+  _EAUTHSESSIONSECURITYHISTORY._serialized_end=14072
+  _ETOKENRENEWALTYPE._serialized_start=14074
+  _ETOKENRENEWALTYPE._serialized_end=14154
+  _EAUTHTOKENREVOKEACTION._serialized_start=14157
+  _EAUTHTOKENREVOKEACTION._serialized_end=14460
+  _EAUTHTOKENSTATE._serialized_start=14463
+  _EAUTHTOKENSTATE._serialized_end=14727
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST._serialized_start=101
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_REQUEST._serialized_end=226
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE._serialized_start=229
+  _CAUTHENTICATION_GETPASSWORDRSAPUBLICKEY_RESPONSE._serialized_end=442
+  _CAUTHENTICATION_DEVICEDETAILS._serialized_start=445
+  _CAUTHENTICATION_DEVICEDETAILS._serialized_end=1010
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST._serialized_start=1013
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_REQUEST._serialized_end=1389
+  _CAUTHENTICATION_ALLOWEDCONFIRMATION._serialized_start=1392
+  _CAUTHENTICATION_ALLOWEDCONFIRMATION._serialized_end=1762
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE._serialized_start=1765
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIAQR_RESPONSE._serialized_end=2390
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST._serialized_start=2393
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_REQUEST._serialized_end=3291
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE._serialized_start=3294
+  _CAUTHENTICATION_BEGINAUTHSESSIONVIACREDENTIALS_RESPONSE._serialized_end=4184
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST._serialized_start=4187
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_REQUEST._serialized_end=4376
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE._serialized_start=4379
+  _CAUTHENTICATION_POLLAUTHSESSIONSTATUS_RESPONSE._serialized_end=5230
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST._serialized_start=5232
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_REQUEST._serialized_end=5349
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE._serialized_start=5352
+  _CAUTHENTICATION_GETAUTHSESSIONINFO_RESPONSE._serialized_end=6307
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST._serialized_start=6310
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_REQUEST._serialized_end=6850
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_RESPONSE._serialized_start=6852
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHMOBILECONFIRMATION_RESPONSE._serialized_end=6918
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST._serialized_start=6921
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_REQUEST._serialized_end=7240
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE._serialized_start=7243
+  _CAUTHENTICATION_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE_RESPONSE._serialized_end=7378
+  _CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST._serialized_start=7381
+  _CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_REQUEST._serialized_end=7541
+  _CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_RESPONSE._serialized_start=7543
+  _CAUTHENTICATION_ACCESSTOKEN_GENERATEFORAPP_RESPONSE._serialized_end=7641
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_REQUEST._serialized_start=7643
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_REQUEST._serialized_end=7691
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE._serialized_start=7694
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE._serialized_end=9401
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT._serialized_start=7870
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_TOKENUSAGEEVENT._serialized_end=8273
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION._serialized_start=8276
+  _CAUTHENTICATION_REFRESHTOKEN_ENUMERATE_RESPONSE_REFRESHTOKENDESCRIPTION._serialized_end=9401
+  _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_REQUEST._serialized_start=9403
+  _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_REQUEST._serialized_end=9454
+  _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE._serialized_start=9457
+  _CAUTHENTICATION_GETAUTHSESSIONSFORACCOUNT_RESPONSE._serialized_end=9588
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST._serialized_start=9591
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_REQUEST._serialized_end=9810
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_RESPONSE._serialized_start=9812
+  _CAUTHENTICATION_MIGRATEMOBILESESSION_RESPONSE._serialized_end=9904
+  _CAUTHENTICATION_TOKEN_REVOKE_REQUEST._serialized_start=9907
+  _CAUTHENTICATION_TOKEN_REVOKE_REQUEST._serialized_end=10095
+  _CAUTHENTICATION_TOKEN_REVOKE_RESPONSE._serialized_start=10097
+  _CAUTHENTICATION_TOKEN_REVOKE_RESPONSE._serialized_end=10136
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST._serialized_start=10139
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_REQUEST._serialized_end=10474
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_RESPONSE._serialized_start=10476
+  _CAUTHENTICATION_REFRESHTOKEN_REVOKE_RESPONSE._serialized_end=10522
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST._serialized_start=10525
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_REQUEST._serialized_end=10744
+  _CSUPPORTREFRESHTOKENDESCRIPTION._serialized_start=10747
+  _CSUPPORTREFRESHTOKENDESCRIPTION._serialized_end=12035
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT._serialized_start=11648
+  _CSUPPORTREFRESHTOKENDESCRIPTION_TOKENUSAGEEVENT._serialized_end=12035
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE._serialized_start=12038
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENSBYACCOUNT_RESPONSE._serialized_end=12183
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST._serialized_start=12185
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_REQUEST._serialized_end=12306
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE._serialized_start=12308
+  _CAUTHENTICATIONSUPPORT_QUERYREFRESHTOKENBYID_RESPONSE._serialized_end=12421
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST._serialized_start=12424
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_REQUEST._serialized_end=12603
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_RESPONSE._serialized_start=12605
+  _CAUTHENTICATIONSUPPORT_REVOKETOKEN_RESPONSE._serialized_end=12650
+  _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST._serialized_start=12652
+  _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_REQUEST._serialized_end=12775
+  _CSUPPORTREFRESHTOKENAUDIT._serialized_start=12777
+  _CSUPPORTREFRESHTOKENAUDIT._serialized_end=12877
+  _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE._serialized_start=12879
+  _CAUTHENTICATIONSUPPORT_GETTOKENHISTORY_RESPONSE._serialized_end=12973
+  _CCLOUDGAMING_CREATENONCE_REQUEST._serialized_start=12975
+  _CCLOUDGAMING_CREATENONCE_REQUEST._serialized_end=13042
+  _CCLOUDGAMING_CREATENONCE_RESPONSE._serialized_start=13044
+  _CCLOUDGAMING_CREATENONCE_RESPONSE._serialized_end=13110
+  _CCLOUDGAMING_GETTIMEREMAINING_REQUEST._serialized_start=13112
+  _CCLOUDGAMING_GETTIMEREMAINING_REQUEST._serialized_end=13189
+  _CCLOUDGAMING_TIMEREMAINING._serialized_start=13191
+  _CCLOUDGAMING_TIMEREMAINING._serialized_end=13261
+  _CCLOUDGAMING_GETTIMEREMAINING_RESPONSE._serialized_start=13263
+  _CCLOUDGAMING_GETTIMEREMAINING_RESPONSE._serialized_end=13349
+  _AUTHENTICATION._serialized_start=14730
+  _AUTHENTICATION._serialized_end=17396
+  _AUTHENTICATIONSUPPORT._serialized_start=17399
+  _AUTHENTICATIONSUPPORT._serialized_end=18215
+  _CLOUDGAMING._serialized_start=18218
+  _CLOUDGAMING._serialized_end=18588
 Authentication = service_reflection.GeneratedServiceType('Authentication', (_service.Service,), dict(
   DESCRIPTOR = _AUTHENTICATION,
   __module__ = 'steammessages_auth_pb2'

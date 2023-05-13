@@ -12,3 +12,5 @@ https://raw.githubusercontent.com/SteamDatabase/SteamTracking/master/Protobufs/s
 https://raw.githubusercontent.com/SteamDatabase/SteamTracking/master/Protobufs/steammessages_clientserver_userstats.proto
 https://raw.githubusercontent.com/SteamDatabase/SteamTracking/master/Protobufs/steammessages_player.steamclient.proto
 https://raw.githubusercontent.com/SteamDatabase/SteamTracking/master/Protobufs/steammessages_unified_base.steamclient.proto
+
+https://raw.githubusercontent.com/ValvePython/steam/master/protobufs/steammessages_webui_friends.proto
