@@ -39,7 +39,8 @@ GET_RSA_KEY = "Authentication.GetPasswordRSAPublicKey#1"
 LOGIN_CREDENTIALS = "Authentication.BeginAuthSessionViaCredentials#1"
 UPDATE_TWO_FACTOR = "Authentication.UpdateAuthSessionWithSteamGuardCode#1"
 CHECK_AUTHENTICATION_STATUS = "Authentication.PollAuthSessionStatus#1"
-
+REVOKE_TOKEN = "Authentication.RevokeToken#1"
+RENEW_TOKEN = "Authentication.GenerateAccessTokenForApp#1"
 
 class SteamLicense(NamedTuple):
     license: steammessages_clientserver_pb2.CMsgClientLicenseList.License  # type: ignore[name-defined]
@@ -60,7 +61,10 @@ class ProtobufClient:
         self.login_handler:                 Optional[Callable[[EResult,steammessages_auth_pb2.CAuthentication_BeginAuthSessionViaCredentials_Response], Awaitable[None]]] = None
         self.two_factor_update_handler:     Optional[Callable[[EResult, str], Awaitable[None]]] = None
         self.poll_status_handler:           Optional[Callable[[EResult, steammessages_auth_pb2.CAuthentication_PollAuthSessionStatus_Response], Awaitable[None]]] = None
-        self.revoke_refresh_token_handler:  Optional[Callable[[EResult], Awaitable[None]]] = None
+        self.revoke_refresh_token_handler:  Optional[Callable[[EResult], Awaitable[None]]] = None #used to permanently forget the machine. Should be done, but not a priority.
+        #new auth flow, keep login.
+        self.revoke_handler:                Optional[Callable[[EResult], Awaitable[None]]] = None
+        self.renew_handler:                 Optional[Callable[[EResult, str, str], Awaitable[None]]] = None
         #old auth flow. Used to confirm login and repeat logins using the refresh token.
         self.log_on_token_handler:          Optional[Callable[[EResult, Optional[int], Optional[int]], Awaitable[None]]] = None
         self._heartbeat_task:               Optional[asyncio.Task] = None #keeps our connection alive, essentially, by pinging the steam server. 
@@ -84,7 +88,7 @@ class ProtobufClient:
         self.collections = {'event': asyncio.Event(),
                             'collections': dict()}
 
-    async def close(self, send_log_off):
+    async def close(self, send_log_off: bool):
         if send_log_off:
             await self.send_log_off_message()
         if self._heartbeat_task is not None:
@@ -252,6 +256,36 @@ class ProtobufClient:
         obfuscated_ip = ip ^ self._IP_OBFUSCATION_MASK
         logger.debug(f"Local obfuscated IP: {obfuscated_ip}")
         return obfuscated_ip
+
+    async def revoke_access_token(self, access_token: str):
+        message = steammessages_auth_pb2.CAuthentication_Token_Revoke_Request()
+        message.token = access_token
+        message.revoke_action = steammessages_auth_pb2.EAuthTokenRevokeAction.k_EAuthTokenRevokeLogout
+
+        await self._send_service_method_with_name(message, REVOKE_TOKEN)
+
+    async def _revoke_token_response(self, result: EResult):
+        if (self.revoke_handler is not None):
+            await self.revoke_handler(result)
+
+    async def renew_tokens(self, refresh_token: str, steam_id:int):
+        message = steammessages_auth_pb2.CAuthentication_AccessToken_GenerateForApp_Request()
+        message.refresh_token = refresh_token
+        message.steamid = steam_id
+        message.renewal_type = steammessages_auth_pb2.ETokenRenewalType.k_ETokenRenewalType_Allow
+
+        await self._send_service_method_with_name(message, RENEW_TOKEN)
+
+    async def _renew_token_response(self, result: EResult, body):
+        message = steammessages_auth_pb2.CAuthentication_PollAuthSessionStatus_Response()
+        message.ParseFromString(body)
+
+        access_token = message.access_token
+        refresh_token = message.refresh_token
+        
+        if (self.renew_handler is not None):
+            await self.renew_handler(result, refresh_token, access_token)
+
 
     #async def send_log_on_token_message(self, account_name: str, access_token: str, cell_id: int, machine_id: bytes, os_value: int):
     async def send_log_on_token_message(self, account_name: str, steam_id:int, access_token: str, cell_id: int, machine_id: bytes, os_value: int):
@@ -785,6 +819,10 @@ class ProtobufClient:
             await self._process_steamguard_update(eresult, body)
         elif target_job_name == CHECK_AUTHENTICATION_STATUS:
             await self._process_auth_poll_status(eresult, body)
+        elif target_job_name == REVOKE_TOKEN:
+            await self._revoke_token_response(eresult)
+        elif target_job_name == RENEW_TOKEN:
+            await self._renew_token_response(eresult, body)
         else:
             logger.warning("Unparsed message, no idea what it is. Tell me")
             logger.warning("job name: \"" + target_job_name + "\"")

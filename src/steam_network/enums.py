@@ -28,7 +28,8 @@ class AuthCall:
     LOGIN =             'login'
     UPDATE_TWO_FACTOR = 'two-factor-update'
     POLL_TWO_FACTOR =   'poll-two-factor'
-    TOKEN =              'token'
+    RENEW =             'renew'
+    TOKEN =             'token'
 
 class DisplayUriHelper(enum.Enum):
     GET_USER = 0

@@ -279,6 +279,9 @@ class WebSocketClient:
                 (ret_code, new_client_id) = await self._protocol_client.check_auth_status(self._steam_polling_data.client_id, self._steam_polling_data.request_id, auth_lost_handler)
                 if (new_client_id is not None):
                     self._steam_polling_data.client_id = new_client_id
+            elif (mode == AuthCall.RENEW):
+                logger.info("God, i hope this works.")
+                ret_code = await self._protocol_client.revoke_and_renew(auth_lost_handler)
             elif (mode == AuthCall.TOKEN):
                 logger.info("Finalizing Log in using the new auth refresh token and the classic login call")
                 ret_code = await self._protocol_client.finalize_login(self._user_info_cache.account_username, self._user_info_cache.steam_id, self._user_info_cache.refresh_token, auth_lost_handler)

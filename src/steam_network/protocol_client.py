@@ -55,6 +55,9 @@ class ProtocolClient:
         self._protobuf_client.login_handler = self._login_handler
         self._protobuf_client.two_factor_update_handler = self._two_factor_update_handler
         self._protobuf_client.poll_status_handler = self._poll_handler
+        #new auth, stay logged in
+        self._protobuf_client.revoke_handler = self._revoke_handler
+        self._protobuf_client.renew_handler = self._renew_handler
         #old auth
         self._protobuf_client.log_on_token_handler = self._login_token_handler
         self._protobuf_client.log_off_handler = self._log_off_handler
@@ -83,6 +86,8 @@ class ProtocolClient:
         self._two_factor_future: Optional[Future] = None
         self._poll_future: Optional[Future] = None
         self._token_login_future: Optional[Future] = None
+        self._revoke_future : Optional[Future] = None
+        self._renew_future : Optional[Future] = None
         self._used_server_cell_id = used_server_cell_id
         self._local_machine_cache = local_machine_cache
         if not self._local_machine_cache.machine_id:
@@ -283,6 +288,41 @@ class ProtocolClient:
             self._poll_future.set_result((result, message))
         else:
             logger.warning("NO FUTURE SET")
+
+
+    async def revoke_and_renew(self, auth_lost_handler: Callable) -> UserActionRequired:
+        loop = asyncio.get_running_loop()
+        if (self._user_info_cache.access_token is not None):
+            self._revoke_future = loop.create_future()
+            await self._protobuf_client.revoke_access_token(self._user_info_cache.access_token)
+            _ = await self._revoke_future.result()
+            self._user_info_cache.access_token = None
+
+        self._renew_future = loop.create_future()
+        await self._protobuf_client.renew_tokens(self._user_info_cache.refresh_token, self._user_info_cache.steam_id)
+        (result, refresh, access) = await self._renew_future.result()
+        if (result == EResult.OK):
+            self._user_info_cache.access_token = access
+            self._user_info_cache.refresh_token = refresh
+            self._auth_lost_handler = auth_lost_handler
+            return UserActionRequired.NoActionConfirmToken
+        else:
+            logger.error("Errored out on renew. " + str(result))
+            return UserActionRequired.InvalidAuthData
+
+
+    async def _revoke_handler(self):
+        if (self._revoke_future is not None):
+            self._revoke_future.set_result(None)
+        else:
+            logger.warning("No REVOKE FUTURE SET!")
+
+    async def _renew_handler(self, result: EResult, refresh_token: str, access_token: str):
+        if (self._renew_future is not None):
+            self._renew_future.set_result((result, refresh_token, access_token))
+        else:
+            logger.warning("No REVOKE FUTURE SET!")
+
 
     #async def finalize_login(self, username:str, refresh_token:str, auth_lost_handler : Callable) -> UserActionRequired:
     async def finalize_login(self, username:str, steam_id:int, refresh_token:str, auth_lost_handler : Callable) -> UserActionRequired:

@@ -9,7 +9,6 @@ from galaxy.api.errors import (AccessDenied, BackendError, BackendNotAvailable,
                                BackendTimeout, Banned, InvalidCredentials,
                                NetworkError, TemporaryBlocked, UnknownError)
 from galaxy.api.types import NextStep
-import galaxy.api.errors
 
 from .enums import DisplayUriHelper
 from .protocol.consts import EOSType, EResult
