@@ -295,12 +295,14 @@ class ProtocolClient:
         if (self._user_info_cache.access_token is not None):
             self._revoke_future = loop.create_future()
             await self._protobuf_client.revoke_access_token(self._user_info_cache.access_token)
-            _ = await self._revoke_future.result()
+            _ = await self._revoke_future
+            self._revoke_future = None
             self._user_info_cache.access_token = None
 
         self._renew_future = loop.create_future()
         await self._protobuf_client.renew_tokens(self._user_info_cache.refresh_token, self._user_info_cache.steam_id)
-        (result, refresh, access) = await self._renew_future.result()
+        (result, refresh, access) = await self._renew_future
+        self._renew_future = None
         if (result == EResult.OK):
             self._user_info_cache.access_token = access
             self._user_info_cache.refresh_token = refresh
@@ -311,7 +313,8 @@ class ProtocolClient:
             return UserActionRequired.InvalidAuthData
 
 
-    async def _revoke_handler(self):
+    async def _revoke_handler(self, result: EResult):
+        logger.info("Revoke Result: " + str(result))
         if (self._revoke_future is not None):
             self._revoke_future.set_result(None)
         else:
