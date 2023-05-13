@@ -16,4 +16,4 @@ output/
 /env
 *.user
 /env1
-/protobuf_files/gen
+/protoc

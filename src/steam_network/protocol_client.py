@@ -24,11 +24,15 @@ from .utils import get_os, translate_error
 
 from rsa import PublicKey
 
-from .protocol.messages.steammessages_auth_pb2 import CAuthentication_BeginAuthSessionViaCredentials_Response, CAuthentication_AllowedConfirmation, CAuthentication_PollAuthSessionStatus_Response
+from .protocol.messages.steammessages_auth_pb2 import (
+    CAuthentication_BeginAuthSessionViaCredentials_Response,
+    CAuthentication_AllowedConfirmation,
+    CAuthentication_PollAuthSessionStatus_Response,
+)
 
-
-if TYPE_CHECKING:
-    from protocol.messages import steammessages_clientserver_pb2
+from .protocol.messages.steammessages_clientserver_userstats_pb2 import (
+    CMsgClientGetUserStatsResponse,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -424,8 +428,8 @@ class ProtocolClient:
 
     def _stats_handler(self,
         game_id: str,
-        stats: "steammessages_clientserver_pb2.CMsgClientGetUserStatsResponse.Stats",
-        achievement_blocks: "steammessages_clientserver_pb2.CMsgClientGetUserStatsResponse.AchievementBlocks",
+        stats: "CMsgClientGetUserStatsResponse.Stats",
+        achievement_blocks: "CMsgClientGetUserStatsResponse.AchievementBlocks",
         schema: dict
     ):
         def get_achievement_name(achievements_block_schema: dict, bit_no: int) -> str:

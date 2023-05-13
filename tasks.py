@@ -1,30 +1,43 @@
 import os
 import sys
 import json
+import requests
 import tempfile
+import zipfile
 from shutil import rmtree, copy2
 from distutils.dir_util import copy_tree
+from io import BytesIO
 
-from urllib.request import urlopen #used to retrieve the proto files from github. 
-from re import sub #used to replace some strings in the proto files to make them more python friendly
+from urllib.request import urlopen #used to retrieve the proto files from github.
 from http.client import HTTPResponse
 
 from invoke import task
 from galaxy.tools import zip_folder_to_file
 
-with open(os.path.join("src", "manifest.json"), "r") as f:
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+PROTOC_DIR = os.path.join(BASE_DIR, "protoc")
+
+with open(os.path.join(BASE_DIR, "src", "manifest.json"), "r") as f:
     MANIFEST = json.load(f)
 
 if sys.platform == 'win32':
     DIST_DIR = os.environ['localappdata'] + '\\GOG.com\\Galaxy\\plugins\\installed'
-    PIP_PLATFORM = "win32"
+    PLATFORM = "win32"
     PYTHON_EXE = "python.exe"
-    PROTOC_EXE = "protoc.exe"
+
+    PROTOC_EXE = os.path.join(PROTOC_DIR, "bin", "protoc.exe")
+    PROTOC_INCLUDE_DIR = os.path.join(PROTOC_DIR, "include")
+    PROTOC_DOWNLOAD_URL = "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protoc-3.19.4-win32.zip"
+
 elif sys.platform == 'darwin':
     DIST_DIR = os.path.realpath(os.path.expanduser("~/Library/Application Support/GOG.com/Galaxy/plugins/installed"))
-    PIP_PLATFORM = "macosx_10_13_x86_64"  # @see https://github.com/FriendsOfGalaxy/galaxy-integrations-updater/blob/master/scripts.py
+    PLATFORM = "macosx_10_13_x86_64"  # @see https://github.com/FriendsOfGalaxy/galaxy-integrations-updater/blob/master/scripts.py
     PYTHON_EXE = "python"
-    PROTOC_EXE = "protoc"
+
+    PROTOC_EXE = os.path.join(PROTOC_DIR, "bin", "protoc")
+    PROTOC_INCLUDE_DIR = os.path.join(PROTOC_DIR, "include")
+    PROTOC_DOWNLOAD_URL = "https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protoc-3.19.4-osx-x86_64.zip"
+
 
 @task
 def build(c, output='output', ziparchive=None):
@@ -47,7 +60,7 @@ def build(c, output='output', ziparchive=None):
         'pip', 'install',
         '-r', tmp.name,
         '--python-version', '37',
-        '--platform', PIP_PLATFORM,
+        '--platform', PLATFORM,
         '--target "{}"'.format(output),
         '--no-compile',
         '--no-deps'
@@ -67,93 +80,116 @@ def _read_url(response :HTTPResponse) -> str:
     raw_data = response.read()
     return raw_data.decode(charset)
 
-excluded_list = [
-    "test_messages.proto",
-    "gc.proto",
-    "steammessages_webui_friends.proto",
-    "steammessages_physicalgoods.proto",
-    ]
 
-def _pull_protobufs_internal(c,target_dir:str, list_file:str, silent=False):
-    if (not os.path.exists(target_dir)):
-        os.makedirs(target_dir)
+def _get_filename_from_url(url: str) -> str:
+    return url.split("/")[-1]
 
 
-    with open(list_file) as file:
-        for line in file:
-            #obtain the filename from the string. i'm being lazy, and stripping out the http:// stuff. 
-            line = line.replace("\n", "")
-            if (not silent):
-                print("Retrieving: " + line)
-            #i should really fix this to strip everything up to the last '/' but this works for now and i'm lazy. 
-            file_name = line.replace(r"https://raw.githubusercontent.com/SteamDatabase/SteamTracking/master/Protobufs/", "")
-  
+def _pull_protobufs_internal(c, selection: str, silent: bool = False):
+    target_dir = os.path.join(BASE_DIR, "protobuf_files", "proto")
+    list_file = os.path.join(BASE_DIR, "protobuf_files", f"protobuf_{selection}.txt")
 
-            response = urlopen(line)
-            data = _read_url(response)
+    try:
+        rmtree(target_dir)
+    except Exception:
+        pass  # directory probably just already exists
 
-            if (not any(excluded in file_name for excluded in excluded_list)):
-    
-                if (".steamclient.proto" in file_name):
-                    file_name = file_name.replace(".steamclient.proto", ".proto")
-    
-                if ("cc_generic_services" in data):
-                    data = data.replace("cc_generic_services", "py_generic_services")
-    
-                if (".steamclient.proto" in data):
-                    data = data.replace (".steamclient.proto", ".proto")
-    
-                data = 'syntax = "proto2";\n' + data
+    os.makedirs(target_dir, exist_ok=True)
 
-            with open(target_dir + file_name, "w") as dest:
-                dest.write(data)
+    with open(list_file, "r") as file:
+        urls = filter(None, file.read().split("\n"))  # filter(None, ...) is used to strip empty lines from the collection
+
+    for url in urls:
+        if not silent:
+            print("Retrieving: " + url)
+
+        file_name = _get_filename_from_url(url)
+
+        response = urlopen(url)
+        data = _read_url(response)
+
+        # needed to avoid packages of the form ...steam_auth.steamclient_pb2
+        if ".steamclient.proto" in file_name:
+            file_name = file_name.replace(".steamclient.proto", ".proto")
+        if ".steamclient.proto" in data:
+            data = data.replace(".steamclient.proto", ".proto")
+
+        if "cc_generic_services" in data:
+            data = data.replace("cc_generic_services", "py_generic_services")
+
+        if selection == "webui":
+            # lil' hack to avoid name collisions; the definitions are (almost) identical so this shouldn't break anything
+            data = data.replace("common_base.proto", "steammessages_unified_base.proto")
+            data = data.replace("common.proto", "steammessages_base.proto")
+
+        # force proto2 syntax if not yet enforced
+        if "proto2" not in data:
+            data = f'syntax = "proto2";\n' + data
+
+        with open(os.path.join(target_dir, file_name), "w") as dest:
+            dest.write(data)
+
+
+@task
+def InstallProtoc(c):
+    if os.path.exists(PROTOC_DIR) and os.path.isdir(PROTOC_DIR):
+        print("protoc directory already exists, remove it if you want to reinstall protoc")
+        return
+
+    os.makedirs(PROTOC_DIR)
+
+    resp = requests.get(PROTOC_DOWNLOAD_URL, stream=True)
+    resp.raise_for_status()
+
+    with zipfile.PyZipFile(BytesIO(resp.content)) as zipf:
+        zipf.extractall(PROTOC_DIR)
+
+    print("protoc successfully installed")
+
 
 #for whatever reason if i give this an _ in the name it can't find it. i have no idea why. so TitleCase
-@task 
-def PullSafeProtobufFiles(c, silent=False):
-   _pull_protobufs_internal(c, "protobuf_files/protos/", "protobuf_files/protobuf_list.txt", silent)
+@task
+def PullProtobufSteamMessages(c, silent=False):
+   _pull_protobufs_internal(c, "steammessages", silent)
 
-@task 
-def PullConflictingProtobufFiles(c, silent=False):
-   _pull_protobufs_internal(c, "protobuf_files/conflicts/", "protobuf_files/protobuf_conflict_list.txt", silent)
+@task
+def PullProtobufWebui(c, silent=False):
+   _pull_protobufs_internal(c, "webui", silent)
 
 @task
 def PullAllProtobufFiles(c, silent=False):
-    PullSafeProtobufFiles(c, silent)
-    PullConflictingProtobufFiles(c, silent)
+    PullProtobufSteamMessages(c, silent)
+    PullProtobufWebui(c, silent)
 
 @task
 def ClearProtobufFiles(c):
-    filelist = [ f for f in os.listdir("protobuf_files/protos") if f.endswith(".proto") ]
+    filelist = [ f for f in os.listdir("protobuf_files/proto") if f.endswith(".proto") ]
     for f in filelist:
-        os.remove(os.path.join("protobuf_files/protos/", f))
-    filelist = [ f for f in os.listdir("protobuf_files/conflicts") if f.endswith(".proto") ]
-    for f in filelist:
-        os.remove(os.path.join("protobuf_files/conflicts/", f))
+        os.remove(os.path.join("protobuf_files/proto", f))
 
-def _copy_from_to(src, target):
-    src_files = os.listdir(src)
-    for file_name in src_files:
-        full_file_name = os.path.join(src, file_name)
-        if os.path.isfile(full_file_name):
-            copy2(full_file_name, target)
+
 
 @task
-def GenerateProtobufMessages(c, genFile = True):
-    if (genFile and not os.path.exists("protobuf_files/gen")):
-        os.makedirs("protobuf_files/gen")
-    out_dir = "./protobuf_files/gen/" if genFile else "src/steam_network/protocol/messages"
-    
-    temp_folder = tempfile.mkdtemp()
-    _copy_from_to("protobuf_files/protos", temp_folder)
-    _copy_from_to("protobuf_files/merged", temp_folder)
-    all_files = " ".join(map(lambda x : '"' + temp_folder + os.path.sep + x + '"', os.listdir(temp_folder)))
-    print(PROTOC_EXE + ' -I "' + temp_folder + '" --python_out="' + out_dir + '" ' + all_files)
-    c.run(
-        PROTOC_EXE + ' -I "'+ temp_folder +'" --python_out="' + out_dir + '" ' + all_files
-    )
+def GenerateProtobufMessages(c):
+    proto_files_dir = os.path.join(BASE_DIR, "protobuf_files", "proto")
 
-    rmtree(temp_folder)
+    out_dir = os.path.join(BASE_DIR, "src", "steam_network", "protocol", "messages")
+
+    try:
+        rmtree(os.path.join(out_dir))
+    except Exception:
+        pass  # directory probably just didn't exist
+
+    os.makedirs(os.path.join(out_dir), exist_ok=True)
+
+    # make sure __init__.py is there
+    with open(os.path.join(out_dir, "__init__.py"), "wb") as fp:
+        fp.write(b"")
+
+    all_files = " ".join(map(lambda x: '"' + os.path.join(proto_files_dir, x) + '"', os.listdir(proto_files_dir)))
+    print(f'{PROTOC_EXE} -I "{proto_files_dir}" --python_out="{out_dir}" {all_files}')
+    c.run(f'{PROTOC_EXE} -I "{proto_files_dir}" --python_out="{out_dir}" {all_files}')
+
 
 @task
 def ClearGeneratedProtobufs(c, genFile = True):
