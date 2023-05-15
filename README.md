@@ -1,3 +1,7 @@
+## NOTE:
+In order to properly merge this with Nebula, i have rebased to their fork. The latest version is at 
+https://github.com/ABaumher/galaxy-integration-steam/tree/master
+
 # Steam Integration
 
 GOG Galaxy 2.0 Community integration for Steam.
